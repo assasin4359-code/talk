@@ -35,7 +35,7 @@ func _ready() -> void:
 	_head_height = head.position.y
 	ray.target_position = Vector3(0, 0, -interact_range)
 	ray.add_exception(self)
-	capture_mouse(true)
+	BTGInput.capture_mouse(true)
 
 
 # --- camera moves the director uses (presentation only) -------------------------
@@ -73,11 +73,6 @@ func get_up(seconds: float) -> Tween:
 	return t
 
 
-func capture_mouse(on: bool) -> void:
-	if DisplayServer.get_name() != "headless":
-		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED if on else Input.MOUSE_MODE_VISIBLE
-
-
 func place_at(anchor: Node3D) -> void:
 	global_position = anchor.global_position
 	rotation.y = anchor.global_rotation.y
@@ -86,16 +81,27 @@ func place_at(anchor: Node3D) -> void:
 	velocity = Vector3.ZERO
 
 
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_APPLICATION_FOCUS_OUT:
+		BTGInput.capture_mouse(false)  # alt-tab etc.: a click brings mouse-look back
+
+
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("release_mouse"):
-		capture_mouse(Input.mouse_mode != Input.MOUSE_MODE_CAPTURED)
+		BTGInput.capture_mouse(not BTGInput.mouse_captured)
 		return
 	if input_locked:
 		return
-	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
-		rotate_y(-event.relative.x * mouse_sensitivity)
-		head.rotation.x = clampf(head.rotation.x - event.relative.y * mouse_sensitivity, -1.45, 1.45)
-	elif event.is_action_pressed("interact") and focus != null:
+	if event is InputEventMouseMotion:
+		if BTGInput.mouse_captured:
+			rotate_y(-event.relative.x * mouse_sensitivity)
+			head.rotation.x = clampf(head.rotation.x - event.relative.y * mouse_sensitivity, -1.45, 1.45)
+		return
+	if event is InputEventMouseButton and event.pressed and not BTGInput.mouse_captured:
+		BTGInput.capture_mouse(true)  # click into the window: mouse-look again, not an interaction
+		get_viewport().set_input_as_handled()
+		return
+	if event.is_action_pressed("interact") and focus != null:
 		get_viewport().set_input_as_handled()
 		interact(focus)
 

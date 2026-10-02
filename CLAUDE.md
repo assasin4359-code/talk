@@ -42,6 +42,7 @@ Godot gotchas learned here:
 - Signals that may fire synchronously: connect before acting (see `_flag()` in `tests/test_playthrough.gd`).
 - Never prove a route by teleporting. `tests/test_routes.gd` walks every story route with the real controller; add a route there whenever a new place matters. There is no jump: any ledge over 0.3 m on a route is a soft-lock.
 - `BTG_TEST_FILTER=test_routes Tools/godot/run_tests.sh` runs one test file.
+- A captured mouse sits at the screen centre: any visible Control there with the default `MOUSE_FILTER_STOP` eats mouse-look (the HUD crosshair did). Non-interactive UI = `MOUSE_FILTER_IGNORE`. Mouse capture goes through `BTGInput.capture_mouse()` only; `tests/test_mouse.gd` drives real mouse events.
 
 If choice order in a beat changes, update `Tools/narrative/prototype/walkthrough.txt` and any scenario `pick` lists.
 

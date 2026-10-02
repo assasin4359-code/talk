@@ -12,12 +12,16 @@ func _ready() -> void:
 	layer = 5
 	_dot = ColorRect.new()
 	_dot.color = Color(1, 1, 1, 0.75)
+	# A captured mouse sits at the screen centre — exactly where this dot is. With the
+	# default MOUSE_FILTER_STOP it swallowed every mouse motion and mouse-look died.
+	_dot.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	_dot.size = Vector2(4, 4)
 	_dot.set_anchors_preset(Control.PRESET_CENTER)
 	_dot.position -= _dot.size / 2
 	add_child(_dot)
 	_prompt = Label.new()
 	_prompt.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	_prompt.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	_prompt.add_theme_font_size_override("font_size", 20)
 	_prompt.add_theme_color_override("font_outline_color", Color(0, 0, 0, 0.8))
 	_prompt.add_theme_constant_override("outline_size", 6)

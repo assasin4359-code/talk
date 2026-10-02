@@ -156,13 +156,11 @@ func _show_choices(options: Array) -> int:
 		_choices.add_child(b)
 	(_choices.get_child(0) as Button).grab_focus()
 	_choosing = true
-	if DisplayServer.get_name() != "headless":
-		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	BTGInput.capture_mouse(false)  # show the cursor so options can be clicked
 	var index: int = await _picked
 	_choosing = false
 	_clear_choices()
-	if DisplayServer.get_name() != "headless":
-		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	BTGInput.capture_mouse(true)
 	return index
 
 

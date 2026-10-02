@@ -4,6 +4,17 @@ extends RefCounted
 ## the Input Map. Rebinding UI can later read/write the same action names.
 
 
+## Whether mouse-look is on. Tracked here, not read back from Input.mouse_mode, so
+## headless runs (tests) behave like a real window and every caller shares one truth.
+static var mouse_captured := false
+
+
+static func capture_mouse(on: bool) -> void:
+	mouse_captured = on
+	if DisplayServer.get_name() != "headless":
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED if on else Input.MOUSE_MODE_VISIBLE
+
+
 static func ensure_actions() -> void:
 	_add("move_forward", [KEY_W, KEY_UP])
 	_add("move_back", [KEY_S, KEY_DOWN])

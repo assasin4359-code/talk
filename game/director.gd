@@ -189,6 +189,7 @@ func _watch_for_slice_end() -> void:
 	end_card.add_theme_color_override("font_outline_color", Color(0, 0, 0, 0.8))
 	end_card.add_theme_constant_override("outline_size", 8)
 	end_card.modulate.a = 0.0
+	end_card.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	layer.add_child(end_card)
 	var t := create_tween()
 	t.tween_property(end_card, "modulate:a", 1.0, _seconds(2.0))

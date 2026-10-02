@@ -23,6 +23,7 @@ func _ready() -> void:
 	_tone = AudioStreamPlayer.new()
 	_tone.stream = _make_tone(6200.0)
 	_tone.volume_db = -80.0
+	_tone.bus = BTGAudio.SFX
 	add_child(_tone)
 	clear()
 
@@ -59,7 +60,7 @@ func play_faint(duration: float) -> void:
 	_rect.visible = true
 	# No audio output (headless tests, captures): nothing to hear, and a playback started
 	# on the Dummy driver is never cleaned up if the scene is freed mid-faint.
-	if AudioServer.get_driver_name() != "Dummy":
+	if BTGAudio.can_play():
 		_tone.play()
 		create_tween().tween_property(_tone, "volume_db", -9.0, duration * 0.8).from(-50.0)
 	_param_tween("blur", 1.0, duration * 0.7, duration * 0.15)

@@ -115,10 +115,13 @@ Playing ──faint:<Reason>──▶ Fainting ──(연출 완료 or 타임아
 | ✅ `BTGPlayer` (CharacterBody3D) | 1인칭 이동/시점, 레이캐스트 상호작용, 대화 중 입력 잠금 |
 | ✅ `BTGDialogueBox` (CanvasLayer) | 타자기 출력, 선택지, 정적. 글자마다 페이크 보이스 호출 |
 | ✅ presenters (`gate_presenter`, `sign_presenter`, `variant_presenter`) | 월드 값 → 보이는 모습. `variant_presenter`는 값 이름의 자식만 보여주는 범용 스위치 |
-| `FakeVoice` + `VoiceProfile` (Resource `.tres`) | 샘플 세트, 피치/볼륨 범위, 초당 글자 수. 한글 음절(U+AC00–D7A3) 단위 블립 |
-| `Footsteps` (Node) | **모든 발소리는 여기를 경유** — 나중에 지연/추가/소거 이상현상을 붙일 자리 |
+| ✅ `BTGFakeVoice` (Node) + `BTGVoiceProfile` (Resource `.tres`) | 대화창이 글자를 보여줄 때마다 블립. 한글 음절(U+AC00–D7A3)의 모음 계열(ㅏ/ㅐ/ㅣ/ㅗ/ㅜ)로 샘플 선택 → 말처럼 오르내림. 프로필 = 샘플 5개, 피치/볼륨 범위, 초당 글자 수(타자기 속도도 이걸 따름). 목소리 없는 화자(플레이어)는 무음 |
+| ✅ `BTGFootsteps` (Node, 플레이어 자식) | **모든 발소리는 여기를 경유** — 나중에 지연/추가/소거 이상현상을 붙일 자리. 발밑 콜라이더의 `surface` 메타(dirt/stone/wood)로 소리 묶음 선택 |
+| ✅ `BTGSoundSet` (Resource) | 무작위로 하나 고르는 소리 묶음 + 피치/볼륨 흔들림 + 버스. 진짜 소리가 오면 `.tres`의 샘플만 교체 |
+| ✅ `BTGAudio` | 버스 이름, `can_play()` (오디오 장치 없는 헤드리스에선 재생 안 함 — 재생 객체 누수 방지) |
 | ✅ `BTGDirector` (Node) + `BTGFaintFx` | 2.4 파이프라인. 대화 → 기절 연출 → `complete_cycle()` → 씬 리로드 → 기상. 연출과 진행이 한 곳에 있어 완료 신호 누락이 없음 |
-| `AudioDirector` (VS 이후) | 오디오 버스 구성(World/Footsteps/NPCVoice/Narrator/UI), 완전 무음, 나레이터 우선 |
+| ✅ 오디오 버스 (`default_bus_layout.tres`) | Master ← World(Ambient, Footsteps, SFX) / Voice(NPCVoice, Narrator) / UI / Music |
+| `AudioDirector` (VS 이후) | 버스를 조작해 완전 무음, 나레이터 우선 |
 
 ### 씬이 담당 (핸드오프의 Blueprint 영역)
 

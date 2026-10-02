@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="BTGSoundSet" format=3]
+
+[ext_resource type="Script" path="res://game/audio/sound_set.gd" id="1_script"]
+[ext_resource type="AudioStream" path="res://assets/audio/placeholder/footsteps/dirt_1.wav" id="2_s1"]
+[ext_resource type="AudioStream" path="res://assets/audio/placeholder/footsteps/dirt_2.wav" id="3_s2"]
+[ext_resource type="AudioStream" path="res://assets/audio/placeholder/footsteps/dirt_3.wav" id="4_s3"]
+[ext_resource type="AudioStream" path="res://assets/audio/placeholder/footsteps/dirt_4.wav" id="5_s4"]
+
+[resource]
+script = ExtResource("1_script")
+samples = Array[AudioStream]([ExtResource("2_s1"), ExtResource("3_s2"), ExtResource("4_s3"), ExtResource("5_s4")])
+pitch_min = 0.9
+pitch_max = 1.1
+volume_db_min = -11.0
+volume_db_max = -8.0
+bus = &"Footsteps"

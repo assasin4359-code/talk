@@ -24,6 +24,8 @@ var S_PLAYER: Script
 var S_DIRECTOR: Script
 var S_VARIANT: Script
 var S_RENDER: Script
+var S_FOOTSTEPS: Script
+var S_AMBIENT: Script
 
 const PLATEAU_Y := 6.0  # castle hill height
 const GATE_Z := -46.0  # centre of the castle wall
@@ -43,7 +45,9 @@ func _initialize() -> void:
 	S_DIRECTOR = load("res://game/director.gd")
 	S_VARIANT = load("res://game/world/variant_presenter.gd")
 	S_RENDER = load("res://game/world/render_tuning.gd")
-	for sc in [S_ANCHOR, S_TARGET, S_VOLUME, S_GATE, S_SIGN, S_PLAYER, S_DIRECTOR, S_VARIANT, S_RENDER]:
+	S_FOOTSTEPS = load("res://game/audio/footsteps.gd")
+	S_AMBIENT = load("res://game/audio/ambient_emitter.gd")
+	for sc in [S_ANCHOR, S_TARGET, S_VOLUME, S_GATE, S_SIGN, S_PLAYER, S_DIRECTOR, S_VARIANT, S_RENDER, S_FOOTSTEPS, S_AMBIENT]:
 		if sc == null or not sc.can_instantiate():
 			push_error("a game script failed to compile; not writing %s" % OUT)
 			quit(1)
@@ -67,6 +71,7 @@ func _initialize() -> void:
 	_props(targets)
 	_anchors(_group(scene_root, "Anchors"))
 	_volumes(scene_root)
+	_ambience(scene_root)
 	var player := _player(scene_root)
 	var director := Node.new()
 	director.name = "Director"
@@ -306,7 +311,7 @@ func _ground(p: Node) -> void:
 
 
 func _square(p: Node) -> void:
-	_cyl(p, "Plaza", 14.0, 0.05, Vector3(0, 0.025, 0), "plaza")
+	_cyl(p, "Plaza", 14.0, 0.05, Vector3(0, 0.025, 0), "plaza").set_meta("surface", "stone")
 	var well := CSGCombiner3D.new()
 	well.name = "Well"
 	well.use_collision = true
@@ -331,12 +336,22 @@ func _tavern(p: Node) -> void:
 	_sub(t, "Door", Vector3(1.0, 2.6, 1.8), Vector3(6, 1.3, 0))
 	_sub(t, "WindowN", Vector3(1.0, 1.2, 1.4), Vector3(6, 2.4, -3))
 	_sub(t, "WindowS", Vector3(1.0, 1.2, 1.4), Vector3(6, 2.4, 3))
-	_box(p, "TavernFloor", Vector3(11.4, 0.06, 9.4), Vector3(-21, 0.03, -2), "wood")
+	_box(p, "TavernFloor", Vector3(11.4, 0.06, 9.4), Vector3(-21, 0.03, -2), "wood").set_meta("surface", "wood")
 	_gable(p, "TavernRoof", Vector3(-21, 6, -2), 13.2, 11, 3.2, "roof")
 	# inside
 	_box(p, "Counter", Vector3(1, 0.95, 5), Vector3(-23.6, 0.475, -2), "wood_dark")
 	_light(p, "TavernLight", Vector3(-21, 4.2, -2), Color(1.0, 0.78, 0.5), 2.2, 11.0)
 	_light(p, "FireGlow", Vector3(-19.5, 0.8, -5.2), Color(1.0, 0.5, 0.2), 1.6, 5.0)
+	var fire := AudioStreamPlayer3D.new()  # TEMP sound: assets/audio/README.md
+	fire.name = "FireCrackle"
+	fire.stream = load("res://assets/audio/placeholder/ambience/fire_loop.wav")
+	fire.bus = &"Ambient"
+	fire.position = Vector3(-19.5, 0.8, -5.6)
+	fire.unit_size = 2.5
+	fire.max_distance = 16.0
+	fire.volume_db = -4.0
+	p.add_child(fire)
+	_attach(fire, S_AMBIENT, "Start")
 	_box(p, "Fireplace", Vector3(2.6, 2.2, 0.8), Vector3(-19.5, 1.1, -6.3), "stone_dark")
 	_box(p, "FireplaceMouth", Vector3(1.4, 1.0, 0.1), Vector3(-19.5, 0.6, -5.86), "opening", Vector3.ZERO, false)
 	for i in 4:
@@ -417,7 +432,7 @@ func _hill_and_castle(p: Node) -> void:
 	_box(p, "GateTowerR", Vector3(4, 19, 4), Vector3(6.5, y + 9.5, GATE_Z + 0.5), "stone_dark")
 	# foyer behind the gate
 	var fz := GATE_Z - 1.5  # inner face of the wall
-	_box(p, "FoyerFloor", Vector3(16, 0.06, 14.5), Vector3(0, y + 0.03, fz - 7.25), "marble")
+	_box(p, "FoyerFloor", Vector3(16, 0.06, 14.5), Vector3(0, y + 0.03, fz - 7.25), "marble").set_meta("surface", "stone")
 	_box(p, "FoyerWallW", Vector3(0.4, 11, 14.5), Vector3(-8, y + 5.5, fz - 7.25), "stone")
 	_box(p, "FoyerWallE", Vector3(0.4, 11, 14.5), Vector3(8, y + 5.5, fz - 7.25), "stone")
 	_box(p, "FoyerBack", Vector3(16, 11, 0.4), Vector3(0, y + 5.5, fz - 14.5), "stone")
@@ -594,6 +609,24 @@ func _volumes(p: Node) -> void:
 	v.set("volume_id", "castle_foyer")
 
 
+func _attach(parent: Node, script: Script, n: String) -> Node:
+	var node := Node.new()
+	node.name = n
+	node.set_script(script)
+	parent.add_child(node)
+	return node
+
+
+func _ambience(p: Node) -> void:
+	var wind := AudioStreamPlayer.new()  # TEMP sound: assets/audio/README.md
+	wind.name = "AmbienceWind"
+	wind.stream = load("res://assets/audio/placeholder/ambience/wind_loop.wav")
+	wind.bus = &"Ambient"
+	wind.volume_db = -14.0
+	p.add_child(wind)
+	_attach(wind, S_AMBIENT, "Start")
+
+
 func _player(p: Node) -> CharacterBody3D:
 	var pl := CharacterBody3D.new()
 	pl.name = "Player"
@@ -623,5 +656,14 @@ func _player(p: Node) -> CharacterBody3D:
 	var held := _target(cam, "Held", "player", "use", false, PackedStringArray(["carrying"]))
 	var items := _variants(held, "carrying", ["nothing", "firewood"])
 	_logs(items["firewood"], 5, Vector3(0.32, -0.42, -0.62), 0.55, 0.07)
+	var steps := Node.new()
+	steps.name = "Footsteps"
+	steps.set_script(S_FOOTSTEPS)
+	pl.add_child(steps)
+	steps.set("sets", {
+		"dirt": load("res://assets/audio/sets/footsteps_dirt.tres"),
+		"stone": load("res://assets/audio/sets/footsteps_stone.tres"),
+		"wood": load("res://assets/audio/sets/footsteps_wood.tres"),
+	})
 	p.add_child(pl)
 	return pl

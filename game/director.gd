@@ -14,6 +14,7 @@ signal day_ended(result: Dictionary)
 
 var hud: BTGHud
 var dialogue: BTGDialogueBox
+var voice: BTGFakeVoice
 var fx: BTGFaintFx
 var busy := true  # a conversation, the faint or the wake-up is running
 var speed := 1.0  # >1 plays every presentation faster (tests)
@@ -27,6 +28,10 @@ func _ready() -> void:
 	add_child(hud)
 	dialogue = BTGDialogueBox.new()
 	add_child(dialogue)
+	voice = BTGFakeVoice.new()
+	add_child(voice)
+	dialogue.character_revealed.connect(voice.on_character)
+	dialogue.pace = voice.chars_per_second
 	fx = BTGFaintFx.new()
 	add_child(fx)
 	fx.black()

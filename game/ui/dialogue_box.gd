@@ -16,6 +16,7 @@ const CHARS_PER_SEC := 28.0
 const PUNCT_PAUSE := {".": 0.18, "?": 0.22, "!": 0.2, "…": 0.12, ",": 0.08}
 
 var autoplay = null  # null | Array of choice-text prefixes
+var pace := Callable()  ## speaker -> characters per second (the fake voice's speech rate)
 var autoplay_hold_at := -1
 var instant := false  # no typewriter, no pauses (tests)
 var transcript: Array = []  # [speaker, text]
@@ -116,6 +117,7 @@ func _show_line(speaker: String, text: String) -> void:
 	else:
 		_text.visible_characters = 0
 		_typing = true
+		var cps: float = pace.call(speaker) if pace.is_valid() else CHARS_PER_SEC
 		var i := 0
 		while i < text.length() and _typing:
 			i += 1
@@ -123,7 +125,7 @@ func _show_line(speaker: String, text: String) -> void:
 			var ch := text[i - 1]
 			if ch != " ":
 				character_revealed.emit(speaker, ch)
-			await get_tree().create_timer(1.0 / CHARS_PER_SEC + PUNCT_PAUSE.get(ch, 0.0)).timeout
+			await get_tree().create_timer(1.0 / cps + PUNCT_PAUSE.get(ch, 0.0)).timeout
 		_typing = false
 		_text.visible_characters = -1
 	_more.visible = true

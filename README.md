@@ -5,7 +5,7 @@
 > 평범한 판타지 마을에 도착한 외지인이 성에 들어가려다 같은 장소와 사람들을 반복해서 경험하고,
 > 그 모든 변화가 자신을 즐겁게 하려고 세계의 관리자(나레이터)가 만든 것이었다는 사실을 발견한다.
 
-**현재 단계:** Milestone 01 (THE FIRST RETURN) — **처음부터 끝까지 플레이 가능** (회색 박스, 임시 대사, 소리 거의 없음). 다음: 플레이테스트 → 페이크 보이스 → 환경음.
+**현재 단계:** Milestone 01 (THE FIRST RETURN) — **처음부터 끝까지 플레이 가능** (회색 박스, 임시 대사, 임시 합성 소리: 페이크 보이스·발소리·바람·장작불). 다음: 진짜 소리 수집([`assets/audio/README.md`](assets/audio/README.md)) → 메뉴 → 환경음.
 
 ## 문서
 
@@ -53,13 +53,15 @@ GODOT=/path/to/godot Tools/godot/run_tests.sh                              # God
 ```
 project.godot          Godot 프로젝트 (저장소 루트)
 core/narrative/        게임 런타임의 내러티브 코어 (GDScript). autoload Narrative
-game/                  플레이어, 월드 표현(앵커/대상/볼륨/성문/간판), HUD, 디렉터
+game/                  플레이어, 월드 표현(앵커/대상/볼륨/성문/간판), HUD, 디렉터, 오디오(페이크 보이스·발소리)
 scenes/                village.tscn (blockout/build_village.gd가 생성하는 회색 박스)
 assets/fonts/          Pretendard (OFL)
+assets/audio/          소리 (지금은 임시 합성음). 진짜 소리는 inbox/로 — README 참고
 tests/                 Godot 헤드리스 테스트 (+ visual/capture.gd 스크린샷)
 GameData/              게임 데이터 (JSON) — 대사, 조건, 플래그, 스테이지, 월드 규칙
   tests/               공용 테스트: 조건 벡터, 시나리오, 픽스처 (Python과 Godot이 둘 다 실행)
 Tools/narrative/       Python 레퍼런스 구현 + 검증기 + 텍스트 프로토타입
 Tools/godot/           테스트 실행/클라우드 설치 스크립트
+Tools/audio/           임시 소리 합성기
 docs/                  기획/설계 문서
 ```

@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="BTGVoiceProfile" format=3]
+
+[ext_resource type="Script" path="res://game/audio/voice_profile.gd" id="1_script"]
+[ext_resource type="AudioStream" path="res://assets/audio/placeholder/voice/blip_a.wav" id="2_a"]
+[ext_resource type="AudioStream" path="res://assets/audio/placeholder/voice/blip_e.wav" id="3_e"]
+[ext_resource type="AudioStream" path="res://assets/audio/placeholder/voice/blip_i.wav" id="4_i"]
+[ext_resource type="AudioStream" path="res://assets/audio/placeholder/voice/blip_o.wav" id="5_o"]
+[ext_resource type="AudioStream" path="res://assets/audio/placeholder/voice/blip_u.wav" id="6_u"]
+
+[resource]
+script = ExtResource("1_script")
+samples = Array[AudioStream]([ExtResource("2_a"), ExtResource("3_e"), ExtResource("4_i"), ExtResource("5_o"), ExtResource("6_u")])
+pitch_min = 0.72
+pitch_max = 0.78
+volume_db_min = -7.0
+volume_db_max = -6.0
+bus = &"NPCVoice"
+chars_per_second = 18.0
+blip_every = 1

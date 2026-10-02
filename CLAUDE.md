@@ -46,6 +46,7 @@ Godot gotchas learned here:
 If choice order in a beat changes, update `Tools/narrative/prototype/walkthrough.txt` and any scenario `pick` lists.
 
 ## Conventions
+- Talk to the owner in **Korean**: chat replies, tool-call descriptions, file captions, commit messages. Code identifiers and code comments stay English.
 - GDScript: static typing where practical, `class_name BTG*` for core classes, tabs. Python: stdlib only, 3.10+.
 - Commit `*.gd.uid` files; never commit `.godot/`.
 - Temp blockout art lives under `scenes/blockout/`.

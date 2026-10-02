@@ -1,0 +1,95 @@
+{
+  "beats": [
+    {
+      "id": "guard.c1.first",
+      "on": "talk:guard",
+      "when": ["stage:S01_Arrival"],
+      "once": "story",
+      "priority": 20,
+      "note": "[임시 대사] 1회차 경비는 평범하다. 막지 않는다.",
+      "lines": [
+        "guard: 성에 볼일 있소?",
+        { "pause": 0.8, "speaker": "guard", "text": "……뭐, 없어도 상관없소. 오늘은 문이 열려 있으니." },
+        "guard: 안에서 뛰지만 마시오. 바닥 닦은 지 얼마 안 됐소."
+      ],
+      "effects": ["set:MetGuard"],
+      "choices": [
+        { "text": "왕은 어떤 분이야?", "next": "guard.c1.king" },
+        { "text": "고마워." }
+      ]
+    },
+    {
+      "id": "guard.c1.king",
+      "lines": [
+        "guard: 좋은 분이시오.",
+        { "pause": 1.0, "speaker": "guard", "text": "말씀이 좀 많으시지만." },
+        "guard: ……이건 내가 했다고 하지 마시오."
+      ]
+    },
+    {
+      "id": "guard.c1.repeat",
+      "on": "talk:guard",
+      "when": ["stage:S01_Arrival"],
+      "priority": 10,
+      "lines": ["guard: 들어갈 거면 들어가시오. 문 앞에 서 있으면 내가 할 일이 생기잖소."]
+    },
+
+    {
+      "id": "guard.c2.recognize",
+      "on": "talk:guard",
+      "when": ["stage:S02_GateClosed", "flag:EnteredCastle"],
+      "once": "story",
+      "priority": 30,
+      "note": "핸드오프 12장 비트 그대로. 경비는 '또 왔군'이 아니라 '어제'만 기억한다 — 루프는 플레이어 등장 이후 생긴 현상.",
+      "lines": [
+        "player: 어제는 들어갈 수 있었잖아.",
+        "guard: 어제?",
+        { "pause": 1.2, "speaker": "guard", "text": "……어디서 본 것 같은데.", "cue": "GuardStare" },
+        { "pause": 1.5, "speaker": "guard", "text": "아. 어제 성문 앞에서 쓰러진 사람이 자네였나?" }
+      ],
+      "effects": ["set:GuardRecognizesPlayer"],
+      "next": "guard.c2.hub"
+    },
+    {
+      "id": "guard.c2.hub",
+      "choices": [
+        { "text": "성문 앞? 성 안에서 쓰러졌는데.", "when": ["!seen:guard.c2.where@cycle"], "next": "guard.c2.where" },
+        { "text": "문은 왜 닫혀 있어?", "when": ["!seen:guard.c2.why@cycle"], "next": "guard.c2.why" },
+        { "text": "……아무것도 아니야." }
+      ]
+    },
+    {
+      "id": "guard.c2.where",
+      "note": "제안: 플레이어는 '성 안'에서 쓰러졌는데 경비는 '성문 앞'에서 봤다. 핸드오프 12장 대사에 이미 있는 어긋남을 첫 미스터리 씨앗으로 쓴다. 경비는 거짓말하지 않는다 — 실제로 그렇게 봤다.",
+      "lines": [
+        "guard: 성 안?",
+        { "pause": 1.0, "speaker": "guard", "text": "……글쎄. 내가 봤을 땐 여기, 이 문 앞이었소." }
+      ],
+      "effects": ["set:HeardWhereFainted"],
+      "next": "guard.c2.hub"
+    },
+    {
+      "id": "guard.c2.why",
+      "note": "제안: 농담으로 시작해서 아주 작은 균열로 끝난다. 너무 이르다고 느껴지면 마지막 줄만 삭제.",
+      "lines": [
+        "guard: 위에서 닫으라면 닫는 거요. 나는 문지기지, 문 철학자가 아니오.",
+        { "pause": 1.2, "speaker": "guard", "text": "……그러고 보니 누가 닫으라고 했더라." }
+      ],
+      "next": "guard.c2.hub"
+    },
+    {
+      "id": "guard.c2.repeat",
+      "on": "talk:guard",
+      "when": ["stage:S02_GateClosed"],
+      "priority": 10,
+      "lines": ["guard: 오늘은 안 되오. 내일 다시 오시오."]
+    },
+
+    {
+      "id": "guard.idle",
+      "on": "talk:guard",
+      "priority": 0,
+      "lines": ["guard: 수고하시오."]
+    }
+  ]
+}

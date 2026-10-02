@@ -1,0 +1,26 @@
+{
+  "anchors": ["entrance", "square", "tavern", "smithy", "gate", "castle_foyer"],
+
+  "baseline": [
+    { "target": "player", "prop": "spawn", "value": "entrance" },
+    { "target": "gate", "prop": "state", "value": "open" },
+    { "target": "gate", "prop": "location", "value": "gate" },
+    { "target": "guard", "prop": "location", "value": "gate" },
+    { "target": "bartender", "prop": "location", "value": "tavern" },
+    { "target": "firewood", "prop": "location", "value": "smithy" },
+    { "target": "tavern_sign", "prop": "state", "value": "normal" }
+  ],
+
+  "rules": [
+    {
+      "target": "gate", "prop": "state", "value": "closed",
+      "when": ["stage>=S02_GateClosed"],
+      "note": "2회차부터 성문이 닫힌다. 마을 입구(기상 지점)에서 바로 보이는 실루엣 변화여야 한다."
+    },
+    {
+      "target": "tavern_sign", "prop": "state", "value": "upside_down",
+      "when": ["stage>=S03_SliceEnd"],
+      "note": "[임시 티저] 3회차 첫 사물 변화. '다음엔 뭐가 바뀌지?'를 남기기 위한 VS 마무리."
+    }
+  ]
+}

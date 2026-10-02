@@ -1,0 +1,45 @@
+{
+  "beats": [
+    {
+      "id": "castle.c1.enter",
+      "on": "enter:castle_foyer",
+      "when": ["stage:S01_Arrival"],
+      "once": "cycle",
+      "note": "1회차 기절. 대사 없음 — 이명/흐림/흔들림/암전은 전부 연출(BP) 담당. 핵심은 이유 없이 쓰러진다는 것.",
+      "effects": ["set:EnteredCastle", "faint:CastleInterior"]
+    },
+
+    {
+      "id": "gate.c2.intercept",
+      "on": "use:gate",
+      "when": ["stage:S02_GateClosed", "!seen:guard.c2.recognize"],
+      "priority": 20,
+      "note": "경비와 대화하지 않고 성문부터 만지려는 플레이어도 '알아보는 순간'을 놓치지 않게 한다.",
+      "lines": [
+        { "speaker": "guard", "text": "어이, 거기. 문 닫힌 거 안 보이시오?", "cue": "GuardTurnsToPlayer" }
+      ],
+      "next": "guard.c2.recognize"
+    },
+    {
+      "id": "gate.c2.touch",
+      "on": "use:gate",
+      "when": ["stage:S02_GateClosed", "seen:guard.c2.recognize"],
+      "once": "cycle",
+      "priority": 10,
+      "note": "2회차 기절. 경비의 대사가 끝나기 전에 연출이 덮어야 한다 (줄 끝의 '—').",
+      "lines": [
+        { "speaker": "guard", "text": "이봐, 손대지 말라니까—", "cue": "GateTouch" }
+      ],
+      "effects": ["faint:GateTouch"]
+    },
+
+    {
+      "id": "firewood.take",
+      "on": "use:firewood",
+      "when": ["!flag:CarryingFirewood"],
+      "priority": 10,
+      "note": "인벤토리 없음. '들고 있다'는 회차 플래그 하나로 끝.",
+      "effects": ["set:CarryingFirewood", "cue:PickUpFirewood"]
+    }
+  ]
+}

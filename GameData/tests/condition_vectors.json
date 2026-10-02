@@ -1,0 +1,74 @@
+{
+  "$comment": "조건 DSL 적합성 테스트. Python 레퍼런스(Tools/narrative/tests)와 엔진 포팅(UE Automation Spec 등)이 같은 파일을 돌려야 한다. context는 자체 완결적이며 GameData 내용과 무관하다.",
+  "context": {
+    "cycle": 3,
+    "stageOrder": ["S01", "S02", "S03", "S04"],
+    "stage": "S03",
+    "flags": ["EnteredCastle"],
+    "cycleFlags": ["CarryingFirewood"],
+    "seen": { "a.first": [1], "a.today": [3], "a.yesterday": [2] },
+    "rel": { "bob.Talked": [1, 2, 3], "bob.HelpedWithoutReward": [2], "bob.ReturnedItem": [1] },
+    "world": { "gate.state": "closed" }
+  },
+  "cases": [
+    { "atom": "flag:EnteredCastle", "expect": true },
+    { "atom": "flag:CarryingFirewood", "expect": true },
+    { "atom": "flag:Nope", "expect": false },
+    { "atom": "!flag:Nope", "expect": true },
+
+    { "atom": "cycle==3", "expect": true },
+    { "atom": "cycle >= 2", "expect": true },
+    { "atom": "cycle<3", "expect": false },
+    { "atom": "cycle!=3", "expect": false },
+    { "atom": "!cycle>3", "expect": true },
+
+    { "atom": "stage:S03", "expect": true },
+    { "atom": "stage:S02", "expect": false },
+    { "atom": "stage>=S02", "expect": true },
+    { "atom": "stage>S03", "expect": false },
+    { "atom": "stage<S04", "expect": true },
+    { "atom": "!stage:S03", "expect": false },
+
+    { "atom": "seen:a.first", "expect": true },
+    { "atom": "seen:a.first@cycle", "expect": false },
+    { "atom": "seen:a.today@cycle", "expect": true },
+    { "atom": "seen:a.yesterday@prev", "expect": true },
+    { "atom": "seen:a.first@prev", "expect": false },
+    { "atom": "seen:a.first@past", "expect": true },
+    { "atom": "seen:a.today@past", "expect": false },
+    { "atom": "seen:never.seen", "expect": false },
+    { "atom": "!seen:never.seen", "expect": true },
+
+    { "atom": "rel:bob.Talked", "expect": true },
+    { "atom": "rel:bob.Talked>=3", "expect": true },
+    { "atom": "rel:bob.Talked>3", "expect": false },
+    { "atom": "rel:bob.Talked@past==2", "expect": true },
+    { "atom": "rel:bob.HelpedWithoutReward@prev", "expect": true },
+    { "atom": "rel:bob.HelpedWithoutReward@cycle", "expect": false },
+    { "atom": "rel:bob.ReturnedItem@prev", "expect": false },
+    { "atom": "rel:bob.ReturnedItem@past", "expect": true },
+    { "atom": "!rel:bob.ListenedToStory", "expect": true },
+    { "atom": "rel:bob.ListenedToStory==0", "expect": true },
+
+    { "atom": "world:gate.state=closed", "expect": true },
+    { "atom": "world:gate.state=open", "expect": false },
+    { "atom": "!world:gate.state=open", "expect": true },
+    { "atom": "world:missing.prop=x", "expect": false }
+  ],
+  "invalid": [
+    "",
+    "flag:",
+    "flag EnteredCastle",
+    "flag:Entered Castle",
+    "cycle=>2",
+    "cycle==two",
+    "stage:",
+    "seen:a.first@tomorrow",
+    "rel:bob",
+    "rel:bob.Talked>=",
+    "world:gate.state",
+    "world:gate=closed",
+    "!!flag:X",
+    "unknown:thing"
+  ]
+}

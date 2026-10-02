@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+
+# Text prototype saves + future Unreal Engine output
+Saved/
+Binaries/
+Intermediate/
+DerivedDataCache/
+Build/
+.vs/
+.vscode/
+.idea/
+*.sln
+*.suo
+*.VC.db
+*.opensdf
+*.sdf
+
+# OS
+.DS_Store
+Thumbs.db

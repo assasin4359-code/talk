@@ -1,0 +1,22 @@
+name: narrative
+
+on:
+  push:
+    paths: ["GameData/**", "Tools/narrative/**", ".github/workflows/narrative.yml"]
+  pull_request:
+    paths: ["GameData/**", "Tools/narrative/**", ".github/workflows/narrative.yml"]
+
+jobs:
+  validate-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Validate GameData
+        run: python Tools/narrative/btg.py validate
+      - name: Unit + milestone tests
+        run: python -m unittest discover -s Tools/narrative/tests -t Tools/narrative/tests -v
+      - name: Walkthrough (Milestone 01 golden path)
+        run: python Tools/narrative/btg.py play --walkthrough > walkthrough.log && tail -n 20 walkthrough.log

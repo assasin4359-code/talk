@@ -1,0 +1,20 @@
+{
+  "start": "S01_Arrival",
+  "stages": [
+    {
+      "id": "S01_Arrival",
+      "note": "1회차. 정상 세계를 학습하는 날. 성문 열림. 성 현관 진입 직후 기절.",
+      "transitions": [{ "to": "S02_GateClosed" }]
+    },
+    {
+      "id": "S02_GateClosed",
+      "note": "2회차. 성문 닫힘. 경비가 플레이어를 알아봄. 닫힌 성문에 손대면 기절.",
+      "transitions": [{ "to": "S03_SliceEnd" }]
+    },
+    {
+      "id": "S03_SliceEnd",
+      "terminal": true,
+      "note": "[임시] Vertical Slice 끝. 3회차에 눈을 뜨면 작은 변화 하나(술집 간판)만 보여주고 종료."
+    }
+  ]
+}

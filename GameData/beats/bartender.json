@@ -1,0 +1,148 @@
+{
+  "beats": [
+    {
+      "id": "bartender.c1.first",
+      "on": "talk:bartender",
+      "when": ["stage:S01_Arrival"],
+      "once": "story",
+      "priority": 50,
+      "note": "[임시 대사] 첫 만남. 장작 이야기는 부탁이 아니라 혼잣말로 흘린다.",
+      "lines": [
+        "bartender: 어서 와! 처음 보는 얼굴이네.",
+        "bartender: 길을 잃은 거야, 술을 찾는 거야? 둘 다 여기가 맞긴 한데.",
+        "bartender: 작은 마을이라 외지인은 금방 티가 나. 볼 거라곤 저 위에 성 하나뿐이고.",
+        { "pause": 1.0, "speaker": "bartender", "text": "……장작이 얼마 안 남았네.", "cue": "BartenderGlancesAtHearth" }
+      ],
+      "choices": [
+        { "text": "성에는 누가 살아?", "next": "bartender.c1.king" },
+        { "text": "(장작을 내민다)", "when": ["flag:CarryingFirewood"], "next": "bartender.firewood.give" },
+        { "text": "그냥 둘러보는 중이야.", "next": "bartender.c1.browse" }
+      ]
+    },
+    {
+      "id": "bartender.c1.king",
+      "note": "[임시 대사] '재밌는 왕이니 한번 만나봐라'. 일화는 전해 들은 것으로만 — 왕의 실체는 미정이므로 직접 본 사람은 아직 없게 둔다.",
+      "lines": [
+        "bartender: 누구긴, 임금님이지.",
+        "bartender: 근데 상상하는 그런 근엄한 양반 아니야. 재밌는 분이셔.",
+        "bartender: 작년 축제 땐 왕관 쓰고 직접 술통을 굴리셨다더라. 그러다 분수에 빠지셨고.",
+        "bartender: 난 가게 보느라 못 봤지만. 다들 그 얘기만 해.",
+        "bartender: 성문도 웬만하면 열려 있어. 한번 올라가 봐. 운 좋으면 차 한잔 얻어 마실걸?"
+      ],
+      "effects": ["set:HeardAboutKing"]
+    },
+    {
+      "id": "bartender.c1.browse",
+      "lines": ["bartender: 그래, 천천히 봐. 볼 게 별로 없어서 금방 끝날 거야."]
+    },
+    {
+      "id": "bartender.c1.ask",
+      "on": "talk:bartender",
+      "when": ["stage:S01_Arrival", "!seen:bartender.c1.king"],
+      "priority": 15,
+      "note": "첫 대화에서 왕 이야기를 놓친 플레이어(예: 장작부터 건넨 경우)가 다시 물을 수 있게.",
+      "lines": ["bartender: 응, 뭐 더 필요해?"],
+      "choices": [
+        { "text": "성에는 누가 살아?", "next": "bartender.c1.king" },
+        { "text": "아니, 그냥." }
+      ]
+    },
+    {
+      "id": "bartender.c1.repeat",
+      "on": "talk:bartender",
+      "when": ["stage:S01_Arrival"],
+      "priority": 10,
+      "lines": ["bartender: 성엔 가 봤어? 임금님 만나면 우리 가게 홍보 좀 해 줘."]
+    },
+
+    {
+      "id": "bartender.firewood.give",
+      "on": "talk:bartender",
+      "when": ["flag:CarryingFirewood"],
+      "priority": 40,
+      "note": "부탁받지 않은 도움 → HelpedWithoutReward. 플레이어에게는 아무 수치도 보이지 않는다.",
+      "lines": [
+        { "speaker": "bartender", "text": "어? 그거 장작이야?", "cue": "HandOverFirewood" },
+        "bartender: ……시키지도 않았는데 가져온 거야? 이야, 요즘 세상에.",
+        "bartender: 고마워. 오늘 밤은 안 춥겠네."
+      ],
+      "effects": ["clear:CarryingFirewood", "rel:bartender.HelpedWithoutReward"]
+    },
+    {
+      "id": "bartender.firewood.again",
+      "on": "talk:bartender",
+      "when": ["flag:CarryingFirewood", "rel:bartender.HelpedWithoutReward@past"],
+      "priority": 41,
+      "lines": [
+        { "speaker": "bartender", "text": "또 가져왔어?", "cue": "HandOverFirewood" },
+        "bartender: 자네 혹시 장작 요정이야? 고맙긴 한데, 이러다 우리 가게가 장작 창고 되겠어."
+      ],
+      "effects": ["clear:CarryingFirewood", "rel:bartender.HelpedWithoutReward"]
+    },
+
+    {
+      "id": "bartender.c2.thanks",
+      "on": "talk:bartender",
+      "when": ["rel:bartender.HelpedWithoutReward@prev", "!flag:BartenderThankedFirewood"],
+      "once": "story",
+      "priority": 45,
+      "note": "핸드오프 8장 예시 그대로. '어제'가 맞으려면 바로 전 회차(@prev)여야 한다.",
+      "lines": [
+        "bartender: 어, 왔어? 어제 장작 가져다준 거 고맙더라.",
+        "bartender: 덕분에 밤새 따뜻했어. 손님은 없었지만."
+      ],
+      "effects": ["set:BartenderThankedFirewood"],
+      "next": "bartender.c2.main"
+    },
+    {
+      "id": "bartender.c2.first_meet",
+      "on": "talk:bartender",
+      "when": ["stage:S02_GateClosed", "!seen:bartender.c1.first"],
+      "once": "story",
+      "priority": 50,
+      "note": "1회차에 술집을 건너뛴 플레이어용. 작은 마을이라 소문이 먼저 와 있다.",
+      "lines": [
+        "bartender: 어서 와! 처음 보는…… 응?",
+        { "pause": 0.8, "speaker": "bartender", "text": "아, 어제 성 앞에서 쓰러졌다던 그 외지인이구나?" },
+        "bartender: 소문 빠르지? 여긴 재채기만 해도 저녁엔 폐렴이 돼 있어.",
+        { "pause": 1.0, "speaker": "bartender", "text": "……장작이 얼마 안 남았네.", "cue": "BartenderGlancesAtHearth" }
+      ]
+    },
+    {
+      "id": "bartender.c2.main",
+      "on": "talk:bartender",
+      "when": ["stage:S02_GateClosed", "seen:bartender.c1.first"],
+      "once": "cycle",
+      "priority": 30,
+      "note": "[임시 대사] 성문이 닫힌 사실은 절대 먼저 말하지 않는다 — 플레이어가 직접 봐야 한다 (VS 성공조건 5).",
+      "lines": ["bartender: 그래서, 어제 성은 어땠어? 임금님 만났어?"],
+      "choices": [
+        { "text": "들어가자마자 쓰러졌어.", "when": ["flag:EnteredCastle"], "next": "bartender.c2.fainted" },
+        { "text": "기억이 잘 안 나.", "next": "bartender.c2.dontremember" }
+      ]
+    },
+    {
+      "id": "bartender.c2.fainted",
+      "lines": [
+        "bartender: 쓰러져? 우리 가게 술도 안 마셨는데?",
+        { "pause": 0.6, "speaker": "bartender", "text": "……설마 마셨어?" },
+        "bartender: 아무튼 몸 조심해. 그러고 보니 아침에 경비 양반 표정이 영 심각하던데."
+      ]
+    },
+    {
+      "id": "bartender.c2.dontremember",
+      "note": "제안: '아무도 왕을 직접 본 적 없다'는 씨앗. 미정 설정(왕의 실체)과 충돌하면 이 줄만 빼면 된다.",
+      "lines": [
+        "bartender: 그럼 못 만난 거야. 임금님 만나면 절대 못 잊는대.",
+        { "pause": 0.8, "speaker": "bartender", "text": "……나도 직접 뵌 적은 없지만. 다들 그러더라고." }
+      ]
+    },
+
+    {
+      "id": "bartender.idle",
+      "on": "talk:bartender",
+      "priority": 0,
+      "lines": ["bartender: 뭐 더 필요해? 술 말고는 없어. 술도 별로 없고."]
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "$comment": "텍스트 프로토타입 전용 임시 데이터. 엔진에서는 실제 레벨이 이 역할을 한다. 앵커 id == 장소 id.",
+  "locations": [
+    {
+      "id": "entrance",
+      "name": "마을 입구",
+      "desc": "나무 울타리 사이로 흙길이 마을 안쪽까지 곧게 뻗어 있다. 길 끝 언덕 위에 성이 보인다.",
+      "details": [
+        { "when": ["world:gate.state=open"], "text": "성문이 활짝 열려 있다. 여기서도 보일 만큼." },
+        { "when": ["world:gate.state=closed"], "text": "성문이 닫혀 있다." }
+      ],
+      "exits": ["square"]
+    },
+    {
+      "id": "square",
+      "name": "중앙 광장",
+      "desc": "낡은 우물을 가운데 둔 작은 광장. 비둘기들이 우물 테두리를 점령하고 있다. 북쪽 언덕길이 성문으로 이어진다.",
+      "details": [
+        { "when": ["world:tavern_sign.state=normal"], "text": "술집 간판에는 거품이 넘치는 맥주잔이 그려져 있다." },
+        { "when": ["world:tavern_sign.state=upside_down"], "text": "술집 간판이 거꾸로 걸려 있다. 맥주잔의 거품이 바닥으로 쏟아질 것 같다." }
+      ],
+      "exits": ["entrance", "tavern", "smithy", "gate"]
+    },
+    {
+      "id": "tavern",
+      "name": "술집",
+      "desc": "벽난로 하나, 탁자 넷, 손님 없음.",
+      "details": [
+        { "when": ["!rel:bartender.HelpedWithoutReward@cycle"], "text": "벽난로 옆 장작 바구니가 거의 비어 있다." },
+        { "when": ["rel:bartender.HelpedWithoutReward@cycle"], "text": "벽난로에서 장작이 기분 좋게 탄다." }
+      ],
+      "exits": ["square", "smithy"]
+    },
+    {
+      "id": "smithy",
+      "name": "대장간 앞",
+      "desc": "화덕은 식어 있고, 문에 '오늘 휴업' 팻말이 걸려 있다. 대장장이는 보이지 않는다. [임시: 대장장이는 VS 범위 밖]",
+      "exits": ["square", "tavern"]
+    },
+    {
+      "id": "gate",
+      "name": "성문",
+      "desc": "언덕 위의 거대한 성문. 양옆으로 높은 성벽이 이어진다.",
+      "details": [
+        { "when": ["world:gate.state=open"], "text": "문짝 두 개가 활짝 젖혀져 있다. 안쪽으로 현관이 보인다." },
+        { "when": ["world:gate.state=closed"], "text": "문짝 두 개가 굳게 맞물려 있다." }
+      ],
+      "exits": [
+        "square",
+        { "to": "castle_foyer", "when": ["world:gate.state=open"], "blocked": "성문이 닫혀 있다. 들어갈 수 없다." }
+      ]
+    },
+    {
+      "id": "castle_foyer",
+      "name": "성 현관",
+      "desc": "높은 천장. 반들반들한 대리석 바닥. 발소리가 생각보다 크게 울린다.",
+      "volume": "castle_foyer",
+      "exits": ["gate"]
+    }
+  ]
+}

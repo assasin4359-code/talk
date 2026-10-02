@@ -1,0 +1,15 @@
+{
+  "targets": [
+    { "id": "player", "kind": "player", "name": "나" },
+    { "id": "narrator", "kind": "narrator", "name": "???" },
+
+    { "id": "bartender", "kind": "npc", "name": "술집 주인", "voice": "VP_Bartender" },
+    { "id": "guard", "kind": "npc", "name": "경비병", "voice": "VP_Guard" },
+
+    { "id": "gate", "kind": "prop", "name": "성문" },
+    { "id": "firewood", "kind": "prop", "name": "장작더미" },
+    { "id": "tavern_sign", "kind": "prop", "name": "술집 간판" },
+
+    { "id": "castle_foyer", "kind": "volume", "name": "성 현관" }
+  ]
+}

@@ -1,0 +1,40 @@
+# Milestone 01 골든 패스. `btg.py play --walkthrough` 와 테스트가 사용한다.
+# 숫자 = 선택지 번호. 대사가 바뀌어 선택지 순서가 달라지면 여기도 고칠 것.
+
+# ── 1회차 ──
+go square
+go smithy
+use 장작더미
+go tavern
+# 첫 만남: [성에는 누가 살아? / (장작을 내민다) / 그냥 둘러보는 중이야.]
+talk
+2
+# 장작부터 건넸으니 왕 얘기는 다시 묻는다: [성에는 누가 살아? / 아니, 그냥.]
+talk
+1
+go square
+go gate
+# [왕은 어떤 분이야? / 고마워.]
+talk 경비병
+1
+go castle_foyer
+
+# ── 2회차 ──
+go square
+go tavern
+# 어제 장작 → 어제 성은? : [들어가자마자 쓰러졌어. / 기억이 잘 안 나.]
+talk
+1
+go square
+go gate
+go castle_foyer
+# 알아보는 순간 → [성문 앞? 성 안에서 쓰러졌는데. / 문은 왜 닫혀 있어? / ……아무것도 아니야.]
+talk
+1
+1
+1
+use 성문
+
+# ── 3회차 (VS 끝) ──
+go square
+quit

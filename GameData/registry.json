@@ -1,0 +1,32 @@
+{
+  "flags": [
+    { "id": "MetGuard", "scope": "persistent", "note": "경비병과 처음 대화함" },
+    { "id": "HeardAboutKing", "scope": "persistent", "note": "술집 주인에게 '재밌는 왕' 이야기를 들음" },
+    { "id": "EnteredCastle", "scope": "persistent", "note": "성 내부(현관)에 진입함 — 1회차 기절 지점" },
+    { "id": "GuardRecognizesPlayer", "scope": "persistent", "note": "경비병이 플레이어를 알아봄 (2회차 핵심 비트)" },
+    { "id": "HeardWhereFainted", "scope": "persistent", "note": "경비가 '성문 앞에서 쓰러졌다'고 말함 — 플레이어 기억(성 안)과 불일치" },
+    { "id": "CarryingFirewood", "scope": "cycle", "note": "장작을 들고 있음. 회차가 끝나면 사라진다" },
+    { "id": "BartenderThankedFirewood", "scope": "persistent", "note": "술집 주인이 '어제 장작' 고맙다고 말함" }
+  ],
+  "relationshipEvents": [
+    { "id": "ListenedToStory", "note": "NPC의 개인적인 이야기를 끝까지 들음" },
+    { "id": "ReturnedItem", "note": "NPC의 물건을 돌려줌" },
+    { "id": "HelpedWithoutReward", "note": "부탁받지 않았는데/보상 없이 도움" },
+    { "id": "RememberedPreviousConversation", "note": "이전 회차 대화 내용을 기억하고 다시 꺼냄" }
+  ],
+  "cues": [
+    { "id": "BartenderGlancesAtHearth", "note": "술집 주인이 거의 빈 장작 바구니를 힐끗 봄" },
+    { "id": "HandOverFirewood", "note": "장작을 건넴 (손에서 장작 메시 제거, 벽난로에 장작 추가)" },
+    { "id": "PickUpFirewood", "note": "장작 한 아름을 들어 올림 (1인칭 손에 장작 메시)" },
+    { "id": "GuardStare", "note": "경비가 플레이어 얼굴을 빤히 바라봄 — 카메라 살짝 당김, 경비 고개 기울임" },
+    { "id": "GuardTurnsToPlayer", "note": "경비가 성문 쪽에서 플레이어 쪽으로 몸을 돌림" },
+    { "id": "GateTouch", "note": "닫힌 성문에 손을 댐 — 이 순간부터 기절 연출 시작" }
+  ],
+  "faintReasons": [
+    { "id": "CastleInterior", "note": "1회차: 성 현관 진입 직후. 이명 → 시야 흐림 → 화면 흔들림 → 약한 그래픽 이상 → 쓰러짐 → 암전" },
+    { "id": "GateTouch", "note": "2회차: 닫힌 성문을 만짐. 1회차와 같은 순서지만 경비의 목소리가 늘어지며 묻힌다" }
+  ],
+  "lint": {
+    "forbiddenText": ["퀘스트", "QUEST", "호감도", "COMPLETE", "0/5"]
+  }
+}

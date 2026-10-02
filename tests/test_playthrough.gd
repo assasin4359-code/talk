@@ -13,7 +13,7 @@ func _start_day() -> void:
 	village = load(VILLAGE).instantiate()
 	director = village.get_node("Director")
 	director.speed = 50.0
-	director.reload_on_new_day = false
+	director.scene_changes = false
 	var started := _flag(director.day_started)
 	tree.root.add_child(village)
 	director.dialogue.instant = true

@@ -16,7 +16,7 @@ func _open() -> void:
 	village = load(VILLAGE).instantiate()
 	director = village.get_node("Director")
 	director.speed = 50.0
-	director.reload_on_new_day = false
+	director.scene_changes = false
 	tree.root.add_child(village)
 	await director.day_started
 	player = village.get_node("Player")
@@ -72,18 +72,52 @@ func test_mouse_turns_the_view() -> void:
 	await _close()
 
 
-func test_escape_releases_and_click_recaptures() -> void:
+## A real click on a button: the pointer has to arrive first (buttons only take presses
+## while hovered).
+func _click_at(pos: Vector2) -> void:
+	var move := InputEventMouseMotion.new()
+	move.position = pos
+	move.global_position = pos
+	Input.parse_input_event(move)
+	await frames(2)
+	for pressed in [true, false]:
+		var ev := InputEventMouseButton.new()
+		ev.button_index = MOUSE_BUTTON_LEFT
+		ev.pressed = pressed
+		ev.position = pos
+		ev.global_position = pos
+		Input.parse_input_event(ev)
+		await frames(2)
+
+
+func test_escape_opens_the_menu_and_resume_takes_the_mouse_back() -> void:
 	await _open()
+	var menu: BTGGameMenu = director.menu
 	await _key(KEY_ESCAPE)
-	assert_false(BTGInput.mouse_captured, "Esc frees the cursor")
+	assert_true(menu.is_open, "Esc opens the game menu")
+	assert_false(BTGInput.mouse_captured, "the cursor is free while the menu is up")
 	var yaw: float = player.rotation.y
 	await _move_mouse(Vector2(120, 0))
 	assert_eq(player.rotation.y, yaw, "a free cursor does not turn the view")
-	await _click()
-	assert_true(BTGInput.mouse_captured, "clicking into the game takes the mouse back")
+	await _click_at(menu.resume_button.get_global_rect().get_center())
+	assert_false(menu.is_open, "clicking 계속하기 closes the menu")
+	assert_true(BTGInput.mouse_captured, "and takes the mouse back")
 	assert_false(director.busy, "that click did not start an interaction")
 	await _move_mouse(Vector2(120, 0))
 	assert_true(absf(player.rotation.y - yaw) > 0.1, "mouse-look works again")
+	await _close()
+
+
+func test_click_recaptures_a_refused_capture() -> void:
+	await _open()
+	BTGInput.capture_mouse(false)  # e.g. a browser refused pointer lock (no recent click)
+	var yaw: float = player.rotation.y
+	await _move_mouse(Vector2(120, 0))
+	assert_eq(player.rotation.y, yaw, "no mouse-look without the capture")
+	await _click()
+	assert_true(BTGInput.mouse_captured, "clicking into the game takes the mouse back")
+	assert_false(director.busy, "that click did not start an interaction")
+	assert_false(director.menu.is_open, "no menu for that")
 	await _close()
 
 

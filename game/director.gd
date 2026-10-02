@@ -7,8 +7,13 @@ extends Node
 
 signal conversation_finished
 signal day_started
-## Emitted instead of reloading when reload_on_new_day is false (tests drive the next day).
+## Emitted instead of reloading when scene_changes is false (tests drive the next day).
 signal day_ended(result: Dictionary)
+## Emitted instead of changing scene when scene_changes is false (menu -> title / restart).
+signal left(scene_path: String)
+
+const VILLAGE_SCENE := "res://scenes/village.tscn"
+const TITLE_SCENE := "res://scenes/main_menu.tscn"
 
 @export var player: BTGPlayer
 
@@ -16,9 +21,10 @@ var hud: BTGHud
 var dialogue: BTGDialogueBox
 var voice: BTGFakeVoice
 var fx: BTGFaintFx
+var menu: BTGGameMenu
 var busy := true  # a conversation, the faint or the wake-up is running
 var speed := 1.0  # >1 plays every presentation faster (tests)
-var reload_on_new_day := true
+var scene_changes := true  # false: tests drive new days and menu exits through signals
 var end_card: Label
 
 
@@ -35,6 +41,10 @@ func _ready() -> void:
 	fx = BTGFaintFx.new()
 	add_child(fx)
 	fx.black()
+	menu = BTGGameMenu.new()
+	add_child(menu)
+	menu.restart_requested.connect(restart_from_day_one)
+	menu.title_requested.connect(_leave_to.bind(TITLE_SCENE))
 	player.focus_changed.connect(hud.show_target)
 	Narrative.cue_emitted.connect(_on_cue)
 	_begin_day.call_deferred()
@@ -44,8 +54,9 @@ func _seconds(s: float) -> float:
 	return s / speed
 
 
+## Gameplay waits stop while the game menu has the tree paused (process_always = false).
 func _wait(s: float) -> void:
-	await get_tree().create_timer(_seconds(s)).timeout
+	await get_tree().create_timer(_seconds(s), false).timeout
 
 
 func _lock(locked: bool) -> void:
@@ -56,8 +67,20 @@ func _lock(locked: bool) -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("debug_new_game"):
-		Narrative.new_game()  # wipes the checkpoint to day 1
-		get_tree().reload_current_scene()
+		restart_from_day_one()
+
+
+## [임시] Playtest helper (game menu "처음부터 다시", F9): wipe the save, day 1 again.
+func restart_from_day_one() -> void:
+	Narrative.new_game()
+	_leave_to(VILLAGE_SCENE)
+
+
+func _leave_to(scene_path: String) -> void:
+	if scene_changes:
+		get_tree().change_scene_to_file(scene_path)
+	else:
+		left.emit(scene_path)
 
 
 # --- day start ----------------------------------------------------------------
@@ -158,7 +181,7 @@ func _faint(reason: String) -> void:
 	await fx.play_faint(duration)
 	await _wait(1.4)  # black, silence
 	var result := Narrative.complete_cycle()
-	if reload_on_new_day:
+	if scene_changes:
 		get_tree().reload_current_scene()
 	else:
 		day_ended.emit(result)
@@ -174,7 +197,7 @@ func _watch_for_slice_end() -> void:
 	while is_inside_tree() and waited < 90.0:
 		if square != null and player.global_position.distance_to(square.global_position) < 16.0:
 			break
-		await get_tree().create_timer(0.5).timeout
+		await get_tree().create_timer(0.5, false).timeout
 		waited += 0.5
 	if not is_inside_tree():
 		return

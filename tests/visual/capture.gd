@@ -7,6 +7,7 @@ extends SceneTree
 ##     --script res://tests/visual/capture.gd -- --stage S02_GateClosed --cycle 2 --view spawn --out shot.png
 ## Optional: --talk guard --hold 4  -> start that conversation and photograph its 4th line.
 ##           --flags EnteredCastle,MetGuard  -> persistent flags in the story state.
+##           --menu 1 | confirm  -> with the in-game menu open (confirm: asking before a reset).   View "title" -> the title screen.
 
 ## view -> [feet position, point to look at]
 const VIEWS := {
@@ -34,10 +35,14 @@ func _initialize() -> void:
 	for f in str(args.get("flags", "")).split(",", false):
 		state.flags[f] = true
 	narrative.use_state(state)
+	if args.get("view", "") == "title":
+		root.add_child(load("res://scenes/main_menu.tscn").instantiate())
+		await _save(args, "title", state)
+		return
 	var village: Node = load("res://scenes/village.tscn").instantiate()
 	var director = village.get_node("Director")  # untyped: see note at top
 	director.speed = 100.0
-	director.reload_on_new_day = false
+	director.scene_changes = false
 	root.add_child(village)
 	await director.day_started
 	var view: Array = VIEWS[args.get("view", "spawn")]
@@ -53,12 +58,20 @@ func _initialize() -> void:
 		director.dialogue.autoplay = []
 		director.dialogue.autoplay_hold_at = int(args.get("hold", "1"))
 		director.request("talk", args["talk"])
+	if args.has("menu"):
+		director.menu.open()
+		if args["menu"] == "confirm":
+			director.menu.restart_button.pressed.emit()  # the "really?" state
+	await _save(args, args.get("view", "spawn"), state)
+
+
+func _save(args: Dictionary, view: String, state) -> void:
 	for i in 12:
 		await process_frame
 	await RenderingServer.frame_post_draw
 	var out: String = args.get("out", "user://capture.png")
 	var err := root.get_viewport().get_texture().get_image().save_png(out)
-	print("captured %s (%s, %s) -> %s" % [args.get("view", "spawn"), state.stage, error_string(err), out])
+	print("captured %s (%s, %s) -> %s" % [view, state.stage, error_string(err), out])
 	quit(0 if err == OK else 1)
 
 

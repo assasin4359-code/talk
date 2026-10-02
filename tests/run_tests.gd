@@ -31,6 +31,9 @@ func _initialize() -> void:
 	OS.add_logger(counter)
 	await process_frame  # let autoloads (Narrative) finish _ready
 	counter.take()
+	# Headless windows are 64x64; give UI tests the game's real screen so centred
+	# menus sit on-screen and real mouse clicks can reach their buttons.
+	root.size = Vector2i(1280, 720)
 	var only := OS.get_environment("BTG_TEST_FILTER")  # e.g. BTG_TEST_FILTER=test_routes
 	var files := Array(DirAccess.get_files_at("res://tests")).filter(
 		func(f): return f.begins_with("test_") and f.ends_with(".gd") and (only == "" or only in f))

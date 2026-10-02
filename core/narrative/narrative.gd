@@ -17,15 +17,29 @@ var engine: BTGNarrativeEngine
 var just_woke := false
 ## Tests and capture tools turn this off so they never touch the player's save.
 var autosave := true
+## Where saves live. Tests that need real save files point this somewhere else.
+var save_base := SAVE_BASE
 
 
 func _ready() -> void:
 	db = BTGNarrativeDB.load_from(DATA_ROOT)
 	for e in db.errors:
 		push_error("GameData: " + e)
-	var loaded := BTGSaveSystem.load_newest(SAVE_BASE)
+	continue_game()
+
+
+## Back to the last checkpoint on disk (or a fresh day 1 if there is none).
+func continue_game() -> void:
+	var loaded := BTGSaveSystem.load_newest(save_base)
 	_use_engine(BTGNarrativeEngine.new(db, loaded["state"]))
 	just_woke = engine.cycle > 1  # continuing a saved game starts at a wake-up
+	world_changed.emit()
+
+
+## Cycle of the newest checkpoint on disk, 0 if there is no save.
+func saved_cycle() -> int:
+	var state: BTGStoryState = BTGSaveSystem.load_newest(save_base)["state"]
+	return state.cycle if state != null else 0
 
 
 func _use_engine(e: BTGNarrativeEngine) -> void:
@@ -41,7 +55,10 @@ func use_state(state: BTGStoryState) -> void:
 	world_changed.emit()
 
 
+## Wipes the save and starts over at day 1.
 func new_game() -> void:
+	if autosave:
+		BTGSaveSystem.erase(save_base)
 	use_state(null)
 	checkpoint()
 
@@ -50,7 +67,7 @@ func new_game() -> void:
 func checkpoint() -> void:
 	if not autosave:
 		return
-	var err := BTGSaveSystem.write(SAVE_BASE, engine.state)
+	var err := BTGSaveSystem.write(save_base, engine.state)
 	if err != OK:
 		push_error("Save failed: %s" % error_string(err))
 

@@ -87,6 +87,13 @@ static func load_newest(base: String) -> Dictionary:
 	return {"state": best["state"], "source": best["source"], "problems": problems}
 
 
+## Deletes both slots (new game / progress reset).
+static func erase(base: String) -> void:
+	for path in slot_paths(base):
+		if FileAccess.file_exists(path):
+			DirAccess.remove_absolute(path)
+
+
 ## Overwrites the older (or broken) slot, never the newest good one.
 static func write(base: String, state: BTGStoryState) -> Error:
 	DirAccess.make_dir_recursive_absolute(base.get_base_dir())

@@ -22,7 +22,7 @@ func _open(stage: String, cycle: int) -> void:
 	village = load(VILLAGE).instantiate()
 	director = village.get_node("Director")
 	director.speed = 50.0
-	director.reload_on_new_day = false
+	director.scene_changes = false
 	tree.root.add_child(village)
 	await director.day_started
 	player = village.get_node("Player")

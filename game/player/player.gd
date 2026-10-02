@@ -81,23 +81,17 @@ func place_at(anchor: Node3D) -> void:
 	velocity = Vector3.ZERO
 
 
-func _notification(what: int) -> void:
-	if what == NOTIFICATION_APPLICATION_FOCUS_OUT:
-		BTGInput.capture_mouse(false)  # alt-tab etc.: a click brings mouse-look back
-
-
+## Esc / alt-tab / losing the mouse open the game menu (game/ui/game_menu.gd), which
+## releases the cursor; closing it takes the mouse back.
 func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("release_mouse"):
-		BTGInput.capture_mouse(not BTGInput.mouse_captured)
-		return
 	if input_locked:
 		return
 	if event is InputEventMouseMotion:
-		if BTGInput.mouse_captured:
+		if BTGInput.is_captured():
 			rotate_y(-event.relative.x * mouse_sensitivity)
 			head.rotation.x = clampf(head.rotation.x - event.relative.y * mouse_sensitivity, -1.45, 1.45)
 		return
-	if event is InputEventMouseButton and event.pressed and not BTGInput.mouse_captured:
+	if event is InputEventMouseButton and event.pressed and not BTGInput.is_captured():
 		BTGInput.capture_mouse(true)  # click into the window: mouse-look again, not an interaction
 		get_viewport().set_input_as_handled()
 		return

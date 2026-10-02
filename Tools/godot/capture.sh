@@ -3,7 +3,7 @@
 # Tools/godot/install_godot_nix.sh first so GODOT and GODOT_RENDER_ENV are set.
 #   Tools/godot/capture.sh <view> <stage> <cycle> <out.png> [extra args, e.g. --talk guard --hold 4]
 #   Tools/godot/capture.sh spawn S02_GateClosed 2 /tmp/gate_closed.png
-# Views: spawn square gate foyer tavern smithy sign overview (tests/visual/capture.gd)
+# Views: spawn square gate foyer tavern smithy sign overview title (tests/visual/capture.gd); --menu 1 opens the game menu
 # BTG_RENDERER=gl_compatibility renders like the web build (WebGL 2).
 set -euo pipefail
 cd "$(dirname "$0")/../.."

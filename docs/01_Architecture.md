@@ -119,6 +119,7 @@ Playing ──faint:<Reason>──▶ Fainting ──(연출 완료 or 타임아
 | ✅ `BTGFootsteps` (Node, 플레이어 자식) | **모든 발소리는 여기를 경유** — 나중에 지연/추가/소거 이상현상을 붙일 자리. 발밑 콜라이더의 `surface` 메타(dirt/stone/wood)로 소리 묶음 선택 |
 | ✅ `BTGSoundSet` (Resource) | 무작위로 하나 고르는 소리 묶음 + 피치/볼륨 흔들림 + 버스. 진짜 소리가 오면 `.tres`의 샘플만 교체 |
 | ✅ `BTGAudio` | 버스 이름, `can_play()` (오디오 장치 없는 헤드리스에선 재생 안 함 — 재생 객체 누수 방지) |
+| ✅ `BTGMainMenu` (타이틀 씬) / `BTGGameMenu` (Esc) | 이어하기·처음부터 / 계속·처음부터 다시·타이틀로. 게임 메뉴는 트리를 일시정지하고, 마우스 잠금을 외부에서 잃으면(브라우저 Esc) 스스로 열림. 모양·문구 임시 |
 | ✅ `BTGDirector` (Node) + `BTGFaintFx` | 2.4 파이프라인. 대화 → 기절 연출 → `complete_cycle()` → 씬 리로드 → 기상. 연출과 진행이 한 곳에 있어 완료 신호 누락이 없음 |
 | ✅ 오디오 버스 (`default_bus_layout.tres`) | Master ← World(Ambient, Footsteps, SFX) / Voice(NPCVoice, Narrator) / UI / Music |
 | `AudioDirector` (VS 이후) | 버스를 조작해 완전 무음, 나레이터 우선 |
@@ -163,3 +164,4 @@ Playing ──faint:<Reason>──▶ Fainting ──(연출 완료 or 타임아
 | 경비 "누가 닫으라고 했더라" | 사용 | 2회차에 너무 이른 균열이면 삭제 |
 | 3회차 티저(간판 뒤집힘) | VS 마지막 장면 | 성공조건 7("다음엔 뭐가 바뀌지?")용 장치. VS 범위 밖이라 빼도 됨 |
 | 임시 대사 전반 | 전부 임시 | 톤 기준점일 뿐 최종 아님 |
+| "처음부터" / 진행 초기화 | 세이브를 그냥 지움 (플레이테스트용) | 메타 호러라서 "지워도 세계(나레이터)가 기억한다" 같은 연출 여지가 있음. 정식 타이틀 화면·문구도 미정 |

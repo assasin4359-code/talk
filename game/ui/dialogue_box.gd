@@ -89,7 +89,7 @@ func run(session: BTGDialogueSession) -> String:
 			"pause":
 				_more.visible = false
 				if not instant:
-					await get_tree().create_timer(ev["seconds"]).timeout
+					await get_tree().create_timer(ev["seconds"], false).timeout
 			"line":
 				await _show_line(ev["speaker"], ev["text"])
 			"choices":
@@ -125,13 +125,13 @@ func _show_line(speaker: String, text: String) -> void:
 			var ch := text[i - 1]
 			if ch != " ":
 				character_revealed.emit(speaker, ch)
-			await get_tree().create_timer(1.0 / cps + PUNCT_PAUSE.get(ch, 0.0)).timeout
+			await get_tree().create_timer(1.0 / cps + PUNCT_PAUSE.get(ch, 0.0), false).timeout
 		_typing = false
 		_text.visible_characters = -1
 	_more.visible = true
 	if autoplay != null:
 		if autoplay_hold_at >= 0 and transcript.size() >= autoplay_hold_at:
-			await get_tree().create_timer(3600.0).timeout  # hold for a capture
+			await get_tree().create_timer(3600.0, false).timeout  # hold for a capture
 		return
 	_waiting = true
 	await _advance

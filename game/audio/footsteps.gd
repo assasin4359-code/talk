@@ -10,8 +10,11 @@ extends Node
 signal stepped(surface: String)
 
 @export var sets: Dictionary = {}  ## surface name -> BTGSoundSet
-@export var stride := 0.62  ## metres per step while walking
-@export var sprint_stride := 0.9
+## Metres travelled per footstep. Game walking (4.2 m/s) is ~3x real walking speed,
+## so this is a feel number, not a real stride: 2.0 m -> one step every ~0.48 s.
+## (0.62 gave ~7 steps/s at a walk — "탁탁탁탁", owner playtest.)
+@export var stride := 2.0
+@export var sprint_stride := 0.9  ## ~7 steps/s at 6.5 m/s; the owner found running fine
 @export var sprint_threshold := 5.0  ## m/s
 
 var _travel := 0.0

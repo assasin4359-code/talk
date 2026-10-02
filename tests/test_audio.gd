@@ -123,18 +123,48 @@ func test_surfaces_under_feet() -> void:
 	await _close()
 
 
-func test_walking_steps_standing_does_not() -> void:
+## Average seconds between footsteps while holding forward (+ optional sprint).
+func _step_interval(sprint: bool) -> float:
+	var frames_at: Array[int] = []
+	var tick := [0]
+	var steps = player.get_node("Footsteps")
+	var on_step := func(_s): frames_at.append(tick[0])
+	steps.stepped.connect(on_step)
+	Input.action_press("move_forward")
+	if sprint:
+		Input.action_press("sprint")
+	for i in 180:  # 3 s
+		await physics_frames(1)
+		tick[0] += 1
+	Input.action_release("move_forward")
+	Input.action_release("sprint")
+	steps.stepped.disconnect(on_step)
+	var gaps := frames_at.slice(2)  # skip the start-up steps
+	if gaps.size() < 2:
+		return INF
+	return float(gaps[-1] - gaps[0]) / (gaps.size() - 1) / Engine.physics_ticks_per_second
+
+
+func test_walking_cadence() -> void:
 	await _open()
+	var walk := await _step_interval(false)
+	assert_true(walk >= 0.4 and walk <= 0.6, "a walking step every ~0.5 s, not 탁탁탁탁 (got %.2f s)" % walk)
+	await physics_frames(30)
+	var run := await _step_interval(true)
+	assert_true(run < walk * 0.6, "running steps come much faster (walk %.2f s, run %.2f s)" % [walk, run])
+	await _close()
+
+
+func test_standing_still_is_silent() -> void:
+	await _open()
+	Input.action_press("move_forward")
+	await physics_frames(60)
+	Input.action_release("move_forward")
+	await physics_frames(20)  # coming to a stop
 	var count := [0]
 	player.get_node("Footsteps").stepped.connect(func(_s): count[0] += 1)
-	Input.action_press("move_forward")
-	await physics_frames(90)  # 1.5 s at walking pace ~ 6 m
-	Input.action_release("move_forward")
-	var walked: int = count[0]
-	assert_true(walked >= 6 and walked <= 12, "about one step per 0.62 m (got %d)" % walked)
-	await physics_frames(60)
-	await physics_frames(60)
-	assert_true(count[0] - walked <= 1, "no steps while standing (got %d more)" % (count[0] - walked))
+	await physics_frames(120)
+	assert_eq(count[0], 0, "no steps while standing")
 	await _close()
 
 

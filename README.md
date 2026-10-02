@@ -15,6 +15,7 @@
 | [`docs/01_Architecture.md`](docs/01_Architecture.md) | 아키텍처, 클래스 목록, 씬 담당 영역, 기술 위험, 결정 필요 항목 |
 | [`docs/02_VerticalSlice_Plan.md`](docs/02_VerticalSlice_Plan.md) | M01 비트 시트, 블록아웃 요구사항, 구현 순서, 플레이테스트 체크리스트 |
 | [`docs/03_Narrative_Data_Spec.md`](docs/03_Narrative_Data_Spec.md) | `GameData/` 형식, 실행 규칙, 시나리오 테스트 형식 |
+| [`docs/04_Milestone02_Plan.md`](docs/04_Milestone02_Plan.md) | **M02 초안** (3~5회차 + WAKE UP!, 꼬맹이) — 회차별 변화표, 임시 대사, 결정 필요 |
 
 ## 실행
 

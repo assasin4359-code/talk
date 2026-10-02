@@ -1,0 +1,25 @@
+{
+  "flags": [
+    {
+      "id": "Known",
+      "scope": "persistent"
+    },
+    {
+      "id": "Today",
+      "scope": "cycle"
+    }
+  ],
+  "cues": [
+    {
+      "id": "Wave"
+    }
+  ],
+  "faintReasons": [
+    {
+      "id": "Boom"
+    },
+    {
+      "id": "Fizz"
+    }
+  ]
+}

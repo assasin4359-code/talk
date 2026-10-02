@@ -1,0 +1,17 @@
+{
+  "name": "M01 '어제'는 정확히 어제",
+  "description": "1회차에 장작을 주고 2회차엔 술집에 안 간다. 3회차에 '어제 장작'이라고 하면 거짓말이다.",
+  "steps": [
+    { "act": "use:firewood" },
+    { "act": "talk:bartender", "pick": ["(장작을"] },
+    { "act": "enter:castle_foyer" },
+    { "faint": "CastleInterior" },
+
+    { "act": "use:gate", "pick": ["……아무것도"] },
+    { "act": "use:gate" },
+    { "faint": "GateTouch" },
+
+    { "act": "talk:bartender" },
+    { "notSaid": "bartender: 어제 장작" }
+  ]
+}

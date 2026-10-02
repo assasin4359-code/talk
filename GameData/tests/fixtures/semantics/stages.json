@@ -1,0 +1,35 @@
+{
+  "start": "A",
+  "stages": [
+    {
+      "id": "A",
+      "transitions": [
+        {
+          "to": "C",
+          "reason": "Fizz"
+        },
+        {
+          "to": "B",
+          "when": [
+            "flag:Known"
+          ]
+        },
+        {
+          "to": "A"
+        }
+      ]
+    },
+    {
+      "id": "B",
+      "transitions": [
+        {
+          "to": "C"
+        }
+      ]
+    },
+    {
+      "id": "C",
+      "terminal": true
+    }
+  ]
+}

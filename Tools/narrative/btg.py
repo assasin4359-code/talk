@@ -20,7 +20,7 @@ from btg_narrative.prototype import PROTOTYPE_DIR, Prototype, stdin_commands  # 
 from btg_narrative.validate import validate  # noqa: E402
 
 DEFAULT_DATA = REPO / "GameData"
-DEFAULT_SAVE = REPO / "Saved" / "Prototype" / "slot0.json"
+DEFAULT_SAVE = HERE / ".saves" / "slot0.json"
 
 
 def cmd_validate(args: argparse.Namespace) -> int:

@@ -1,23 +1,17 @@
+# Godot
+.godot/
+/build/
+
 # Python
 __pycache__/
 *.py[cod]
 .venv/
 
-# Text prototype saves + future Unreal Engine output
-Saved/
-Binaries/
-Intermediate/
-DerivedDataCache/
-Build/
-.vs/
-.vscode/
-.idea/
-*.sln
-*.suo
-*.VC.db
-*.opensdf
-*.sdf
+# Text prototype saves
+Tools/narrative/.saves/
 
-# OS
+# OS / editors
 .DS_Store
 Thumbs.db
+.vscode/
+.idea/

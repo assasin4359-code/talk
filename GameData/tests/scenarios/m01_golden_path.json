@@ -1,0 +1,43 @@
+{
+  "name": "M01 골든 패스",
+  "description": "장작을 건네고, 왕 이야기를 듣고, 성에 들어가 쓰러진다. 2회차에 성문이 닫혀 있고 경비가 알아본다. 3회차에 간판이 뒤집혀 있다.",
+  "steps": [
+    { "check": ["cycle==1", "stage:S01_Arrival", "world:gate.state=open", "world:tavern_sign.state=normal"] },
+
+    { "act": "use:firewood" },
+    { "check": ["flag:CarryingFirewood"] },
+    { "act": "talk:bartender", "pick": ["(장작을"] },
+    { "said": "bartender: 장작이 얼마 안 남았네" },
+    { "said": "bartender: 시키지도 않았는데" },
+    { "check": ["!flag:CarryingFirewood", "rel:bartender.HelpedWithoutReward@cycle"] },
+    { "act": "talk:bartender", "pick": ["성에는"] },
+    { "said": "bartender: 재밌는 분이셔" },
+    { "check": ["flag:HeardAboutKing"] },
+    { "act": "talk:guard", "pick": ["고마워"] },
+    { "said": "guard: 오늘은 문이 열려 있으니" },
+    { "act": "enter:castle_foyer" },
+    { "faint": "CastleInterior" },
+
+    { "check": ["cycle==2", "stage:S02_GateClosed", "world:gate.state=closed", "!flag:CarryingFirewood", "flag:EnteredCastle"] },
+    { "act": "talk:bartender", "pick": ["들어가자마자"] },
+    { "saidInOrder": ["bartender: 어, 왔어? 어제 장작 가져다준 거 고맙더라.", "bartender: 그래서, 어제 성은 어땠어? 임금님 만났어?"] },
+    { "act": "talk:guard", "pick": ["성문 앞?", "문은 왜", "……아무것도"] },
+    { "saidInOrder": [
+        "player: 어제는 들어갈 수 있었잖아.",
+        "guard: 어제?",
+        "guard: ……어디서 본 것 같은데.",
+        "guard: 아. 어제 성문 앞에서 쓰러진 사람이 자네였나?"
+    ] },
+    { "check": ["flag:GuardRecognizesPlayer", "flag:HeardWhereFainted"] },
+    { "act": "use:gate" },
+    { "faint": "GateTouch" },
+
+    { "check": ["cycle==3", "stage:S03_SliceEnd", "world:tavern_sign.state=upside_down"] }
+  ],
+  "never": [
+    { "text": "또 시작", "maxCycle": 2, "npcOnly": true, "why": "핸드오프 12장: 루프는 플레이어가 온 뒤에 생긴 현상" },
+    { "text": "이번에도", "maxCycle": 2, "npcOnly": true, "why": "핸드오프 12장" },
+    { "text": "또 왔", "maxCycle": 2, "npcOnly": true, "why": "핸드오프 12장" },
+    { "speaker": "bartender", "text": "닫", "cycle": 2, "why": "VS 성공조건 5: 닫힌 성문은 플레이어가 직접 봐야 한다" }
+  ]
+}

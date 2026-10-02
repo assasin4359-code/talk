@@ -1,0 +1,18 @@
+{
+  "name": "M01 아무와도 말하지 않는 플레이어",
+  "description": "1회차에 곧장 성으로 간다. 2회차에 소문이 먼저 와 있고, 경비를 무시하고 성문부터 만져도 알아보는 비트는 건너뛸 수 없다.",
+  "steps": [
+    { "act": "enter:castle_foyer" },
+    { "faint": "CastleInterior" },
+
+    { "act": "talk:bartender" },
+    { "said": "bartender: 쓰러졌다던 그 외지인" },
+    { "act": "use:gate", "pick": ["……아무것도"] },
+    { "said": "guard: 문 닫힌 거 안 보이시오" },
+    { "said": "guard: 자네였나?" },
+    { "noFaint": true },
+    { "act": "use:gate" },
+    { "faint": "GateTouch" },
+    { "check": ["stage:S03_SliceEnd"] }
+  ]
+}

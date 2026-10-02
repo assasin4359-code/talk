@@ -1,0 +1,30 @@
+{
+  "anchors": [
+    "here"
+  ],
+  "baseline": [
+    {
+      "target": "door",
+      "prop": "state",
+      "value": "open"
+    }
+  ],
+  "rules": [
+    {
+      "target": "door",
+      "prop": "state",
+      "value": "closed",
+      "when": [
+        "stage>=B"
+      ]
+    },
+    {
+      "target": "door",
+      "prop": "state",
+      "value": "gone",
+      "when": [
+        "stage>=C"
+      ]
+    }
+  ]
+}

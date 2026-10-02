@@ -1,0 +1,78 @@
+{
+  "beats": [
+    {
+      "id": "bob.low",
+      "on": "talk:bob",
+      "priority": 0,
+      "lines": [
+        "bob: 기본"
+      ]
+    },
+    {
+      "id": "bob.tie1",
+      "on": "talk:bob",
+      "priority": 5,
+      "when": [
+        "flag:Today"
+      ],
+      "lines": [
+        "bob: 먼저 쓴 것"
+      ]
+    },
+    {
+      "id": "bob.tie2",
+      "on": "talk:bob",
+      "priority": 5,
+      "when": [
+        "flag:Today"
+      ],
+      "lines": [
+        "bob: 나중에 쓴 것"
+      ]
+    },
+    {
+      "id": "bob.once",
+      "on": "talk:bob",
+      "priority": 9,
+      "once": "cycle",
+      "lines": [
+        {
+          "pause": 0.5
+        },
+        {
+          "speaker": "bob",
+          "text": "하루 한 번",
+          "cue": "Wave"
+        }
+      ],
+      "effects": [
+        "set:Today"
+      ],
+      "choices": [
+        {
+          "text": "다음",
+          "next": "bob.chained"
+        },
+        {
+          "text": "숨김",
+          "when": [
+            "flag:Known"
+          ]
+        },
+        {
+          "text": "끝"
+        }
+      ]
+    },
+    {
+      "id": "bob.chained",
+      "lines": [
+        "player: 이어짐"
+      ],
+      "effects": [
+        "set:Known",
+        "faint:Boom"
+      ]
+    }
+  ]
+}

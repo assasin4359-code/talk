@@ -2,12 +2,13 @@ name: narrative
 
 on:
   push:
-    paths: ["GameData/**", "Tools/narrative/**", ".github/workflows/narrative.yml"]
   pull_request:
-    paths: ["GameData/**", "Tools/narrative/**", ".github/workflows/narrative.yml"]
+
+env:
+  GODOT_VERSION: "4.7.2"
 
 jobs:
-  validate-and-test:
+  python-reference:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -16,7 +17,20 @@ jobs:
           python-version: "3.11"
       - name: Validate GameData
         run: python Tools/narrative/btg.py validate
-      - name: Unit + milestone tests
+      - name: Reference tests (incl. shared scenarios)
         run: python -m unittest discover -s Tools/narrative/tests -t Tools/narrative/tests -v
-      - name: Walkthrough (Milestone 01 golden path)
-        run: python Tools/narrative/btg.py play --walkthrough > walkthrough.log && tail -n 20 walkthrough.log
+      - name: Text prototype walkthrough
+        run: python Tools/narrative/btg.py play --walkthrough > walkthrough.log && tail -n 12 walkthrough.log
+
+  godot-runtime:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download Godot
+        working-directory: ${{ runner.temp }}
+        run: |
+          curl -fsSL -o godot.zip "https://github.com/godotengine/godot/releases/download/${GODOT_VERSION}-stable/Godot_v${GODOT_VERSION}-stable_linux.x86_64.zip"
+          unzip -q godot.zip
+          echo "GODOT=$PWD/Godot_v${GODOT_VERSION}-stable_linux.x86_64" >> "$GITHUB_ENV"
+      - name: Godot tests (same scenarios + condition vectors as Python)
+        run: Tools/godot/run_tests.sh

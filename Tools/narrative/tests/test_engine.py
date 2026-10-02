@@ -1,74 +1,31 @@
-"""Engine semantics on a tiny synthetic GameData, independent of the real content."""
+"""Engine semantics on a tiny synthetic GameData (GameData/tests/fixtures/semantics), independent of the real content."""
 import json
+import shutil
 import tempfile
 import unittest
 from pathlib import Path
 
-import helpers  # noqa: F401  (puts btg_narrative on sys.path)
+from helpers import GAME_DATA
 
 from btg_narrative.data import load_db, load_db_strict
 from btg_narrative.engine import ChoicesEvent, EndEvent, LineEvent, NarrativeEngine
 from btg_narrative.validate import validate
 
-REGISTRY = {
-    "flags": [
-        {"id": "Known", "scope": "persistent"},
-        {"id": "Today", "scope": "cycle"},
-    ],
-    "cues": [{"id": "Wave"}],
-    "faintReasons": [{"id": "Boom"}, {"id": "Fizz"}],
-}
-TARGETS = {"targets": [
-    {"id": "player", "kind": "player", "name": "나"},
-    {"id": "bob", "kind": "npc", "name": "밥", "voice": "VP_Bob"},
-    {"id": "door", "kind": "prop", "name": "문"},
-]}
-STAGES = {"start": "A", "stages": [
-    {"id": "A", "transitions": [{"to": "C", "reason": "Fizz"}, {"to": "B", "when": ["flag:Known"]}, {"to": "A"}]},
-    {"id": "B", "transitions": [{"to": "C"}]},
-    {"id": "C", "terminal": True},
-]}
-WORLD = {
-    "anchors": ["here"],
-    "baseline": [{"target": "door", "prop": "state", "value": "open"}],
-    "rules": [
-        {"target": "door", "prop": "state", "value": "closed", "when": ["stage>=B"]},
-        {"target": "door", "prop": "state", "value": "gone", "when": ["stage>=C"]},
-    ],
-}
-BEATS = {"beats": [
-    {"id": "bob.low", "on": "talk:bob", "priority": 0, "lines": ["bob: 기본"]},
-    {"id": "bob.tie1", "on": "talk:bob", "priority": 5, "when": ["flag:Today"], "lines": ["bob: 먼저 쓴 것"]},
-    {"id": "bob.tie2", "on": "talk:bob", "priority": 5, "when": ["flag:Today"], "lines": ["bob: 나중에 쓴 것"]},
-    {"id": "bob.once", "on": "talk:bob", "priority": 9, "once": "cycle",
-     "lines": [{"pause": 0.5}, {"speaker": "bob", "text": "하루 한 번", "cue": "Wave"}],
-     "effects": ["set:Today"],
-     "choices": [
-         {"text": "다음", "next": "bob.chained"},
-         {"text": "숨김", "when": ["flag:Known"]},
-         {"text": "끝"},
-     ]},
-    {"id": "bob.chained", "lines": ["player: 이어짐"], "effects": ["set:Known", "faint:Boom"]},
-]}
+FIXTURE = GAME_DATA / "tests" / "fixtures" / "semantics"  # shared with tests/test_engine.gd
 
 
-def write_data(root: Path, beats=BEATS) -> Path:
-    files = {"registry.json": REGISTRY, "targets.json": TARGETS, "stages.json": STAGES, "world.json": WORLD}
-    (root / "beats").mkdir(parents=True)
-    for name, data in files.items():
-        (root / name).write_text(json.dumps(data, ensure_ascii=False), encoding="utf-8")
-    (root / "beats" / "bob.json").write_text(json.dumps(beats, ensure_ascii=False), encoding="utf-8")
+def write_data(root: Path, beats=None) -> Path:
+    """Copy of the shared fixture, optionally with different beats (for validator tests)."""
+    shutil.copytree(FIXTURE, root, dirs_exist_ok=True)
+    if beats is not None:
+        (root / "beats" / "bob.json").write_text(json.dumps(beats, ensure_ascii=False), encoding="utf-8")
     return root
 
 
 class EngineSemantics(unittest.TestCase):
     def setUp(self):
-        self.tmp = tempfile.TemporaryDirectory()
-        self.db = load_db_strict(write_data(Path(self.tmp.name)))
+        self.db = load_db_strict(FIXTURE)
         self.e = NarrativeEngine(self.db)
-
-    def tearDown(self):
-        self.tmp.cleanup()
 
     def drain(self, session, picks=()):
         picks = list(picks)

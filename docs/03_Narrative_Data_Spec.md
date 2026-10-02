@@ -1,15 +1,16 @@
 # 03. 내러티브 데이터 명세 (GameData/)
 
 > 작가·기획·AI가 편집하는 파일의 형식과, 엔진이 따라야 할 동작 규칙.
-> **레퍼런스 구현**: `Tools/narrative/btg_narrative/` — 이 문서와 다르게 동작하면 버그다 (둘 중 하나를 고친다).
-> **적합성 테스트**: `GameData/tests/condition_vectors.json` — 엔진 포팅도 같은 파일을 통과해야 한다.
+> **구현 두 개**: Python 레퍼런스 `Tools/narrative/btg_narrative/` + Godot 런타임 `core/narrative/`. 이 문서와 다르게 동작하면 버그다.
+> **공용 테스트**: `GameData/tests/` — 조건 벡터, 시나리오, 픽스처. 두 구현이 같은 파일을 통과해야 한다.
 
 편집 후에는 항상:
 
 ```bash
 python Tools/narrative/btg.py validate      # 참조 오류 검사
 python -m unittest discover -s Tools/narrative/tests -t Tools/narrative/tests
-python Tools/narrative/btg.py play          # 직접 해보기
+Tools/godot/run_tests.sh                    # Godot 쪽 (GODOT=godot 경로)
+python Tools/narrative/btg.py play          # 직접 해보기 (텍스트)
 ```
 
 ---
@@ -24,6 +25,8 @@ python Tools/narrative/btg.py play          # 직접 해보기
 | `world.json` | 앵커, 정상 상태(baseline), 변화 규칙(rules) |
 | `beats/*.json` | 비트 = 플레이어 행동에 대한 세계의 반응 (대사·선택지·효과). 파일 분할은 자유 (NPC별 권장) |
 | `tests/condition_vectors.json` | 조건 DSL 적합성 벡터 |
+| `tests/scenarios/*.json` | 시나리오 테스트 (아래) |
+| `tests/fixtures/semantics/` | 엔진 동작 검사용 미니 GameData |
 
 ID 규칙: 플래그·이벤트·cue·사유는 `PascalCase`, 대상·앵커는 `snake_case`, 스테이지는 `S01_Name`, 비트는 `owner.part.name`.
 
@@ -169,12 +172,32 @@ ID 규칙: 플래그·이벤트·cue·사유는 `PascalCase`, 대상·앵커는 
 ## 세이브 파일
 
 ```jsonc
-{ "format": "BTGSave", "version": 1, "checksum": "<sha256(정규화된 payload JSON)>", "payload": { /* 상태 모델 */ } }
+{ "format": "BTGSave", "version": 1, "seq": 7, "checksum": "<sha256>", "payload": { /* 상태 모델 */ } }
 ```
 
-- 쓰기: 임시 파일 → fsync → 원자적 교체. 기존 파일이 검증을 통과할 때만 `.bak`으로 보관.
-- 읽기: 본 파일 → `.bak` 순서. 체크섬/형식/버전이 하나라도 틀리면 그 파일은 쓰지 않는다.
-- 버전: 낮으면 마이그레이션 체인으로 올리고, 높으면 거부.
-- UE 포팅: `USaveGame`에 payload JSON 문자열 + 체크섬 + 버전을 담고, `.bak` 대신 슬롯 A/B 교대 기록 + 시퀀스 번호를 쓴다.
+**Godot 런타임** (`BTGSaveSystem`): `user://saves/slot0_a.json` / `slot0_b.json`을 번갈아 쓴다.
+- 쓰기: 가장 최신의 유효 슬롯은 **절대 덮어쓰지 않고** 다른 슬롯에 `seq + 1`로 쓴다. 쓰다가 죽어도 최신 유효 슬롯이 남는다.
+- 체크섬: `sha256(정렬된 JSON {"payload","seq","version"})`. JSON 숫자가 float으로 돌아오는 것은 정수로 정규화한 뒤 계산.
+- 읽기: 두 슬롯 중 형식·체크섬·버전이 맞는 것 가운데 `seq`가 가장 큰 것.
+- 버전: 낮으면 `migrations` 체인으로 올리고, 높으면 거부.
+
+**Python 레퍼런스** (`save.py`): 같은 원칙을 단일 파일 + `.bak`으로 구현 (텍스트 프로토타입용).
 
 **콘텐츠 업데이트 주의**: 출시 후 스테이지/플래그 id를 바꾸면 기존 세이브가 깨진다. id는 바꾸지 말고 추가만 하거나, 마이그레이션을 쓴다.
+
+---
+
+## 시나리오 테스트
+
+`GameData/tests/scenarios/*.json` — 플레이어 행동을 순서대로 실행하고 결과를 검사한다. Python과 Godot이 같은 파일을 실행하므로, 스토리 규칙을 바꿀 땐 여기에 시나리오를 추가한다. 첫 실패 단계에서 멈춘다.
+
+| 단계 | 의미 |
+|---|---|
+| `{"act": "talk:guard", "pick": ["성문 앞?", "……아무것도"]}` | 행동 실행. 선택지는 **앞부분 일치**로 순서대로 고름. 남거나 모자라면 실패. `"nothing": true` = 아무 비트도 없어야 함 |
+| `{"check": ["cycle==2", "world:gate.state=closed"]}` | 조건 원자가 전부 참 |
+| `{"said": "bartender: 어제 장작"}` / `{"notSaid": ...}` | **이번 회차**에 그 화자가 그 문구를 포함한 대사를 했다/안 했다 |
+| `{"saidInOrder": ["guard: 어제?", "guard: ……어디서 본 것 같은데."]}` | 직전 `act`의 대사에 이 줄들이 **정확히, 이 순서로** 있음 (사이에 다른 줄 허용) |
+| `{"faint": "CastleInterior"}` | 기절 대기 사유가 이것인지 확인하고 회차를 넘김 |
+| `{"noFaint": true}` | 기절 대기 없음 |
+
+시나리오 전체에 걸친 금지 규칙 `never`: `{"text": "또 시작", "maxCycle": 2, "npcOnly": true}` — 조건(`speaker`, `cycle`, `maxCycle`, `npcOnly`)에 맞는 대사에 `text`가 들어 있으면 실패.

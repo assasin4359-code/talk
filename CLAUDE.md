@@ -2,8 +2,10 @@
 
 The top-level design authority is `docs/00_GDD_Handoff.md` (owner's original text, Korean). Read it before changing story content. Never rewrite it; put proposals in the "결정 필요" table in `docs/01_Architecture.md`.
 
+Engine: **Godot 4.7** (repo root is the Godot project). The handoff's C++/Blueprint wording maps to GDScript `core/` (logic) vs scenes (presentation) — see `docs/01_Architecture.md` 2.1.
+
 ## Non-negotiables from the handoff
-- The loop did **not** exist before the player arrived. No NPC says "here we go again" in early cycles (a test enforces this for cycles 1–2).
+- The loop did **not** exist before the player arrived. No NPC says "here we go again" in early cycles (scenario `never` rules enforce this for cycles 1–2).
 - Show the normal world first; horror = small diffs against a baseline the player has learned. In data, every world rule must have a baseline.
 - No quest UI language (퀘스트 / 0/5 / 호감도 / COMPLETE). The validator warns on it.
 - No combat, no big inventory, no mazes for playtime, no early narrator reveal, narrator is not a villain.
@@ -11,18 +13,29 @@ The top-level design authority is `docs/00_GDD_Handoff.md` (owner's original tex
 
 ## Layout
 - `GameData/` — the real narrative data (JSON). Format: `docs/03_Narrative_Data_Spec.md`.
-- `Tools/narrative/btg_narrative/` — engine-agnostic reference implementation. The future engine port must behave identically; `GameData/tests/condition_vectors.json` is the shared conformance suite.
-- `Tools/narrative/prototype/` — throwaway text-prototype data (locations, flavor text). Not game data.
-- No engine project exists yet (UE5 recommended, owner to confirm). This cloud environment cannot build an engine; engine code must be verified on the owner's machine.
+- `core/narrative/` — Godot runtime (GDScript, `BTG*` class_names, autoload `Narrative`). Presentation scenes call into it and react to its signals; they never decide story state.
+- `Tools/narrative/btg_narrative/` — Python reference implementation + validator + text prototype. Must behave exactly like `core/narrative/`.
+- `GameData/tests/` — shared tests both implementations run: `condition_vectors.json`, `scenarios/*.json`, `fixtures/semantics/`. Change behaviour → change both implementations → both suites pass.
+- `Tools/narrative/prototype/` — throwaway text-prototype data. Not game data.
+- `docs/.gdignore`, `Tools/.gdignore` keep Godot from importing those folders.
 
-## After any change to GameData or Tools/narrative
+## Verify every change
 ```bash
 python Tools/narrative/btg.py validate
 python -m unittest discover -s Tools/narrative/tests -t Tools/narrative/tests
+Tools/godot/run_tests.sh            # needs GODOT=<path to godot 4.7> or `godot` on PATH
 ```
-If choice order in a beat changes, update `Tools/narrative/prototype/walkthrough.txt`.
+In a Claude Code cloud container, Godot is not preinstalled and github.com downloads are blocked; install it via Nix (≈30 s):
+```bash
+source Tools/godot/install_godot_nix.sh     # exports GODOT and GODOT_RENDER_ENV
+# screenshots: env $GODOT_RENDER_ENV xvfb-run -a "$GODOT" --path . --rendering-driver vulkan ...
+```
+The container has no audio device: you can verify which sounds play, not how they sound. Feel/timing/audio need the owner's playtest.
+
+If choice order in a beat changes, update `Tools/narrative/prototype/walkthrough.txt` and any scenario `pick` lists.
 
 ## Conventions
-- Python: stdlib only, 3.10+.
-- Logic/content lives in text (C++/JSON); Blueprints stay thin presentation. Core emits cue names; presentation never decides story state.
+- GDScript: static typing where practical, `class_name BTG*` for core classes, tabs. Python: stdlib only, 3.10+.
+- Commit `*.gd.uid` files; never commit `.godot/`.
+- Temp blockout art lives under `scenes/blockout/`.
 - Small PRs. Analyze → design → implement.

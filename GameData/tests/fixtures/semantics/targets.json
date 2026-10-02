@@ -1,0 +1,20 @@
+{
+  "targets": [
+    {
+      "id": "player",
+      "kind": "player",
+      "name": "나"
+    },
+    {
+      "id": "bob",
+      "kind": "npc",
+      "name": "밥",
+      "voice": "VP_Bob"
+    },
+    {
+      "id": "door",
+      "kind": "prop",
+      "name": "문"
+    }
+  ]
+}

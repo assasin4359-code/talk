@@ -23,12 +23,51 @@ var focus: BTGNarrativeTarget = null
 @onready var ray: RayCast3D = $Head/Camera3D/InteractRay
 
 
+var _head_height := 1.62
+
+
 func _ready() -> void:
 	add_to_group("player")
 	BTGInput.ensure_actions()
+	_head_height = head.position.y
 	ray.target_position = Vector3(0, 0, -interact_range)
 	ray.add_exception(self)
 	capture_mouse(true)
+
+
+# --- camera moves the director uses (presentation only) -------------------------
+
+func look_toward(point: Vector3, seconds: float) -> void:
+	var d := point - camera.global_position
+	var yaw := atan2(-d.x, -d.z)
+	var pitch := clampf(atan2(d.y, Vector2(d.x, d.z).length()), -1.45, 1.45)
+	var t := create_tween().set_parallel().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	t.tween_property(self, "rotation:y", rotation.y + angle_difference(rotation.y, yaw), seconds)
+	t.tween_property(head, "rotation:x", pitch, seconds)
+
+
+## Unsteady, then down onto one side.
+func collapse(duration: float) -> void:
+	var t := create_tween()
+	for i in 4:
+		t.tween_property(head, "rotation:z", 0.06 * (1 if i % 2 == 0 else -1), duration * 0.08)
+	t.set_parallel()
+	t.tween_property(head, "position:y", 0.32, duration * 0.4).set_delay(duration * 0.32).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+	t.tween_property(head, "rotation:z", 1.2, duration * 0.4).set_delay(duration * 0.32).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+	t.tween_property(head, "rotation:x", -0.25, duration * 0.4).set_delay(duration * 0.32)
+
+
+func lie_down() -> void:
+	head.position.y = 0.32
+	head.rotation = Vector3(0.45, 0.0, 1.2)
+
+
+func get_up(seconds: float) -> Tween:
+	var t := create_tween().set_parallel().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	t.tween_property(head, "position:y", _head_height, seconds * 0.7).set_delay(seconds * 0.3)
+	t.tween_property(head, "rotation:z", 0.0, seconds * 0.6).set_delay(seconds * 0.2)
+	t.tween_property(head, "rotation:x", 0.0, seconds)
+	return t
 
 
 func capture_mouse(on: bool) -> void:
@@ -39,7 +78,8 @@ func capture_mouse(on: bool) -> void:
 func place_at(anchor: Node3D) -> void:
 	global_position = anchor.global_position
 	rotation.y = anchor.global_rotation.y
-	head.rotation.x = 0.0
+	head.rotation = Vector3.ZERO
+	head.position.y = _head_height
 	velocity = Vector3.ZERO
 
 

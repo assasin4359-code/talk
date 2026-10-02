@@ -17,8 +17,12 @@ func _open(stage: String, cycle: int) -> Node:
 	st.cycle = cycle
 	narrative.use_state(st)
 	var v: Node = load(VILLAGE).instantiate()
+	var director = v.get_node("Director")
+	director.speed = 50.0  # presentation 50x faster
+	director.reload_on_new_day = false
 	tree.root.add_child(v)
-	await frames(3)
+	await director.day_started
+	await frames(1)
 	return v
 
 

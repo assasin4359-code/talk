@@ -22,6 +22,7 @@ var S_GATE: Script
 var S_SIGN: Script
 var S_PLAYER: Script
 var S_DIRECTOR: Script
+var S_VARIANT: Script
 
 const PLATEAU_Y := 6.0  # castle hill height
 const GATE_Z := -46.0  # centre of the castle wall
@@ -39,6 +40,12 @@ func _initialize() -> void:
 	S_SIGN = load("res://game/world/sign_presenter.gd")
 	S_PLAYER = load("res://game/player/player.gd")
 	S_DIRECTOR = load("res://game/director.gd")
+	S_VARIANT = load("res://game/world/variant_presenter.gd")
+	for sc in [S_ANCHOR, S_TARGET, S_VOLUME, S_GATE, S_SIGN, S_PLAYER, S_DIRECTOR, S_VARIANT]:
+		if sc == null or not sc.can_instantiate():
+			push_error("a game script failed to compile; not writing %s" % OUT)
+			quit(1)
+			return
 	font = load(FONT)
 	scene_root = Node3D.new()
 	scene_root.name = "Village"
@@ -311,7 +318,6 @@ func _tavern(p: Node) -> void:
 	_light(p, "FireGlow", Vector3(-19.5, 0.8, -5.2), Color(1.0, 0.5, 0.2), 1.6, 5.0)
 	_box(p, "Fireplace", Vector3(2.6, 2.2, 0.8), Vector3(-19.5, 1.1, -6.3), "stone_dark")
 	_box(p, "FireplaceMouth", Vector3(1.4, 1.0, 0.1), Vector3(-19.5, 0.6, -5.86), "opening", Vector3.ZERO, false)
-	_box(p, "FirewoodBasket", Vector3(0.8, 0.5, 0.8), Vector3(-17.6, 0.25, -6.1), "wood")
 	for i in 4:
 		var tx := -19.0 + (i % 2) * 3.0
 		var tz := -3.0 + int(i / 2) * 3.5
@@ -503,11 +509,41 @@ func _props(p: Node) -> void:
 	_box(board, "Foam", Vector3(0.72, 0.24, 0.15), Vector3(-0.35, 0.33, 0), "cloth", Vector3.ZERO, false)
 	_box(board, "Handle", Vector3(0.16, 0.42, 0.16), Vector3(0.03, -0.15, 0), "beer", Vector3.ZERO, false)
 	_label(board, "Text", "술집", Vector3(0.55, 0.0, 0.08), 72, false)
+	# tavern firewood basket: low on a normal day, full on a day the player helped
+	var basket := _target(p, "TavernBasket", "tavern_basket", "use", false, PackedStringArray(["state"]))
+	basket.position = Vector3(-17.6, 0, -6.1)
+	_box(basket, "Basket", Vector3(0.9, 0.35, 0.8), Vector3(0, 0.175, 0), "wood_dark", Vector3.ZERO, false)
+	var states := _variants(basket, "state", ["low", "full"])
+	_logs(states["low"], 1, Vector3(0, 0.3, 0))
+	_logs(states["full"], 8, Vector3(0, 0.3, 0))
+	_light(states["full"], "FireBurning", Vector3(-1.9, 0.9, 0.9), Color(1.0, 0.55, 0.22), 2.4, 7.0)
+
 	var sp := Node.new()
 	sp.name = "SignPresenter"
 	sp.set_script(S_SIGN)
 	sign.add_child(sp)
 	sp.set("board", board)
+
+
+## A VariantPresenter under `target`: one child per world value of `prop`.
+func _variants(target: Node, prop: String, names: Array) -> Dictionary:
+	var vp := Node3D.new()
+	vp.name = "Variants"
+	vp.set_script(S_VARIANT)
+	target.add_child(vp)
+	vp.set("prop", prop)
+	var out := {}
+	for n in names:
+		var g := _group(vp, n)
+		g.visible = n == names[0]
+		out[n] = g
+	return out
+
+
+func _logs(parent: Node, count: int, origin: Vector3, length := 0.7, radius := 0.08) -> void:
+	for i in count:
+		var row := int(i / 3)
+		_cyl(parent, "Log%d" % i, radius, length, origin + Vector3(-radius * 2 + (i % 3) * radius * 2.1, radius + row * radius * 1.8, 0), "wood", false, false, Vector3(90, 0, 0))
 
 
 func _anchors(p: Node) -> void:
@@ -564,5 +600,9 @@ func _player(p: Node) -> CharacterBody3D:
 	var ray := RayCast3D.new()
 	ray.name = "InteractRay"
 	cam.add_child(ray)
+	# what the player is carrying, shown in hand (world value player.carrying)
+	var held := _target(cam, "Held", "player", "use", false, PackedStringArray(["carrying"]))
+	var items := _variants(held, "carrying", ["nothing", "firewood"])
+	_logs(items["firewood"], 5, Vector3(0.32, -0.42, -0.62), 0.55, 0.07)
 	p.add_child(pl)
 	return pl

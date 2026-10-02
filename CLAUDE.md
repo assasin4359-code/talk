@@ -38,6 +38,8 @@ The container has no audio device: you can verify which sounds play, not how the
 Godot gotchas learned here:
 - `--script` entry points are compiled before autoloads exist: never reference game classes that use `Narrative` by *type* there; `load()` them at runtime.
 - GDScript has no exceptions; `tests/run_tests.gd` turns any error logged during a test into a failure. Keep it that way.
+- Never `await tween.finished` directly — if it already finished you hang forever (a soft-lock). Use `await BTGTweens.done(tween)`.
+- Signals that may fire synchronously: connect before acting (see `_flag()` in `tests/test_playthrough.gd`).
 
 If choice order in a beat changes, update `Tools/narrative/prototype/walkthrough.txt` and any scenario `pick` lists.
 

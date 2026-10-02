@@ -109,14 +109,15 @@ Playing ──faint:<Reason>──▶ Fainting ──(연출 완료 or 타임아
 | ✅ `BTGDialogueSession` | 대화 체인 진행 (line/pause/choices/end 이벤트) |
 | ✅ `BTGSaveSystem` | A/B 슬롯, 체크섬, 마이그레이션 |
 | ✅ autoload `Narrative` | 게임 전체의 단일 스토리 권위. 시그널 `cue_emitted`, `cycle_started` |
-| `NarrativeTarget` (Node) | 노드에 `target_id`("guard", "gate") 부여. 상호작용 → `Narrative.trigger()`, 월드 값 변경 시 `world_value_changed(prop, value)` 시그널 |
-| `Anchor` (Marker3D) | `location`/`spawn` 값이 가리키는 위치 |
-| `NarrativeVolume` (Area3D) | 진입 시 `enter:<id>` |
-| `PlayerController` (CharacterBody3D) | 1인칭 이동/시점, 레이캐스트 상호작용, 대화 중 입력 잠금 |
-| `DialogueBox` (Control) | 타자기 출력, 선택지, 정적. 글자마다 페이크 보이스 호출 |
+| ✅ `BTGNarrativeTarget` (Node3D) | 노드에 `target_id`("guard", "gate") 부여. 상호작용 → `Narrative.trigger()`, 월드 값 변경 시 `world_value_changed(prop, value)` 시그널 |
+| ✅ `BTGAnchor` (Marker3D) | `location`/`spawn` 값이 가리키는 위치 |
+| ✅ `BTGNarrativeVolume` (Area3D) | 진입 시 `enter:<id>` |
+| ✅ `BTGPlayer` (CharacterBody3D) | 1인칭 이동/시점, 레이캐스트 상호작용, 대화 중 입력 잠금 |
+| ✅ `BTGDialogueBox` (CanvasLayer) | 타자기 출력, 선택지, 정적. 글자마다 페이크 보이스 호출 |
+| ✅ presenters (`gate_presenter`, `sign_presenter`, `variant_presenter`) | 월드 값 → 보이는 모습. `variant_presenter`는 값 이름의 자식만 보여주는 범용 스위치 |
 | `FakeVoice` + `VoiceProfile` (Resource `.tres`) | 샘플 세트, 피치/볼륨 범위, 초당 글자 수. 한글 음절(U+AC00–D7A3) 단위 블립 |
 | `Footsteps` (Node) | **모든 발소리는 여기를 경유** — 나중에 지연/추가/소거 이상현상을 붙일 자리 |
-| `CycleDirector` (Node) | 2.4 상태 머신. 기절 연출 재생 → 완료/타임아웃 → `complete_cycle()` → 씬 리로드 |
+| ✅ `BTGDirector` (Node) + `BTGFaintFx` | 2.4 파이프라인. 대화 → 기절 연출 → `complete_cycle()` → 씬 리로드 → 기상. 연출과 진행이 한 곳에 있어 완료 신호 누락이 없음 |
 | `AudioDirector` (VS 이후) | 오디오 버스 구성(World/Footsteps/NPCVoice/Narrator/UI), 완전 무음, 나레이터 우선 |
 
 ### 씬이 담당 (핸드오프의 Blueprint 영역)

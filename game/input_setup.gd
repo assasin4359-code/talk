@@ -12,6 +12,7 @@ static func ensure_actions() -> void:
 	_add("sprint", [KEY_SHIFT])
 	_add("interact", [KEY_E, KEY_SPACE, KEY_ENTER], [MOUSE_BUTTON_LEFT])
 	_add("release_mouse", [KEY_ESCAPE])
+	_add("debug_new_game", [KEY_F9])  # playtest helper: back to day 1
 	for i in range(1, 10):
 		_add("choice_%d" % i, [KEY_0 + i])
 

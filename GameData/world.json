@@ -8,7 +8,9 @@
     { "target": "guard", "prop": "location", "value": "gate" },
     { "target": "bartender", "prop": "location", "value": "tavern" },
     { "target": "firewood", "prop": "location", "value": "smithy" },
-    { "target": "tavern_sign", "prop": "state", "value": "normal" }
+    { "target": "tavern_sign", "prop": "state", "value": "normal" },
+    { "target": "player", "prop": "carrying", "value": "nothing" },
+    { "target": "tavern_basket", "prop": "state", "value": "low" }
   ],
 
   "rules": [
@@ -21,6 +23,16 @@
       "target": "tavern_sign", "prop": "state", "value": "upside_down",
       "when": ["stage>=S03_SliceEnd"],
       "note": "[임시 티저] 3회차 첫 사물 변화. '다음엔 뭐가 바뀌지?'를 남기기 위한 VS 마무리."
+    },
+    {
+      "target": "player", "prop": "carrying", "value": "firewood",
+      "when": ["flag:CarryingFirewood"],
+      "note": "인벤토리 UI 대신 손에 든 장작이 보인다."
+    },
+    {
+      "target": "tavern_basket", "prop": "state", "value": "full",
+      "when": ["rel:bartender.HelpedWithoutReward@cycle"],
+      "note": "도와준 날엔 장작 바구니가 가득. 수치 대신 눈에 보이는 결과. 다음 날엔 다 타서 다시 비어 있다."
     }
   ]
 }

@@ -5,11 +5,11 @@
     { "check": ["cycle==1", "stage:S01_Arrival", "world:gate.state=open", "world:tavern_sign.state=normal"] },
 
     { "act": "use:firewood" },
-    { "check": ["flag:CarryingFirewood"] },
+    { "check": ["flag:CarryingFirewood", "world:player.carrying=firewood", "world:tavern_basket.state=low"] },
     { "act": "talk:bartender", "pick": ["(장작을"] },
     { "said": "bartender: 장작이 얼마 안 남았네" },
     { "said": "bartender: 시키지도 않았는데" },
-    { "check": ["!flag:CarryingFirewood", "rel:bartender.HelpedWithoutReward@cycle"] },
+    { "check": ["!flag:CarryingFirewood", "rel:bartender.HelpedWithoutReward@cycle", "world:player.carrying=nothing", "world:tavern_basket.state=full"] },
     { "act": "talk:bartender", "pick": ["성에는"] },
     { "said": "bartender: 재밌는 분이셔" },
     { "check": ["flag:HeardAboutKing"] },
@@ -18,7 +18,7 @@
     { "act": "enter:castle_foyer" },
     { "faint": "CastleInterior" },
 
-    { "check": ["cycle==2", "stage:S02_GateClosed", "world:gate.state=closed", "!flag:CarryingFirewood", "flag:EnteredCastle"] },
+    { "check": ["cycle==2", "stage:S02_GateClosed", "world:gate.state=closed", "!flag:CarryingFirewood", "flag:EnteredCastle", "world:tavern_basket.state=low"] },
     { "act": "talk:bartender", "pick": ["들어가자마자"] },
     { "saidInOrder": ["bartender: 어, 왔어? 어제 장작 가져다준 거 고맙더라.", "bartender: 그래서, 어제 성은 어땠어? 임금님 만났어?"] },
     { "act": "talk:guard", "pick": ["성문 앞?", "문은 왜", "……아무것도"] },

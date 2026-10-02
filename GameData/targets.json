@@ -9,6 +9,7 @@
     { "id": "gate", "kind": "prop", "name": "성문" },
     { "id": "firewood", "kind": "prop", "name": "장작더미" },
     { "id": "tavern_sign", "kind": "prop", "name": "술집 간판" },
+    { "id": "tavern_basket", "kind": "prop", "name": "장작 바구니" },
 
     { "id": "castle_foyer", "kind": "volume", "name": "성 현관" }
   ]

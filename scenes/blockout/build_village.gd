@@ -141,6 +141,23 @@ func _cyl(parent: Node, n: String, radius: float, height: float, pos: Vector3, m
 	return c
 
 
+## Walkable slope along -Z: from (z_start, y=0) up to (z_end, y=height), `width` wide, centred on x=0.
+func _wedge(parent: Node, n: String, z_start: float, z_end: float, height: float, width: float, mat: String) -> CSGPolygon3D:
+	var w := CSGPolygon3D.new()
+	w.name = n
+	# profile in local XY, extruded along local -Z; rotating 90 deg about Y maps local +X -> world -Z
+	# and the extrusion -> world -X, so local x = -world z and the node sits at the +X side.
+	w.polygon = PackedVector2Array([Vector2(-z_start, 0), Vector2(-z_end, 0), Vector2(-z_end, height)])
+	w.mode = CSGPolygon3D.MODE_DEPTH
+	w.depth = width
+	w.rotation_degrees = Vector3(0, 90, 0)
+	w.position = Vector3(width / 2, 0, 0)
+	w.material = mats[mat]
+	w.use_collision = true
+	parent.add_child(w)
+	return w
+
+
 ## Triangular prism roof, ridge along Z. `base` is the centre of the roof's bottom face.
 func _gable(parent: Node, n: String, base: Vector3, width: float, depth: float, height: float, mat: String) -> CSGPolygon3D:
 	var p := CSGPolygon3D.new()
@@ -382,13 +399,11 @@ func _entrance(p: Node) -> void:
 func _hill_and_castle(p: Node) -> void:
 	var y := PLATEAU_Y
 	_box(p, "Plateau", Vector3(140, y, 70), Vector3(0, y / 2, -75), "grass_hill")
-	# ramp from the square's north edge (z=-14, y=0) to the plateau (z=-40, y=4)
-	var run := 26.0
-	var angle := rad_to_deg(atan2(y, run))
-	var length := sqrt(run * run + y * y) + 1.0
-	var n := Vector3(0, cos(deg_to_rad(angle)), sin(deg_to_rad(angle)))
-	_box(p, "Ramp", Vector3(8, 1, length), Vector3(0, y / 2 - 0.12, -27) - n * 0.5, "road", Vector3(angle, 0, 0))
-	_box(p, "GateRoad", Vector3(6, 0.04, 6), Vector3(0, y + 0.02, -42), "road")
+	# ramp from the square's north edge (z=-14, y=0) to the plateau edge (z=-40, y=4..6):
+	# an exact wedge, so it meets the ground and the plateau top with no step or lip
+	# (a capsule can't climb even a ~10 cm ledge, and there is no jump).
+	_wedge(p, "Ramp", -14.0, -40.0, y, 8.0, "road")
+	_box(p, "GateRoad", Vector3(6, 0.04, 4.5), Vector3(0, y + 0.02, -42.25), "road")  # starts ON the plateau
 	# castle wall with the gate opening (8 wide, 10 high)
 	var wall_h := 14.0
 	_box(p, "WallL", Vector3(32, wall_h, 3), Vector3(-20, y + wall_h / 2, GATE_Z), "stone")

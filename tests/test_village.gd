@@ -28,7 +28,7 @@ func _open(stage: String, cycle: int) -> Node:
 
 func _close(v: Node) -> void:
 	v.queue_free()
-	await frames(1)
+	await frames(3)  # let the audio server process the stopped faint tone
 
 
 func _target(v: Node, id: String) -> Node3D:

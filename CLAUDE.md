@@ -40,6 +40,8 @@ Godot gotchas learned here:
 - GDScript has no exceptions; `tests/run_tests.gd` turns any error logged during a test into a failure. Keep it that way.
 - Never `await tween.finished` directly — if it already finished you hang forever (a soft-lock). Use `await BTGTweens.done(tween)`.
 - Signals that may fire synchronously: connect before acting (see `_flag()` in `tests/test_playthrough.gd`).
+- Never prove a route by teleporting. `tests/test_routes.gd` walks every story route with the real controller; add a route there whenever a new place matters. There is no jump: any ledge over 0.3 m on a route is a soft-lock.
+- `BTG_TEST_FILTER=test_routes Tools/godot/run_tests.sh` runs one test file.
 
 If choice order in a beat changes, update `Tools/narrative/prototype/walkthrough.txt` and any scenario `pick` lists.
 

@@ -10,6 +10,9 @@ signal focus_changed(target: BTGNarrativeTarget)
 @export var acceleration := 14.0
 @export var mouse_sensitivity := 0.0025
 @export var interact_range := 2.6
+## There is no jump (by design). Ledges up to this height are climbed automatically,
+## so a stray kerb or stair never strands the player; waist-high things still block.
+@export var max_step_height := 0.3
 
 var input_locked := false:
 	set(v):
@@ -114,8 +117,35 @@ func _physics_process(delta: float) -> void:
 	var horizontal := Vector3(velocity.x, 0.0, velocity.z).move_toward(wish * speed, acceleration * delta)
 	velocity.x = horizontal.x
 	velocity.z = horizontal.z
+	var was_on_floor := is_on_floor()
 	move_and_slide()
+	if was_on_floor and wish != Vector3.ZERO:
+		_step_up(horizontal * delta)
 	_update_focus()
+
+
+## If a low ledge stopped us: lift by max_step_height, move on, drop back down onto it.
+func _step_up(motion: Vector3) -> void:
+	var blocked := false
+	for i in get_slide_collision_count():
+		if get_slide_collision(i).get_normal().y < 0.7:
+			blocked = true
+	if not blocked or motion.length() < 0.0001:
+		return
+	var up := Vector3(0, max_step_height, 0)
+	var start := global_transform
+	if test_move(start, up):
+		return  # no headroom
+	var raised := start.translated(up)
+	if test_move(raised, motion):
+		return  # still blocked one step higher: a real wall
+	var moved := raised.translated(motion)
+	var landing := KinematicCollision3D.new()
+	if not test_move(moved, -up, landing) or landing.get_normal().y < 0.7:
+		return  # nothing to stand on (or too steep)
+	var target := moved.origin + landing.get_travel()
+	if target.y - start.origin.y > 0.01:
+		global_position = target
 
 
 func _update_focus() -> void:

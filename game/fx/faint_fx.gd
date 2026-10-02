@@ -57,9 +57,11 @@ func _param_tween(param: String, to: float, seconds: float, delay := 0.0) -> Twe
 ## Ringing -> blur and tearing -> black. `duration` is the whole collapse.
 func play_faint(duration: float) -> void:
 	_rect.visible = true
-	_tone.play()
-	var t := create_tween().set_parallel()
-	t.tween_property(_tone, "volume_db", -9.0, duration * 0.8).from(-50.0)
+	# No audio output (headless tests, captures): nothing to hear, and a playback started
+	# on the Dummy driver is never cleaned up if the scene is freed mid-faint.
+	if AudioServer.get_driver_name() != "Dummy":
+		_tone.play()
+		create_tween().tween_property(_tone, "volume_db", -9.0, duration * 0.8).from(-50.0)
 	_param_tween("blur", 1.0, duration * 0.7, duration * 0.15)
 	_param_tween("glitch", 0.85, duration * 0.5, duration * 0.3)
 	var dark := _param_tween("darkness", 1.0, duration * 0.35, duration * 0.65)

@@ -21,7 +21,7 @@
 **Godot 4.7** ([다운로드](https://godotengine.org/download), 압축만 풀면 됨) → Import → 이 폴더의 `project.godot` → F5.
 | 키 | |
 |---|---|
-| WASD / 마우스 | 이동 / 시점 (Shift 달리기) |
+| WASD / 마우스 | 이동 / 시점 (Shift 달리기). 점프는 없음(의도) — 30cm 이하 턱은 자동으로 넘어감 |
 | E (또는 클릭, Space) | 말 걸기·살펴보기, 대사 넘기기 |
 | 1~9 | 선택지 |
 | Esc | 마우스 해제 |

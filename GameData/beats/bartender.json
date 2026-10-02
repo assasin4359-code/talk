@@ -71,7 +71,7 @@
     {
       "id": "bartender.firewood.again",
       "on": "talk:bartender",
-      "when": ["flag:CarryingFirewood", "rel:bartender.HelpedWithoutReward@past"],
+      "when": ["flag:CarryingFirewood", "rel:bartender.HelpedWithoutReward@past", "!stage:S05_FirstDayAgain"],
       "priority": 41,
       "lines": [
         { "speaker": "bartender", "text": "또 가져왔어?", "cue": "HandOverFirewood" },
@@ -83,7 +83,7 @@
     {
       "id": "bartender.c2.thanks",
       "on": "talk:bartender",
-      "when": ["rel:bartender.HelpedWithoutReward@prev", "!flag:BartenderThankedFirewood"],
+      "when": ["rel:bartender.HelpedWithoutReward@prev", "!flag:BartenderThankedFirewood", "stage<=S03_OpenAgain"],
       "once": "story",
       "priority": 45,
       "note": "핸드오프 8장 예시 그대로. '어제'가 맞으려면 바로 전 회차(@prev)여야 한다.",
@@ -136,6 +136,115 @@
         "bartender: 그럼 못 만난 거야. 임금님 만나면 절대 못 잊는대.",
         { "pause": 0.8, "speaker": "bartender", "text": "……나도 직접 뵌 적은 없지만. 다들 그러더라고." }
       ]
+    },
+
+    {
+      "id": "bartender.c3.denies",
+      "on": "talk:bartender",
+      "when": ["stage:S03_OpenAgain", "rel:bartender.Talked@prev"],
+      "once": "story",
+      "priority": 50,
+      "note": "[임시 대사] 14장 기억 모순 — 어제 왔는데 안 왔다고 한다. 꼬맹이(술집에 있음)가 사실 편을 든다. 반대 경우는 bartender.c3.claims. 어느 쪽이든 모순이 생겨서 놓칠 수 없다.",
+      "lines": [
+        "bartender: 어서 와! 처음 보는 얼굴…… 은 아니고. 어디서 봤더라?",
+        "player: 어제 여기서 얘기했잖아.",
+        "bartender: 어제? 자네 어제 안 왔는데?",
+        { "pause": 0.5, "speaker": "kid", "text": "왔었잖아! 들어가는 거 내가 봤어." },
+        { "pause": 1.4, "speaker": "bartender", "text": "……그랬나?" },
+        { "pause": 1.0, "speaker": "bartender", "text": "요즘 내가 정신이 없나 봐. 간판도 누가 거꾸로 달아놨더라고." },
+        { "pause": 0.8, "speaker": "bartender", "text": "……아니, 원래 그랬나?" }
+      ]
+    },
+    {
+      "id": "bartender.c3.claims",
+      "on": "talk:bartender",
+      "when": ["stage:S03_OpenAgain", "!rel:bartender.Talked@prev"],
+      "once": "story",
+      "priority": 50,
+      "note": "[임시 대사] 14장 기억 모순의 반대 방향 — 어제 안 왔는데 왔다고 한다. 1회차 왕 이야기가 '어제'로 섞였다.",
+      "lines": [
+        "bartender: 또 왔네? 어제도 와서 임금님 얘기만 한참 하더니.",
+        "player: 어제는 안 왔는데.",
+        { "pause": 0.5, "speaker": "kid", "text": "안 왔어. 아저씨 어제 하루 종일 성문 앞에 있었어." },
+        { "pause": 1.4, "speaker": "bartender", "text": "……그랬나?" },
+        "bartender: 이상하네. 분명히 봤는데."
+      ]
+    },
+    {
+      "id": "bartender.c3.repeat",
+      "on": "talk:bartender",
+      "when": ["stage:S03_OpenAgain"],
+      "priority": 10,
+      "lines": ["bartender: 오늘따라 가게가 낯설어. 내 가게인데."]
+    },
+
+    {
+      "id": "bartender.c4.avoid",
+      "on": "talk:bartender",
+      "when": ["stage:S04_OutOfPlace"],
+      "once": "story",
+      "priority": 50,
+      "note": "[임시 대사] 7장: 회차가 진행되면서 점점 플레이어를 경계하거나 피한다. 가게엔 아무도 없다.",
+      "lines": [
+        "bartender: ……어, 어서 와.",
+        { "pause": 0.8, "speaker": "bartender", "text": "미안, 오늘은 좀 바빠." },
+        { "pause": 1.2, "speaker": "bartender", "text": "자네가 오면……" },
+        { "pause": 0.8, "speaker": "bartender", "text": "아니야. 그냥 하는 말이야." }
+      ]
+    },
+    {
+      "id": "bartender.c4.repeat",
+      "on": "talk:bartender",
+      "when": ["stage:S04_OutOfPlace"],
+      "priority": 10,
+      "lines": ["bartender: 바쁘다니까."]
+    },
+    {
+      "id": "bartender.firewood.c4",
+      "on": "talk:bartender",
+      "when": ["flag:CarryingFirewood", "stage:S04_OutOfPlace"],
+      "priority": 42,
+      "note": "피하는 날에도 도움은 기록된다. 대답만 짧다.",
+      "lines": [
+        { "speaker": "bartender", "text": "……고마워.", "cue": "HandOverFirewood" },
+        "bartender: 거기 두고 가."
+      ],
+      "effects": ["clear:CarryingFirewood", "rel:bartender.HelpedWithoutReward"]
+    },
+
+    {
+      "id": "bartender.c5.first",
+      "on": "talk:bartender",
+      "when": ["stage:S05_FirstDayAgain"],
+      "once": "story",
+      "priority": 50,
+      "note": "가짜 첫날 (오너 결정: 경비·술집 주인 둘 다 잊음). 대사는 bartender.c1.first를 **일부러 글자 하나 안 바꾸고** 복사 — 같은 혼잣말, 같은 타이밍. 장작을 들고 오면 1회차 반응(firewood.give)이 그대로 나온다.",
+      "lines": [
+        "bartender: 어서 와! 처음 보는 얼굴이네.",
+        "bartender: 길을 잃은 거야, 술을 찾는 거야? 둘 다 여기가 맞긴 한데.",
+        "bartender: 작은 마을이라 외지인은 금방 티가 나. 볼 거라곤 저 위에 성 하나뿐이고.",
+        { "pause": 1.0, "speaker": "bartender", "text": "……장작이 얼마 안 남았네.", "cue": "BartenderGlancesAtHearth" }
+      ],
+      "choices": [
+        { "text": "나 알잖아.", "next": "bartender.c5.stranger" },
+        { "text": "성에는 누가 살아?", "next": "bartender.c1.king" },
+        { "text": "(장작을 내민다)", "when": ["flag:CarryingFirewood"], "next": "bartender.firewood.give" },
+        { "text": "그냥 둘러보는 중이야.", "next": "bartender.c1.browse" }
+      ]
+    },
+    {
+      "id": "bartender.c5.stranger",
+      "lines": [
+        "bartender: 그래? 미안, 내가 사람 얼굴을 잘 못 외워서.",
+        { "pause": 0.8, "speaker": "bartender", "text": "외지인은 금방 티가 나는데. 이상하네." }
+      ]
+    },
+    {
+      "id": "bartender.c5.repeat",
+      "on": "talk:bartender",
+      "when": ["stage:S05_FirstDayAgain"],
+      "priority": 10,
+      "lines": ["bartender: 성엔 가 봤어? 임금님 만나면 우리 가게 홍보 좀 해 줘."]
     },
 
     {

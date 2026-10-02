@@ -1,8 +1,8 @@
-"""Text-mode playable prototype of Milestone 01.
+"""Text-mode playable prototype (Milestones 01-02).
 
 Throwaway presentation layer on top of the real narrative core. Its only jobs:
-let us play the first two cycles before the engine exists, and test whether
-the beats land. Locations/flavor text live in Tools/narrative/prototype/ and are
+let us play new cycles before they exist in 3D, and test whether the beats
+land. Locations/flavor text live in Tools/narrative/prototype/ and are
 NOT game data.
 """
 from __future__ import annotations
@@ -46,6 +46,7 @@ class Exit:
     to: str
     when: list[Condition] = field(default_factory=list)
     blocked: str = ""
+    via: Optional[str] = None  # volume crossed on the way (e.g. the gate threshold)
 
 
 @dataclass
@@ -67,7 +68,7 @@ def load_locations(path: Path) -> dict[str, Location]:
             if isinstance(e, str):
                 exits.append(Exit(e))
             else:
-                exits.append(Exit(e["to"], parse_conditions(e.get("when")), e.get("blocked", "")))
+                exits.append(Exit(e["to"], parse_conditions(e.get("when")), e.get("blocked", ""), e.get("via")))
         details = [(parse_conditions(d.get("when")), d["text"]) for d in loc.get("details", [])]
         out[loc["id"]] = Location(loc["id"], loc["name"], loc["desc"], details, exits, loc.get("volume"))
     return out
@@ -129,7 +130,9 @@ class Prototype:
     def _present(self) -> list[str]:
         here = []
         for tid, t in self.db.targets.items():
-            if t.kind in ("npc", "prop") and self.engine.world_value(tid, "location") == self.location:
+            if t.kind not in ("npc", "prop") or self.engine.world_value(tid, "visible") == "false":
+                continue
+            if self.engine.world_value(tid, "location") == self.location:
                 here.append(tid)
         return here
 
@@ -235,6 +238,11 @@ class Prototype:
         if not self.engine.check(ex.when):
             self.out(ex.blocked or "지금은 갈 수 없다.")
             return
+        if ex.via:
+            cycle = self.engine.cycle
+            self.run_session("enter", ex.via, iter(()))
+            if self.engine.cycle != cycle:
+                return  # fainted on the way; already woke up somewhere else
         self.location = dest
         self.look()
         target = self.locations[dest].volume

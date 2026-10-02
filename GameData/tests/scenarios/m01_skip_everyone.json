@@ -13,6 +13,6 @@
     { "noFaint": true },
     { "act": "use:gate" },
     { "faint": "GateTouch" },
-    { "check": ["stage:S03_SliceEnd"] }
+    { "check": ["stage:S03_OpenAgain"] }
   ]
 }

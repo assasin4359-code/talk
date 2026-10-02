@@ -5,12 +5,17 @@
 
     { "id": "bartender", "kind": "npc", "name": "술집 주인", "voice": "VP_Bartender" },
     { "id": "guard", "kind": "npc", "name": "경비병", "voice": "VP_Guard" },
+    { "id": "kid", "kind": "npc", "name": "꼬맹이", "voice": "VP_Kid" },
 
     { "id": "gate", "kind": "prop", "name": "성문" },
     { "id": "firewood", "kind": "prop", "name": "장작더미" },
     { "id": "tavern_sign", "kind": "prop", "name": "술집 간판" },
     { "id": "tavern_basket", "kind": "prop", "name": "장작 바구니" },
+    { "id": "chalk_drawing", "kind": "prop", "name": "분필 그림" },
+    { "id": "straw", "kind": "prop", "name": "짚더미" },
 
-    { "id": "castle_foyer", "kind": "volume", "name": "성 현관" }
+    { "id": "castle_foyer", "kind": "volume", "name": "성 현관" },
+    { "id": "gate_approach", "kind": "volume", "name": "성문 앞 언덕" },
+    { "id": "gate_threshold", "kind": "volume", "name": "성문 문턱" }
   ]
 }

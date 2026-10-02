@@ -6,7 +6,9 @@
     { "id": "GuardRecognizesPlayer", "scope": "persistent", "note": "경비병이 플레이어를 알아봄 (2회차 핵심 비트)" },
     { "id": "HeardWhereFainted", "scope": "persistent", "note": "경비가 '성문 앞에서 쓰러졌다'고 말함 — 플레이어 기억(성 안)과 불일치" },
     { "id": "CarryingFirewood", "scope": "cycle", "note": "장작을 들고 있음. 회차가 끝나면 사라진다" },
-    { "id": "BartenderThankedFirewood", "scope": "persistent", "note": "술집 주인이 '어제 장작' 고맙다고 말함" }
+    { "id": "BartenderThankedFirewood", "scope": "persistent", "note": "술집 주인이 '어제 장작' 고맙다고 말함" },
+    { "id": "MetKid", "scope": "persistent", "note": "꼬맹이와 처음 대화함" },
+    { "id": "PromisedKid", "scope": "persistent", "note": "5회차: 꼬맹이에게 '갔다 와서 기억할게'라고 약속함 — 6회차 꼬맹이가 확인한다. 해피엔딩 재료 후보" }
   ],
   "relationshipEvents": [
     { "id": "ListenedToStory", "note": "NPC의 개인적인 이야기를 끝까지 들음" },
@@ -20,11 +22,14 @@
     { "id": "PickUpFirewood", "note": "장작 한 아름을 들어 올림 (1인칭 손에 장작 메시)" },
     { "id": "GuardStare", "note": "경비가 플레이어 얼굴을 빤히 바라봄 — 카메라 살짝 당김, 경비 고개 기울임" },
     { "id": "GuardTurnsToPlayer", "note": "경비가 성문 쪽에서 플레이어 쪽으로 몸을 돌림" },
-    { "id": "GateTouch", "note": "닫힌 성문에 손을 댐 — 이 순간부터 기절 연출 시작" }
+    { "id": "GateTouch", "note": "닫힌 성문에 손을 댐 — 이 순간부터 기절 연출 시작" },
+    { "id": "EarlyTinnitus", "note": "4회차: 성문에 다가가기만 해도 아주 작은 이명이 먼저 온다 (이상현상 시작이 회차마다 빨라짐)" }
   ],
   "faintReasons": [
     { "id": "CastleInterior", "note": "1회차: 성 현관 진입 직후. 이명 → 시야 흐림 → 화면 흔들림 → 약한 그래픽 이상 → 쓰러짐 → 암전" },
-    { "id": "GateTouch", "note": "2회차: 닫힌 성문을 만짐. 1회차와 같은 순서지만 경비의 목소리가 늘어지며 묻힌다" }
+    { "id": "GateTouch", "note": "2회차: 닫힌 성문을 만짐. 1회차와 같은 순서지만 경비의 목소리가 늘어지며 묻힌다 (4회차엔 꼬맹이 목소리)" },
+    { "id": "GateThreshold", "note": "3회차: 열린 성문 문턱을 넘자마자. 1회차(현관)보다 빨리 온다. 경비가 깔아둔 짚 위로 쓰러진다" },
+    { "id": "WakeUp", "note": "5회차: 1회차처럼 성 현관에서 쓰러지지만 조금 더 길다. 암전 → 모든 소리 끊김 → 빨간 WAKE UP! (효과음 없음) → 평소처럼 기상. M02 전체에서 딱 한 번 (15장)" }
   ],
   "lint": {
     "forbiddenText": ["퀘스트", "QUEST", "호감도", "COMPLETE", "0/5"]

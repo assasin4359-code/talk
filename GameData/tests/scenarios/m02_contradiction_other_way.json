@@ -1,0 +1,23 @@
+{
+  "name": "M02 기억 모순, 반대 방향",
+  "description": "2회차에 술집에 안 간 플레이어. 3회차 술집 주인은 '어제도 왔다'고 우기고 꼬맹이가 바로잡는다 — 어느 쪽이든 모순은 생긴다. 경비의 '내일 오라며'는 그 말을 실제로 들은 사람만 꺼낸다.",
+  "steps": [
+    { "act": "enter:castle_foyer" },
+    { "faint": "CastleInterior" },
+    { "act": "use:gate", "pick": ["……아무것도"] },
+    { "act": "use:gate" },
+    { "faint": "GateTouch" },
+
+    { "check": ["stage:S03_OpenAgain", "!rel:bartender.Talked@prev"] },
+    { "act": "talk:bartender" },
+    { "saidInOrder": ["bartender: 또 왔네? 어제도 와서 임금님 얘기만 한참 하더니.", "player: 어제는 안 왔는데.", "kid: 안 왔어. 아저씨 어제 하루 종일 성문 앞에 있었어.", "bartender: ……그랬나?"] },
+    { "notSaid": "bartender: 어제? 자네 어제 안 왔는데?" },
+    { "act": "talk:guard", "pick": ["……고마워"] },
+    { "saidInOrder": ["guard: 오늘은 열려 있소.", "guard: ……열라고 해서 열었소.", "guard: 저건 짚이오. 이틀 연속 여기서 쓰러진 사람은 처음 봐서."] },
+    { "notSaid": "player: 어제는 내일 오라며." },
+    { "act": "enter:castle_foyer", "nothing": true },
+    { "act": "enter:gate_threshold" },
+    { "faint": "GateThreshold" },
+    { "check": ["stage:S04_OutOfPlace"] }
+  ]
+}

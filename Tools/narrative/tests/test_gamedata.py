@@ -30,6 +30,9 @@ class PrototypeData(unittest.TestCase):
                 self.assertIn(ex.to, locations, f"{loc.id} exit")
             if loc.volume:
                 self.assertEqual(self.db.targets[loc.volume].kind, "volume")
+            for ex in loc.exits:
+                if ex.via:
+                    self.assertEqual(self.db.targets[ex.via].kind, "volume", f"{loc.id} exit via")
 
     def test_walkthrough_reaches_slice_end(self):
         out = []
@@ -39,11 +42,14 @@ class PrototypeData(unittest.TestCase):
             game.run(iter(script), echo=True)
             self.assertTrue((Path(d) / "slot.json").exists(), "checkpoint written at cycle start")
         text = "\n".join(out)
-        self.assertIn("MILESTONE 01", text)
+        self.assertIn("MILESTONE 02", text)
         self.assertIn("술집 간판이 거꾸로 걸려 있다", text)
+        self.assertIn("왔었잖아! 들어가는 거 내가 봤어.", text)
+        self.assertIn("W A K E   U P !", text)
+        self.assertIn("거봐. 약속했잖아.", text)
         self.assertNotIn("무슨 말인지 모르겠다", text, "walkthrough command not understood")
         self.assertNotIn("여기엔 그런 게 없다", text, "walkthrough refers to something not present")
-        self.assertEqual(game.engine.cycle, 3)
+        self.assertEqual(game.engine.cycle, 6)
 
 
 if __name__ == "__main__":

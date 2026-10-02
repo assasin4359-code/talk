@@ -1,0 +1,31 @@
+{
+  "name": "M02 가짜 첫날은 장작도 잊는다",
+  "description": "4회차에 장작을 줘도(피하는 날이라 짧게 고마워함) 5회차 술집 주인은 — 첫인사 뒤에 장작을 들고 다시 말을 걸어도 — 1회차처럼 '시키지도 않았는데?' 한다. '또 가져왔어?'나 '어제 장작'은 나오면 안 된다. 내부 관계 기록은 그대로 남는다.",
+  "steps": [
+    { "act": "enter:castle_foyer" },
+    { "faint": "CastleInterior" },
+    { "act": "use:gate", "pick": ["……아무것도"] },
+    { "act": "use:gate" },
+    { "faint": "GateTouch" },
+    { "act": "enter:gate_threshold" },
+    { "faint": "GateThreshold" },
+
+    { "act": "use:firewood" },
+    { "act": "talk:bartender" },
+    { "said": "bartender: 미안, 오늘은 좀 바빠." },
+    { "act": "talk:bartender" },
+    { "saidInOrder": ["bartender: ……고마워.", "bartender: 거기 두고 가."] },
+    { "check": ["rel:bartender.HelpedWithoutReward@cycle", "!flag:CarryingFirewood"] },
+    { "act": "use:gate" },
+    { "faint": "GateTouch" },
+
+    { "act": "talk:bartender", "pick": ["그냥 둘러보는"] },
+    { "said": "bartender: 어서 와! 처음 보는 얼굴이네." },
+    { "act": "use:firewood" },
+    { "act": "talk:bartender" },
+    { "said": "bartender: ……시키지도 않았는데 가져온 거야? 이야, 요즘 세상에." },
+    { "notSaid": "bartender: 또 가져왔어?" },
+    { "notSaid": "bartender: 어제 장작" },
+    { "check": ["rel:bartender.HelpedWithoutReward@prev", "rel:bartender.HelpedWithoutReward>=2"] }
+  ]
+}

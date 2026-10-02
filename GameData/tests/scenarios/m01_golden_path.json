@@ -1,6 +1,6 @@
 {
   "name": "M01 골든 패스",
-  "description": "장작을 건네고, 왕 이야기를 듣고, 성에 들어가 쓰러진다. 2회차에 성문이 닫혀 있고 경비가 알아본다. 3회차에 간판이 뒤집혀 있다.",
+  "description": "장작을 건네고, 왕 이야기를 듣고, 성에 들어가 쓰러진다. 2회차에 성문이 닫혀 있고 경비가 알아본다. 3회차에 간판이 뒤집혀 있다. (4회차 이후는 m02_* 시나리오)",
   "steps": [
     { "check": ["cycle==1", "stage:S01_Arrival", "world:gate.state=open", "world:tavern_sign.state=normal"] },
 
@@ -32,7 +32,7 @@
     { "act": "use:gate" },
     { "faint": "GateTouch" },
 
-    { "check": ["cycle==3", "stage:S03_SliceEnd", "world:tavern_sign.state=upside_down"] }
+    { "check": ["cycle==3", "stage:S03_OpenAgain", "world:tavern_sign.state=upside_down"] }
   ],
   "never": [
     { "text": "또 시작", "maxCycle": 2, "npcOnly": true, "why": "핸드오프 12장: 루프는 플레이어가 온 뒤에 생긴 현상" },

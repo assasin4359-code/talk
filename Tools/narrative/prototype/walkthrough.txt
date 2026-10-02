@@ -1,8 +1,12 @@
-# Milestone 01 골든 패스. `btg.py play --walkthrough` 와 테스트가 사용한다.
+# Milestone 01 + 02 골든 패스 (1→6회차). `btg.py play --walkthrough` 와 테스트가 사용한다.
 # 숫자 = 선택지 번호. 대사가 바뀌어 선택지 순서가 달라지면 여기도 고칠 것.
 
-# ── 1회차 ──
+# ── 1회차: 정상 세계 ──
 go square
+# 꼬맹이 첫 만남: [안 돼. / 좀 더 크면.]
+talk
+1
+use 분필 그림
 go smithy
 use 장작더미
 go tavern
@@ -19,8 +23,12 @@ talk 경비병
 1
 go castle_foyer
 
-# ── 2회차 ──
+# ── 2회차: 날 기억한다 ──
 go square
+# 꼬맹이, 기절 소문: [따라 하지 마. / 그냥 쓰러졌어.]
+talk
+2
+use 분필 그림
 go tavern
 # 어제 장작 → 어제 성은? : [들어가자마자 쓰러졌어. / 기억이 잘 안 나.]
 talk
@@ -35,6 +43,55 @@ talk
 1
 use 성문
 
-# ── 3회차 (VS 끝) ──
+# ── 3회차: 웃긴데 어긋난다 ──
 go square
+use 분필 그림
+go tavern
+# 기억 모순: 어제 왔는데 안 왔다고 한다. 꼬맹이가 바로잡는다.
+talk 술집 주인
+talk 꼬맹이
+go square
+go gate
+use 짚더미
+# 짚을 깔아둔 경비: [누가 열라고 했는데? / ……고마워.]
+talk 경비병
+1
+# 문턱을 넘자마자
+go castle_foyer
+
+# ── 4회차: 제자리가 아니다 ──
+go square
+talk 경비병
+use 분필 그림
+go tavern
+talk
+go square
+go gate
+# 성문 지키는 꼬맹이
+talk
+use 짚더미
+use 성문
+
+# ── 5회차: 가짜 첫날 ──
+go square
+use 분필 그림
+# 꼬맹이만 기억한다: [기억할게. / ……]
+talk
+1
+go tavern
+# 처음 보는 얼굴이네: [나 알잖아. / 성에는 누가 살아? / 그냥 둘러보는 중이야.]
+talk
+1
+go square
+go gate
+# [나 몰라? / 왕은 어떤 분이야? / 고마워.]
+talk
+1
+go castle_foyer
+
+# ── 6회차 (M02 끝) ──
+go square
+# [기억해. / ……누구더라?]
+talk
+1
 quit

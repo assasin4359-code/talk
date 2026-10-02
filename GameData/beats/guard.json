@@ -86,6 +86,115 @@
     },
 
     {
+      "id": "guard.c3.tomorrow",
+      "on": "talk:guard",
+      "when": ["stage:S03_OpenAgain", "seen:guard.c2.repeat@prev"],
+      "once": "story",
+      "priority": 31,
+      "note": "[임시 대사] 어제 '내일 다시 오시오'를 들은 경우. 경비의 기억은 3회차까지 정확하다 (14장).",
+      "lines": [
+        "player: 어제는 내일 오라며.",
+        "guard: 그랬지. 그래서 열어뒀소.",
+        { "pause": 0.8, "speaker": "guard", "text": "……열라고 해서 열었소." }
+      ],
+      "next": "guard.c3.straw"
+    },
+    {
+      "id": "guard.c3.open",
+      "on": "talk:guard",
+      "when": ["stage:S03_OpenAgain", "!seen:guard.c3.tomorrow"],
+      "once": "story",
+      "priority": 30,
+      "lines": [
+        "guard: 오늘은 열려 있소.",
+        { "pause": 0.8, "speaker": "guard", "text": "……열라고 해서 열었소." }
+      ],
+      "next": "guard.c3.straw"
+    },
+    {
+      "id": "guard.c3.straw",
+      "note": "[임시 대사] 개그: 이틀 연속 쓰러진 사람을 위해 짚을 깔아뒀다. 마지막 줄은 1회차 대사(바닥 닦은 지…)의 재활용 — 기억하는 플레이어에게만 웃기다.",
+      "lines": [
+        "guard: 저건 짚이오. 이틀 연속 여기서 쓰러진 사람은 처음 봐서.",
+        "guard: 오늘도 쓰러질 거면 저기로 쓰러지시오. 바닥 닦은 지 얼마 안 됐소."
+      ],
+      "choices": [
+        { "text": "누가 열라고 했는데?", "next": "guard.c3.who" },
+        { "text": "……고마워." }
+      ]
+    },
+    {
+      "id": "guard.c3.who",
+      "note": "제안: 2회차 '누가 닫으라고 했더라'의 연장. 위가 어딘지는 끝까지 말하지 않는다.",
+      "lines": [
+        "guard: 위에서.",
+        { "pause": 1.0, "speaker": "guard", "text": "……위가 어딘지는 묻지 마시오. 나도 모르니까." }
+      ]
+    },
+    {
+      "id": "guard.c3.repeat",
+      "on": "talk:guard",
+      "when": ["stage:S03_OpenAgain"],
+      "priority": 10,
+      "lines": ["guard: 짚은 저기 있소. 쓰러질 거면 그쪽으로."]
+    },
+
+    {
+      "id": "guard.c4.well",
+      "on": "talk:guard",
+      "when": ["stage:S04_OutOfPlace"],
+      "once": "story",
+      "priority": 30,
+      "note": "[임시 대사] 성문을 비우고 우물가에 앉아 성만 본다. 농담 없음. 본인도 무슨 일인지 모른다.",
+      "lines": [
+        { "pause": 0.8, "speaker": "guard", "text": "……아, 자네군." },
+        "guard: 오늘은 문 앞에 서 있을 기분이 아니오.",
+        "guard: 어젯밤에 성문 열리는 소리를 들었소. 나가 보니 닫혀 있더군.",
+        { "pause": 1.2, "speaker": "guard", "text": "……문지기가 문 꿈을 꾸면 안 되는 거요." }
+      ]
+    },
+    {
+      "id": "guard.c4.repeat",
+      "on": "talk:guard",
+      "when": ["stage:S04_OutOfPlace"],
+      "priority": 10,
+      "lines": ["guard: ……응? 아, 아무것도 아니오. 성을 좀 보고 있었소."]
+    },
+
+    {
+      "id": "guard.c5.first",
+      "on": "talk:guard",
+      "when": ["stage:S05_FirstDayAgain"],
+      "once": "story",
+      "priority": 30,
+      "note": "가짜 첫날 (오너 결정: 둘 다 잊음). 대사는 guard.c1.first를 **일부러 그대로** 복사.",
+      "lines": [
+        "guard: 성에 볼일 있소?",
+        { "pause": 0.8, "speaker": "guard", "text": "……뭐, 없어도 상관없소. 오늘은 문이 열려 있으니." },
+        "guard: 안에서 뛰지만 마시오. 바닥 닦은 지 얼마 안 됐소."
+      ],
+      "choices": [
+        { "text": "나 몰라?", "next": "guard.c5.stranger" },
+        { "text": "왕은 어떤 분이야?", "next": "guard.c1.king" },
+        { "text": "고마워." }
+      ]
+    },
+    {
+      "id": "guard.c5.stranger",
+      "lines": [
+        "guard: ……초면 같은데.",
+        { "pause": 0.8, "speaker": "guard", "text": "사람 얼굴은 잘 잊지 않는 편이오." }
+      ]
+    },
+    {
+      "id": "guard.c5.repeat",
+      "on": "talk:guard",
+      "when": ["stage:S05_FirstDayAgain"],
+      "priority": 10,
+      "lines": ["guard: 들어갈 거면 들어가시오. 문 앞에 서 있으면 내가 할 일이 생기잖소."]
+    },
+
+    {
       "id": "guard.idle",
       "on": "talk:guard",
       "priority": 0,

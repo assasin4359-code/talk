@@ -10,7 +10,12 @@
     { "target": "firewood", "prop": "location", "value": "smithy" },
     { "target": "tavern_sign", "prop": "state", "value": "normal" },
     { "target": "player", "prop": "carrying", "value": "nothing" },
-    { "target": "tavern_basket", "prop": "state", "value": "low" }
+    { "target": "tavern_basket", "prop": "state", "value": "low" },
+    { "target": "kid", "prop": "location", "value": "square" },
+    { "target": "chalk_drawing", "prop": "location", "value": "square" },
+    { "target": "chalk_drawing", "prop": "state", "value": "king_waving" },
+    { "target": "straw", "prop": "location", "value": "gate" },
+    { "target": "straw", "prop": "visible", "value": "false" }
   ],
 
   "rules": [
@@ -20,9 +25,63 @@
       "note": "2회차부터 성문이 닫힌다. 마을 입구(기상 지점)에서 바로 보이는 실루엣 변화여야 한다."
     },
     {
+      "target": "gate", "prop": "state", "value": "open",
+      "when": ["stage:S03_OpenAgain"],
+      "note": "3회차: 다시 열림 (경비가 어제 '내일 다시 오시오'). 1 열림·2 닫힘·3 열림·4 닫힘·5 열림 — 번갈아 가는 걸 눈치챈 사람일수록 5회차에 확신하고 들어간다."
+    },
+    {
+      "target": "gate", "prop": "state", "value": "open",
+      "when": ["stage:S05_FirstDayAgain"],
+      "note": "5회차 가짜 첫날: 1회차처럼 열려 있다."
+    },
+    {
       "target": "tavern_sign", "prop": "state", "value": "upside_down",
-      "when": ["stage>=S03_SliceEnd"],
-      "note": "[임시 티저] 3회차 첫 사물 변화. '다음엔 뭐가 바뀌지?'를 남기기 위한 VS 마무리."
+      "when": ["stage>=S03_OpenAgain"],
+      "note": "3회차 첫 사물 변화. 술집 주인은 '원래 그랬나?' 한다."
+    },
+    {
+      "target": "tavern_sign", "prop": "state", "value": "normal",
+      "when": ["stage>=S05_FirstDayAgain"],
+      "note": "5회차 가짜 첫날: 아무 일도 없었다는 듯 바로 걸려 있다."
+    },
+    {
+      "target": "straw", "prop": "visible", "value": "true",
+      "when": ["stage>=S03_OpenAgain", "stage<=S04_OutOfPlace"],
+      "note": "3회차: 이틀 연속 쓰러진 사람을 위해 경비가 문 앞에 깔아둔 짚. 4회차엔 경비가 없어도 짚은 남아 있다 (기억과 물건은 정직하다). 5회차엔 사라진다."
+    },
+    {
+      "target": "guard", "prop": "location", "value": "square",
+      "when": ["stage:S04_OutOfPlace"],
+      "note": "4회차: 경비가 성문을 비우고 우물가에 앉아 성만 본다."
+    },
+    {
+      "target": "kid", "prop": "location", "value": "tavern",
+      "when": ["stage:S03_OpenAgain"],
+      "note": "3회차: 심부름(식초). 기억 모순 장면의 '옆 NPC'."
+    },
+    {
+      "target": "kid", "prop": "location", "value": "gate",
+      "when": ["stage:S04_OutOfPlace"],
+      "note": "4회차: 경비가 비운 성문을 막대기 들고 지킨다 (경비 놀이). 플레이어가 기절하는 걸 직접 본다."
+    },
+    {
+      "target": "chalk_drawing", "prop": "state", "value": "one_lying",
+      "when": ["stage:S02_GateClosed"],
+      "note": "꼬맹이 그림은 소문대로 '성문 앞'에 누운 아저씨 — 경비 말과 같고 플레이어 기억(성 안)과 다르다."
+    },
+    {
+      "target": "chalk_drawing", "prop": "state", "value": "two_lying",
+      "when": ["stage:S03_OpenAgain"]
+    },
+    {
+      "target": "chalk_drawing", "prop": "state", "value": "three_lying_window_black",
+      "when": ["stage:S04_OutOfPlace"],
+      "note": "그림 속 임금님 창문을 까맣게 칠함 ('이제 안 흔드니까'). 임금님은 낙서와 말로만 — 세계에서 직접 보여주지 않는다 (오너 결정)."
+    },
+    {
+      "target": "chalk_drawing", "prop": "state", "value": "erased",
+      "when": ["stage>=S05_FirstDayAgain"],
+      "note": "5회차: 누가 지웠다. 꼬맹이만 그게 있었다는 걸 안다."
     },
     {
       "target": "player", "prop": "carrying", "value": "firewood",

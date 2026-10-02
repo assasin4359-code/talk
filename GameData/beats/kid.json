@@ -1,0 +1,204 @@
+{
+  "beats": [
+    {
+      "id": "kid.c1.first",
+      "on": "talk:kid",
+      "when": ["stage:S01_Arrival"],
+      "once": "story",
+      "priority": 50,
+      "note": "[임시 대사] 핸드오프 7장 예시(\"성 가는 거야?\" \"나도 데려가!\") 그대로. 초반 코미디·친근함 담당.",
+      "lines": [
+        "kid: 어, 외지인이다! 성 가는 거야?",
+        "kid: 나도 데려가!"
+      ],
+      "effects": ["set:MetKid"],
+      "choices": [
+        { "text": "안 돼.", "next": "kid.c1.no" },
+        { "text": "좀 더 크면.", "next": "kid.c1.bigger" }
+      ]
+    },
+    {
+      "id": "kid.c1.no",
+      "lines": ["kid: 치. 다들 안 된대. 경비 아저씨는 키가 모자라서 안 된대."]
+    },
+    {
+      "id": "kid.c1.bigger",
+      "lines": [
+        "kid: 나 다 컸거든?",
+        { "pause": 0.6, "speaker": "kid", "text": "……발끝 들면 이만큼." }
+      ]
+    },
+    {
+      "id": "kid.c1.king",
+      "on": "talk:kid",
+      "when": ["stage:S01_Arrival"],
+      "priority": 20,
+      "note": "임금님이 손 흔드는 건 꼬맹이 말과 그림에만 있다. 세계에서 직접 보여주지 않는다 (오너 결정).",
+      "lines": [
+        "kid: 임금님은 아침마다 저 제일 높은 창문에서 손 흔들어 줘. 진짜야.",
+        { "pause": 0.6, "speaker": "kid", "text": "나한테만." }
+      ]
+    },
+
+    {
+      "id": "kid.c2.rumor",
+      "on": "talk:kid",
+      "when": ["stage:S02_GateClosed"],
+      "once": "story",
+      "priority": 40,
+      "note": "[임시 대사] 소문은 '성문 앞'. 경비 말과 같고 플레이어 기억(성 안)과 다르다.",
+      "lines": [
+        "kid: 아저씨! 어제 성 앞에서 기절했다며? 진짜야?",
+        "kid: 어떻게 하는 거야? 숨 참으면 돼? 나도 해볼래."
+      ],
+      "effects": ["set:MetKid"],
+      "choices": [
+        { "text": "따라 하지 마.", "next": "kid.c2.tried" },
+        { "text": "그냥 쓰러졌어.", "next": "kid.c2.just" }
+      ]
+    },
+    {
+      "id": "kid.c2.tried",
+      "lines": ["kid: 이미 해봤어. 안 되더라."]
+    },
+    {
+      "id": "kid.c2.just",
+      "lines": [
+        "kid: 그냥? 아무 이유 없이?",
+        { "pause": 0.5, "speaker": "kid", "text": "……멋있다." }
+      ]
+    },
+    {
+      "id": "kid.c2.king",
+      "on": "talk:kid",
+      "when": ["stage:S02_GateClosed"],
+      "priority": 20,
+      "lines": ["kid: 오늘도 임금님이 손 흔들어 줬어!"]
+    },
+
+    {
+      "id": "kid.c3.errand",
+      "on": "talk:kid",
+      "when": ["stage:S03_OpenAgain"],
+      "once": "story",
+      "priority": 40,
+      "note": "[임시 대사] 3회차엔 술집에 있다 (위치 변화). 심부름 설정은 꼬맹이 가족(35장 미정)을 건드리지 않는 선.",
+      "lines": [
+        "kid: 엄마 심부름. 식초 사러 왔어.",
+        "kid: 술집에서 식초 파는 거 아무도 몰라.",
+        { "pause": 1.0, "speaker": "kid", "text": "근데 아저씨, 오늘은 임금님이 손 안 흔들어 줬어." },
+        "kid: 처음이야."
+      ]
+    },
+    {
+      "id": "kid.c3.repeat",
+      "on": "talk:kid",
+      "when": ["stage:S03_OpenAgain"],
+      "priority": 20,
+      "lines": ["kid: 식초 아직이야. 술집 아저씨 오늘 엄청 느려."]
+    },
+
+    {
+      "id": "kid.c4.guard",
+      "on": "talk:kid",
+      "when": ["stage:S04_OutOfPlace"],
+      "once": "story",
+      "priority": 40,
+      "note": "[임시 대사] 경비가 비운 성문을 막대기 들고 지킨다. 웃기지만 역할이 뒤바뀐 그림. '아저씨 오고 나서'는 도착 이후를 말하므로 12장 OK. 핵심 대사는 5회차까지 아낀다.",
+      "lines": [
+        "kid: 멈춰라! 여긴 성문이다!",
+        { "pause": 0.8, "speaker": "kid", "text": "……아저씨는 통과." },
+        "kid: 근데 문이 안 열려.",
+        "kid: 경비 아저씨가 아침부터 우물에 앉아서 성만 봐. 말 걸면 대답을 늦게 해.",
+        { "pause": 1.2, "speaker": "kid", "text": "아저씨 오고 나서 다들 좀 이상해." }
+      ]
+    },
+    {
+      "id": "kid.c4.repeat",
+      "on": "talk:kid",
+      "when": ["stage:S04_OutOfPlace"],
+      "priority": 20,
+      "lines": ["kid: 근무 중엔 말 걸면 안 돼. 경비 아저씨가 그랬어."]
+    },
+
+    {
+      "id": "kid.c5.remember",
+      "on": "talk:kid",
+      "when": ["stage:S05_FirstDayAgain"],
+      "once": "story",
+      "priority": 40,
+      "note": "[임시 대사] 가짜 첫날. 어른들은 잊었고 꼬맹이만 기억한다. '성에 갈 때마다…'는 핸드오프 7장 핵심 대사 후보 — 5회차에 쓸지는 미결 (docs/04 결정 필요).",
+      "lines": [
+        "kid: 아저씨! 다들 왜 그래? 어제 일 아무도 기억 못 해.",
+        "kid: 내 그림도 누가 지웠어. 다 그렸었는데.",
+        "kid: 임금님도 오늘은 손 흔들었어. 어제 일 없었던 것처럼.",
+        { "pause": 1.6, "speaker": "kid", "text": "……아저씨가 성에 갈 때마다 사람들이 조금씩 달라져." },
+        { "pause": 1.0, "speaker": "kid", "text": "가도 돼." },
+        "kid: 근데 갔다 와서 나 기억해야 돼."
+      ],
+      "effects": ["rel:kid.ListenedToStory"],
+      "choices": [
+        { "text": "기억할게.", "effects": ["set:PromisedKid"], "next": "kid.c5.promise" },
+        { "text": "……", "next": "kid.c5.silent" }
+      ]
+    },
+    {
+      "id": "kid.c5.promise",
+      "lines": ["kid: 약속이다."]
+    },
+    {
+      "id": "kid.c5.silent",
+      "lines": [
+        { "pause": 0.8, "speaker": "kid", "text": "……대답 안 해도 돼." },
+        "kid: 내가 기억할게."
+      ]
+    },
+    {
+      "id": "kid.c5.repeat",
+      "on": "talk:kid",
+      "when": ["stage:S05_FirstDayAgain"],
+      "priority": 20,
+      "lines": ["kid: 기억해야 돼. 진짜로."]
+    },
+
+    {
+      "id": "kid.c6.ask",
+      "on": "talk:kid",
+      "when": ["stage:S06_SliceEnd"],
+      "once": "story",
+      "priority": 40,
+      "note": "[임시 대사] WAKE UP! 다음 날. 약속을 확인한다. M02 마지막 대화.",
+      "lines": [
+        "kid: 아저씨!",
+        { "pause": 1.2, "speaker": "kid", "text": "……나 기억해?" }
+      ],
+      "choices": [
+        { "text": "기억해.", "when": ["flag:PromisedKid"], "next": "kid.c6.kept" },
+        { "text": "기억해.", "when": ["!flag:PromisedKid"], "next": "kid.c6.yes" },
+        { "text": "……누구더라?", "next": "kid.c6.no" }
+      ]
+    },
+    {
+      "id": "kid.c6.kept",
+      "lines": ["kid: 거봐. 약속했잖아."]
+    },
+    {
+      "id": "kid.c6.yes",
+      "lines": ["kid: ……다행이다."]
+    },
+    {
+      "id": "kid.c6.no",
+      "lines": [
+        { "pause": 1.0, "speaker": "kid", "text": "……장난이지?" },
+        "kid: 장난이라고 해."
+      ]
+    },
+
+    {
+      "id": "kid.idle",
+      "on": "talk:kid",
+      "priority": 0,
+      "lines": ["kid: 응? 나 바빠."]
+    }
+  ]
+}

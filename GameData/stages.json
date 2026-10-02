@@ -9,12 +9,27 @@
     {
       "id": "S02_GateClosed",
       "note": "2회차. 성문 닫힘. 경비가 플레이어를 알아봄. 닫힌 성문에 손대면 기절.",
-      "transitions": [{ "to": "S03_SliceEnd" }]
+      "transitions": [{ "to": "S03_OpenAgain" }]
     },
     {
-      "id": "S03_SliceEnd",
+      "id": "S03_OpenAgain",
+      "note": "3회차. 성문이 다시 열림 + 경비가 문 앞에 깔아둔 짚. 술집에서 첫 기억 모순(14장). 문턱을 넘자마자 기절.",
+      "transitions": [{ "to": "S04_OutOfPlace" }]
+    },
+    {
+      "id": "S04_OutOfPlace",
+      "note": "4회차. 다들 제자리가 아니다: 경비는 우물가, 꼬맹이가 성문을 지킨다. 술집 주인은 플레이어를 피한다. 성문에 다가가면 이명이 먼저 온다. 닫힌 성문 터치로 기절.",
+      "transitions": [{ "to": "S05_FirstDayAgain" }]
+    },
+    {
+      "id": "S05_FirstDayAgain",
+      "note": "5회차. 가짜 첫날: 경비·술집 주인이 1회차처럼 플레이어를 처음 본다(오너 결정: 둘 다 잊음). 꼬맹이만 기억한다. 성 현관 → WAKE UP!(15장).",
+      "transitions": [{ "to": "S06_SliceEnd" }]
+    },
+    {
+      "id": "S06_SliceEnd",
       "terminal": true,
-      "note": "[임시] Vertical Slice 끝. 3회차에 눈을 뜨면 작은 변화 하나(술집 간판)만 보여주고 종료."
+      "note": "[임시] M02 끝. WAKE UP! 다음 날 평소처럼 입구에서 깬다. 광장에서 꼬맹이를 보면 종료 카드."
     }
   ]
 }

@@ -23,6 +23,7 @@ var S_SIGN: Script
 var S_PLAYER: Script
 var S_DIRECTOR: Script
 var S_VARIANT: Script
+var S_RENDER: Script
 
 const PLATEAU_Y := 6.0  # castle hill height
 const GATE_Z := -46.0  # centre of the castle wall
@@ -41,7 +42,8 @@ func _initialize() -> void:
 	S_PLAYER = load("res://game/player/player.gd")
 	S_DIRECTOR = load("res://game/director.gd")
 	S_VARIANT = load("res://game/world/variant_presenter.gd")
-	for sc in [S_ANCHOR, S_TARGET, S_VOLUME, S_GATE, S_SIGN, S_PLAYER, S_DIRECTOR, S_VARIANT]:
+	S_RENDER = load("res://game/world/render_tuning.gd")
+	for sc in [S_ANCHOR, S_TARGET, S_VOLUME, S_GATE, S_SIGN, S_PLAYER, S_DIRECTOR, S_VARIANT, S_RENDER]:
 		if sc == null or not sc.can_instantiate():
 			push_error("a game script failed to compile; not writing %s" % OUT)
 			quit(1)
@@ -281,6 +283,7 @@ func _environment() -> void:
 	env.fog_density = 0.0012
 	var we := WorldEnvironment.new()
 	we.name = "WorldEnvironment"
+	we.set_script(S_RENDER)  # tones lights down on the web (Compatibility renderer)
 	we.environment = env
 	scene_root.add_child(we)
 	var sun := DirectionalLight3D.new()
@@ -289,6 +292,7 @@ func _environment() -> void:
 	sun.light_energy = 1.15
 	sun.shadow_enabled = true
 	scene_root.add_child(sun)
+	we.set("sun", sun)
 
 
 # --- village ----------------------------------------------------------------

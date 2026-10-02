@@ -3,6 +3,7 @@ name: narrative
 on:
   push:
   pull_request:
+  workflow_dispatch:  # re-run (e.g. redeploy the web build) without a new commit
 
 env:
   GODOT_VERSION: "4.7.2"
@@ -34,3 +35,44 @@ jobs:
           echo "GODOT=$PWD/Godot_v${GODOT_VERSION}-stable_linux.x86_64" >> "$GITHUB_ENV"
       - name: Godot tests (same scenarios + condition vectors as Python)
         run: Tools/godot/run_tests.sh
+
+  # Playable web build on GitHub Pages: https://<owner>.github.io/<repo>/
+  # Only pushes whose tests passed get deployed. Needs Pages enabled once
+  # (Settings -> Pages -> Source: GitHub Actions).
+  web:
+    needs: [python-reference, godot-runtime]
+    if: github.event_name != 'pull_request' && github.ref_name == github.event.repository.default_branch
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download Godot + web export template
+        working-directory: ${{ runner.temp }}
+        run: |
+          base="https://github.com/godotengine/godot/releases/download/${GODOT_VERSION}-stable"
+          curl -fsSL -o godot.zip "$base/Godot_v${GODOT_VERSION}-stable_linux.x86_64.zip"
+          unzip -q godot.zip
+          echo "GODOT=$PWD/Godot_v${GODOT_VERSION}-stable_linux.x86_64" >> "$GITHUB_ENV"
+          curl -fsSL -o templates.tpz "$base/Godot_v${GODOT_VERSION}-stable_export_templates.tpz"
+          unzip -q templates.tpz templates/web_nothreads_release.zip templates/version.txt
+          dest="$HOME/.local/share/godot/export_templates/${GODOT_VERSION}.stable"
+          mkdir -p "$dest" && mv templates/* "$dest/"
+      - name: Export web build
+        run: Tools/godot/export_web.sh
+      # Until Pages is switched on in the repo settings these three fail; that must not
+      # turn the run red (the export above still does, if it breaks).
+      - uses: actions/configure-pages@v5
+        continue-on-error: true
+      - uses: actions/upload-pages-artifact@v3
+        continue-on-error: true
+        with:
+          path: build/web
+      - id: deploy
+        uses: actions/deploy-pages@v4
+        continue-on-error: true

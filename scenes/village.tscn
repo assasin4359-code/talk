@@ -1,26 +1,27 @@
 [gd_scene format=3]
 
-[ext_resource type="FontFile" path="res://assets/fonts/Pretendard-SemiBold.otf" id="1_7sh0f"]
-[ext_resource type="Script" path="res://game/world/narrative_target.gd" id="2_pa23k"]
-[ext_resource type="Script" path="res://game/world/gate_presenter.gd" id="3_oiag1"]
-[ext_resource type="Script" path="res://game/world/sign_presenter.gd" id="4_gktdk"]
-[ext_resource type="Script" path="res://game/world/variant_presenter.gd" id="5_a655f"]
-[ext_resource type="Script" path="res://game/world/anchor.gd" id="6_kcivn"]
-[ext_resource type="Script" path="res://game/world/narrative_volume.gd" id="7_53v4c"]
-[ext_resource type="Script" path="res://game/player/player.gd" id="8_ksooq"]
-[ext_resource type="Script" path="res://game/director.gd" id="9_th5xy"]
+[ext_resource type="Script" path="res://game/world/render_tuning.gd" id="1_pa23k"]
+[ext_resource type="FontFile" path="res://assets/fonts/Pretendard-SemiBold.otf" id="2_oiag1"]
+[ext_resource type="Script" path="res://game/world/narrative_target.gd" id="3_gktdk"]
+[ext_resource type="Script" path="res://game/world/gate_presenter.gd" id="4_a655f"]
+[ext_resource type="Script" path="res://game/world/sign_presenter.gd" id="5_kcivn"]
+[ext_resource type="Script" path="res://game/world/variant_presenter.gd" id="6_53v4c"]
+[ext_resource type="Script" path="res://game/world/anchor.gd" id="7_ksooq"]
+[ext_resource type="Script" path="res://game/world/narrative_volume.gd" id="8_th5xy"]
+[ext_resource type="Script" path="res://game/player/player.gd" id="9_my7oa"]
+[ext_resource type="Script" path="res://game/director.gd" id="10_63aph"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_my7oa"]
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ogrjq"]
 sky_top_color = Color(0.36, 0.56, 0.86, 1)
 sky_horizon_color = Color(0.72, 0.8, 0.9, 1)
 ground_horizon_color = Color(0.72, 0.8, 0.9, 1)
 
-[sub_resource type="Sky" id="Sky_63aph"]
-sky_material = SubResource("ProceduralSkyMaterial_my7oa")
+[sub_resource type="Sky" id="Sky_mu7p8"]
+sky_material = SubResource("ProceduralSkyMaterial_ogrjq")
 
-[sub_resource type="Environment" id="Environment_ogrjq"]
+[sub_resource type="Environment" id="Environment_v3dlt"]
 background_mode = 2
-sky = SubResource("Sky_63aph")
+sky = SubResource("Sky_mu7p8")
 ambient_light_source = 3
 ambient_light_energy = 0.9
 tonemap_mode = 2
@@ -28,1492 +29,1494 @@ fog_enabled = true
 fog_light_color = Color(0.72, 0.79, 0.88, 1)
 fog_density = 0.0012
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mu7p8"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kbuqd"]
 albedo_color = Color(0.43, 0.56, 0.31, 1)
 roughness = 0.9
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v3dlt"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hxukt"]
 albedo_color = Color(0.64, 0.55, 0.41, 1)
 roughness = 0.9
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kbuqd"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6chju"]
 albedo_color = Color(0.71, 0.69, 0.64, 1)
 roughness = 0.9
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hxukt"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jhek2"]
 albedo_color = Color(0.6, 0.6, 0.62, 1)
 roughness = 0.9
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6chju"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lvn8r"]
 albedo_color = Color(0.16, 0.24, 0.32, 1)
 roughness = 0.2
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jhek2"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1g233"]
 albedo_color = Color(0.46, 0.31, 0.19, 1)
 roughness = 0.9
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lvn8r"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lgsnk"]
 albedo_color = Color(0.88, 0.82, 0.7, 1)
 roughness = 0.9
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1g233"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1grk4"]
 albedo_color = Color(0.6, 0.27, 0.21, 1)
 roughness = 0.9
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lgsnk"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_trc0i"]
 albedo_color = Color(0.3, 0.2, 0.12, 1)
 roughness = 0.9
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1grk4"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ga4m5"]
 albedo_color = Color(0.42, 0.42, 0.46, 1)
 roughness = 0.9
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_trc0i"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cm0pc"]
 albedo_color = Color(0.09, 0.08, 0.08, 1)
 roughness = 0.9
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ga4m5"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pyadx"]
 albedo_color = Color(0.8, 0.76, 0.66, 1)
 roughness = 0.9
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cm0pc"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_spgee"]
 albedo_color = Color(0.35, 0.38, 0.48, 1)
 roughness = 0.9
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pyadx"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f5sp3"]
 albedo_color = Color(0.62, 0.63, 0.67, 1)
 metallic = 0.8
 roughness = 0.4
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_spgee"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6ldqi"]
 albedo_color = Color(0.75, 0.3, 0.28, 1)
 roughness = 0.9
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f5sp3"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7uo60"]
 albedo_color = Color(0.3, 0.52, 0.62, 1)
 roughness = 0.9
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6ldqi"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ias0o"]
 albedo_color = Color(0.38, 0.51, 0.29, 1)
 roughness = 0.9
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7uo60"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wltmo"]
 albedo_color = Color(0.82, 0.81, 0.78, 1)
 roughness = 0.35
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ias0o"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lifri"]
 albedo_color = Color(0.25, 0.44, 0.22, 1)
 roughness = 0.9
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wltmo"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_csdd4"]
 radius = 0.35
 height = 1.8
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lifri"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2vb3e"]
 albedo_color = Color(0.86, 0.52, 0.22, 1)
 roughness = 0.9
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_csdd4"]
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_ci1yp"]
 radius = 0.32
 height = 1.75
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2vb3e"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v06ig"]
 albedo_color = Color(0.93, 0.92, 0.88, 1)
 roughness = 0.9
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ci1yp"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_beyr0"]
 radius = 0.35
 height = 1.8
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v06ig"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1baa2"]
 albedo_color = Color(0.25, 0.36, 0.66, 1)
 roughness = 0.9
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_beyr0"]
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_l8n4v"]
 radius = 0.32
 height = 1.75
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_1baa2"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_o0j8d"]
 size = Vector3(1.6, 1, 1.5)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l8n4v"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j3t0u"]
 albedo_color = Color(0.96, 0.74, 0.18, 1)
 roughness = 0.9
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_o0j8d"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_x34sj"]
 size = Vector3(12, 3, 3)
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_j3t0u"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1imjw"]
 radius = 0.35
 height = 1.75
 
-[node name="Village" type="Node3D" unique_id=824068348]
+[node name="Village" type="Node3D" unique_id=1809015959]
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1739396916]
-environment = SubResource("Environment_ogrjq")
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=781083897 node_paths=PackedStringArray("sun")]
+environment = SubResource("Environment_v3dlt")
+script = ExtResource("1_pa23k")
+sun = NodePath("../Sun")
 
-[node name="Sun" type="DirectionalLight3D" parent="." unique_id=1268882213]
+[node name="Sun" type="DirectionalLight3D" parent="." unique_id=1420035045]
 transform = Transform3D(0.81915206, 0.4262504, -0.38379753, 0, 0.66913056, 0.74314487, 0.57357645, -0.6087487, 0.54811966, 0, 0, 0)
 light_energy = 1.15
 shadow_enabled = true
 
-[node name="Blockout" type="Node3D" parent="." unique_id=639454248]
+[node name="Blockout" type="Node3D" parent="." unique_id=1455466047]
 
-[node name="Ground" type="CSGBox3D" parent="Blockout" unique_id=1622655311]
+[node name="Ground" type="CSGBox3D" parent="Blockout" unique_id=928218276]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 use_collision = true
 size = Vector3(320, 1, 320)
-material = SubResource("StandardMaterial3D_mu7p8")
+material = SubResource("StandardMaterial3D_kbuqd")
 
-[node name="Road" type="CSGBox3D" parent="Blockout" unique_id=2101857113]
+[node name="Road" type="CSGBox3D" parent="Blockout" unique_id=375891097]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02, 26)
 use_collision = true
 size = Vector3(6, 0.04, 80)
-material = SubResource("StandardMaterial3D_v3dlt")
+material = SubResource("StandardMaterial3D_hxukt")
 
-[node name="PathTavern" type="CSGBox3D" parent="Blockout" unique_id=135139041]
+[node name="PathTavern" type="CSGBox3D" parent="Blockout" unique_id=2124250032]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0.02, -2)
 use_collision = true
 size = Vector3(12, 0.04, 3)
-material = SubResource("StandardMaterial3D_v3dlt")
+material = SubResource("StandardMaterial3D_hxukt")
 
-[node name="PathSmithy" type="CSGBox3D" parent="Blockout" unique_id=444291559]
+[node name="PathSmithy" type="CSGBox3D" parent="Blockout" unique_id=857545364]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0.02, 22)
 use_collision = true
 size = Vector3(14, 0.04, 3)
-material = SubResource("StandardMaterial3D_v3dlt")
+material = SubResource("StandardMaterial3D_hxukt")
 
-[node name="Plaza" type="CSGCylinder3D" parent="Blockout" unique_id=1743174019]
+[node name="Plaza" type="CSGCylinder3D" parent="Blockout" unique_id=1933443144]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.025, 0)
 use_collision = true
 radius = 14.0
 height = 0.05
 sides = 16
-material = SubResource("StandardMaterial3D_kbuqd")
+material = SubResource("StandardMaterial3D_6chju")
 
-[node name="Well" type="CSGCombiner3D" parent="Blockout" unique_id=3203422]
+[node name="Well" type="CSGCombiner3D" parent="Blockout" unique_id=1339365068]
 use_collision = true
 
-[node name="Rim" type="CSGCylinder3D" parent="Blockout/Well" unique_id=2080366750]
+[node name="Rim" type="CSGCylinder3D" parent="Blockout/Well" unique_id=32782700]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.45, 0)
 radius = 1.3
 height = 0.9
 sides = 16
-material = SubResource("StandardMaterial3D_hxukt")
+material = SubResource("StandardMaterial3D_jhek2")
 
-[node name="Hole" type="CSGCylinder3D" parent="Blockout/Well" unique_id=587414623]
+[node name="Hole" type="CSGCylinder3D" parent="Blockout/Well" unique_id=411871184]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
 operation = 2
 radius = 1.0
 height = 1.0
 sides = 16
-material = SubResource("StandardMaterial3D_hxukt")
+material = SubResource("StandardMaterial3D_jhek2")
 
-[node name="Water" type="CSGCylinder3D" parent="Blockout" unique_id=1692260644]
+[node name="Water" type="CSGCylinder3D" parent="Blockout" unique_id=841914072]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
 radius = 1.0
 height = 0.05
 sides = 16
-material = SubResource("StandardMaterial3D_6chju")
+material = SubResource("StandardMaterial3D_lvn8r")
 
-[node name="WellPostL" type="CSGBox3D" parent="Blockout" unique_id=1732478631]
+[node name="WellPostL" type="CSGBox3D" parent="Blockout" unique_id=538425751]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1, 1.2, 0)
 size = Vector3(0.2, 2.4, 0.2)
-material = SubResource("StandardMaterial3D_jhek2")
+material = SubResource("StandardMaterial3D_1g233")
 
-[node name="WellPostR" type="CSGBox3D" parent="Blockout" unique_id=1947840180]
+[node name="WellPostR" type="CSGBox3D" parent="Blockout" unique_id=641489215]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1, 1.2, 0)
 size = Vector3(0.2, 2.4, 0.2)
-material = SubResource("StandardMaterial3D_jhek2")
+material = SubResource("StandardMaterial3D_1g233")
 
-[node name="WellBeam" type="CSGBox3D" parent="Blockout" unique_id=2129574159]
+[node name="WellBeam" type="CSGBox3D" parent="Blockout" unique_id=728914883]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, 0)
 size = Vector3(2.6, 0.2, 0.2)
-material = SubResource("StandardMaterial3D_jhek2")
+material = SubResource("StandardMaterial3D_1g233")
 
-[node name="Tavern" type="CSGCombiner3D" parent="Blockout" unique_id=1212435575]
+[node name="Tavern" type="CSGCombiner3D" parent="Blockout" unique_id=911105933]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21, 0, -2)
 use_collision = true
 
-[node name="Walls" type="CSGBox3D" parent="Blockout/Tavern" unique_id=1646846404]
+[node name="Walls" type="CSGBox3D" parent="Blockout/Tavern" unique_id=678884558]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
 size = Vector3(12, 6, 10)
-material = SubResource("StandardMaterial3D_lvn8r")
+material = SubResource("StandardMaterial3D_lgsnk")
 
-[node name="Inside" type="CSGBox3D" parent="Blockout/Tavern" unique_id=606134007]
+[node name="Inside" type="CSGBox3D" parent="Blockout/Tavern" unique_id=671742864]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.6, 0)
 operation = 2
 size = Vector3(11.4, 6.2, 9.4)
 
-[node name="Door" type="CSGBox3D" parent="Blockout/Tavern" unique_id=1278768279]
+[node name="Door" type="CSGBox3D" parent="Blockout/Tavern" unique_id=1690903854]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 1.3, 0)
 operation = 2
 size = Vector3(1, 2.6, 1.8)
 
-[node name="WindowN" type="CSGBox3D" parent="Blockout/Tavern" unique_id=999569908]
+[node name="WindowN" type="CSGBox3D" parent="Blockout/Tavern" unique_id=1719810844]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 2.4, -3)
 operation = 2
 size = Vector3(1, 1.2, 1.4)
 
-[node name="WindowS" type="CSGBox3D" parent="Blockout/Tavern" unique_id=1726156904]
+[node name="WindowS" type="CSGBox3D" parent="Blockout/Tavern" unique_id=187479630]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 2.4, 3)
 operation = 2
 size = Vector3(1, 1.2, 1.4)
 
-[node name="TavernFloor" type="CSGBox3D" parent="Blockout" unique_id=8586534]
+[node name="TavernFloor" type="CSGBox3D" parent="Blockout" unique_id=678501864]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21, 0.03, -2)
 use_collision = true
 size = Vector3(11.4, 0.06, 9.4)
-material = SubResource("StandardMaterial3D_jhek2")
+material = SubResource("StandardMaterial3D_1g233")
 
-[node name="TavernRoof" type="CSGPolygon3D" parent="Blockout" unique_id=1368941068]
+[node name="TavernRoof" type="CSGPolygon3D" parent="Blockout" unique_id=640953149]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21, 6, 3.5)
 use_collision = true
 polygon = PackedVector2Array(-6.6, 0, 0, 3.2, 6.6, 0)
 depth = 11.0
-material = SubResource("StandardMaterial3D_1g233")
+material = SubResource("StandardMaterial3D_1grk4")
 
-[node name="Counter" type="CSGBox3D" parent="Blockout" unique_id=1945681663]
+[node name="Counter" type="CSGBox3D" parent="Blockout" unique_id=2094668774]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.6, 0.475, -2)
 use_collision = true
 size = Vector3(1, 0.95, 5)
-material = SubResource("StandardMaterial3D_lgsnk")
+material = SubResource("StandardMaterial3D_trc0i")
 
-[node name="TavernLight" type="OmniLight3D" parent="Blockout" unique_id=1428409160]
+[node name="TavernLight" type="OmniLight3D" parent="Blockout" unique_id=2043464913]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21, 4.2, -2)
 light_color = Color(1, 0.78, 0.5, 1)
 light_energy = 2.2
 omni_range = 11.0
 
-[node name="FireGlow" type="OmniLight3D" parent="Blockout" unique_id=726101892]
+[node name="FireGlow" type="OmniLight3D" parent="Blockout" unique_id=1560371391]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.5, 0.8, -5.2)
 light_color = Color(1, 0.5, 0.2, 1)
 light_energy = 1.6
 
-[node name="Fireplace" type="CSGBox3D" parent="Blockout" unique_id=1555119022]
+[node name="Fireplace" type="CSGBox3D" parent="Blockout" unique_id=78104489]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.5, 1.1, -6.3)
 use_collision = true
 size = Vector3(2.6, 2.2, 0.8)
-material = SubResource("StandardMaterial3D_1grk4")
+material = SubResource("StandardMaterial3D_ga4m5")
 
-[node name="FireplaceMouth" type="CSGBox3D" parent="Blockout" unique_id=1876172987]
+[node name="FireplaceMouth" type="CSGBox3D" parent="Blockout" unique_id=844747135]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.5, 0.6, -5.86)
 size = Vector3(1.4, 1, 0.1)
-material = SubResource("StandardMaterial3D_trc0i")
+material = SubResource("StandardMaterial3D_cm0pc")
 
-[node name="Table0" type="CSGBox3D" parent="Blockout" unique_id=2096337933]
+[node name="Table0" type="CSGBox3D" parent="Blockout" unique_id=1170826343]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19, 0.4, -3)
 use_collision = true
 size = Vector3(1.2, 0.8, 1.2)
-material = SubResource("StandardMaterial3D_jhek2")
+material = SubResource("StandardMaterial3D_1g233")
 
-[node name="Table1" type="CSGBox3D" parent="Blockout" unique_id=916578552]
+[node name="Table1" type="CSGBox3D" parent="Blockout" unique_id=2094628701]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0.4, -3)
 use_collision = true
 size = Vector3(1.2, 0.8, 1.2)
-material = SubResource("StandardMaterial3D_jhek2")
+material = SubResource("StandardMaterial3D_1g233")
 
-[node name="Table2" type="CSGBox3D" parent="Blockout" unique_id=1193447557]
+[node name="Table2" type="CSGBox3D" parent="Blockout" unique_id=696083852]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19, 0.4, 0.5)
 use_collision = true
 size = Vector3(1.2, 0.8, 1.2)
-material = SubResource("StandardMaterial3D_jhek2")
+material = SubResource("StandardMaterial3D_1g233")
 
-[node name="Table3" type="CSGBox3D" parent="Blockout" unique_id=285970724]
+[node name="Table3" type="CSGBox3D" parent="Blockout" unique_id=506485056]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0.4, 0.5)
 use_collision = true
 size = Vector3(1.2, 0.8, 1.2)
-material = SubResource("StandardMaterial3D_jhek2")
+material = SubResource("StandardMaterial3D_1g233")
 
-[node name="SmithyBack" type="CSGBox3D" parent="Blockout" unique_id=2015284175]
+[node name="SmithyBack" type="CSGBox3D" parent="Blockout" unique_id=19813252]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26, 2.25, 22)
 use_collision = true
 size = Vector3(0.3, 4.5, 8)
-material = SubResource("StandardMaterial3D_ga4m5")
+material = SubResource("StandardMaterial3D_pyadx")
 
-[node name="SmithySideN" type="CSGBox3D" parent="Blockout" unique_id=155854500]
+[node name="SmithySideN" type="CSGBox3D" parent="Blockout" unique_id=420468126]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21, 2.25, 18)
 use_collision = true
 size = Vector3(10, 4.5, 0.3)
-material = SubResource("StandardMaterial3D_ga4m5")
+material = SubResource("StandardMaterial3D_pyadx")
 
-[node name="SmithySideS" type="CSGBox3D" parent="Blockout" unique_id=976888385]
+[node name="SmithySideS" type="CSGBox3D" parent="Blockout" unique_id=1581402138]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21, 2.25, 26)
 use_collision = true
 size = Vector3(10, 4.5, 0.3)
-material = SubResource("StandardMaterial3D_ga4m5")
+material = SubResource("StandardMaterial3D_pyadx")
 
-[node name="SmithyRoof" type="CSGBox3D" parent="Blockout" unique_id=961690735]
+[node name="SmithyRoof" type="CSGBox3D" parent="Blockout" unique_id=1401290484]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21, 4.7, 22)
 use_collision = true
 size = Vector3(11, 0.4, 9)
-material = SubResource("StandardMaterial3D_cm0pc")
+material = SubResource("StandardMaterial3D_spgee")
 
-[node name="Forge" type="CSGBox3D" parent="Blockout" unique_id=1712885206]
+[node name="Forge" type="CSGBox3D" parent="Blockout" unique_id=247767748]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24, 0.6, 22)
 use_collision = true
 size = Vector3(2, 1.2, 2)
-material = SubResource("StandardMaterial3D_1grk4")
+material = SubResource("StandardMaterial3D_ga4m5")
 
-[node name="Chimney" type="CSGBox3D" parent="Blockout" unique_id=1797821088]
+[node name="Chimney" type="CSGBox3D" parent="Blockout" unique_id=335539952]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.5, 4.5, 22)
 use_collision = true
 size = Vector3(1, 4.5, 1)
-material = SubResource("StandardMaterial3D_1grk4")
+material = SubResource("StandardMaterial3D_ga4m5")
 
-[node name="Anvil" type="CSGBox3D" parent="Blockout" unique_id=872218203]
+[node name="Anvil" type="CSGBox3D" parent="Blockout" unique_id=1503305152]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0.4, 22)
 use_collision = true
 size = Vector3(0.8, 0.8, 0.4)
-material = SubResource("StandardMaterial3D_pyadx")
+material = SubResource("StandardMaterial3D_f5sp3")
 
-[node name="ClosedSignPost" type="CSGBox3D" parent="Blockout" unique_id=579670738]
+[node name="ClosedSignPost" type="CSGBox3D" parent="Blockout" unique_id=660631610]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.4, 0.7, 19.4)
 use_collision = true
 size = Vector3(0.12, 1.4, 0.12)
-material = SubResource("StandardMaterial3D_jhek2")
+material = SubResource("StandardMaterial3D_1g233")
 
-[node name="ClosedSignBoard" type="CSGBox3D" parent="Blockout" unique_id=263252791]
+[node name="ClosedSignBoard" type="CSGBox3D" parent="Blockout" unique_id=280010039]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.4, 1.4, 19.4)
 use_collision = true
 size = Vector3(0.06, 0.6, 1.2)
-material = SubResource("StandardMaterial3D_jhek2")
+material = SubResource("StandardMaterial3D_1g233")
 
-[node name="ClosedSignText" type="Label3D" parent="Blockout" unique_id=592925096]
+[node name="ClosedSignText" type="Label3D" parent="Blockout" unique_id=312760996]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -15.35, 1.4, 19.4)
 text = "오늘 휴업"
-font = ExtResource("1_7sh0f")
+font = ExtResource("2_oiag1")
 font_size = 40
 
-[node name="HouseE1" type="Node3D" parent="Blockout" unique_id=1293477657]
+[node name="HouseE1" type="Node3D" parent="Blockout" unique_id=1650066061]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 22, 0, -3)
 
-[node name="Walls" type="CSGBox3D" parent="Blockout/HouseE1" unique_id=1009340280]
+[node name="Walls" type="CSGBox3D" parent="Blockout/HouseE1" unique_id=716109856]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.75, 0)
 use_collision = true
 size = Vector3(10, 5.5, 8)
-material = SubResource("StandardMaterial3D_ga4m5")
+material = SubResource("StandardMaterial3D_pyadx")
 
-[node name="Roof" type="CSGPolygon3D" parent="Blockout/HouseE1" unique_id=1152963367]
+[node name="Roof" type="CSGPolygon3D" parent="Blockout/HouseE1" unique_id=1852370922]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.5, 4.4)
 use_collision = true
 polygon = PackedVector2Array(-5.5, 0, 0, 2.6, 5.5, 0)
 depth = 8.8
-material = SubResource("StandardMaterial3D_1g233")
+material = SubResource("StandardMaterial3D_1grk4")
 
-[node name="Door" type="CSGBox3D" parent="Blockout/HouseE1" unique_id=1935209007]
+[node name="Door" type="CSGBox3D" parent="Blockout/HouseE1" unique_id=1941298495]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 4.05)
 size = Vector3(1.1, 2.2, 0.1)
-material = SubResource("StandardMaterial3D_lgsnk")
+material = SubResource("StandardMaterial3D_trc0i")
 
-[node name="WindowL" type="CSGBox3D" parent="Blockout/HouseE1" unique_id=747217664]
+[node name="WindowL" type="CSGBox3D" parent="Blockout/HouseE1" unique_id=407470745]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.9, 2.6, 4.05)
 size = Vector3(1, 1, 0.1)
-material = SubResource("StandardMaterial3D_trc0i")
-
-[node name="WindowR" type="CSGBox3D" parent="Blockout/HouseE1" unique_id=582814683]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9, 2.6, 4.05)
-size = Vector3(1, 1, 0.1)
-material = SubResource("StandardMaterial3D_trc0i")
-
-[node name="HouseE2" type="Node3D" parent="Blockout" unique_id=1053808401]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 23, 0, 20)
-
-[node name="Walls" type="CSGBox3D" parent="Blockout/HouseE2" unique_id=759302406]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
-use_collision = true
-size = Vector3(9, 5, 8)
-material = SubResource("StandardMaterial3D_lvn8r")
-
-[node name="Roof" type="CSGPolygon3D" parent="Blockout/HouseE2" unique_id=2088639965]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 4.4)
-use_collision = true
-polygon = PackedVector2Array(-5, 0, 0, 2.6, 5, 0)
-depth = 8.8
 material = SubResource("StandardMaterial3D_cm0pc")
 
-[node name="Door" type="CSGBox3D" parent="Blockout/HouseE2" unique_id=1994077118]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 4.05)
-size = Vector3(1.1, 2.2, 0.1)
-material = SubResource("StandardMaterial3D_lgsnk")
-
-[node name="WindowL" type="CSGBox3D" parent="Blockout/HouseE2" unique_id=557518810]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.65, 2.6, 4.05)
+[node name="WindowR" type="CSGBox3D" parent="Blockout/HouseE1" unique_id=2081740028]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9, 2.6, 4.05)
 size = Vector3(1, 1, 0.1)
-material = SubResource("StandardMaterial3D_trc0i")
+material = SubResource("StandardMaterial3D_cm0pc")
 
-[node name="WindowR" type="CSGBox3D" parent="Blockout/HouseE2" unique_id=1748160996]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.65, 2.6, 4.05)
-size = Vector3(1, 1, 0.1)
-material = SubResource("StandardMaterial3D_trc0i")
+[node name="HouseE2" type="Node3D" parent="Blockout" unique_id=1246331099]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 23, 0, 20)
 
-[node name="HouseW3" type="Node3D" parent="Blockout" unique_id=78015986]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -20, 0, 44)
-
-[node name="Walls" type="CSGBox3D" parent="Blockout/HouseW3" unique_id=1572477897]
+[node name="Walls" type="CSGBox3D" parent="Blockout/HouseE2" unique_id=1501632092]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
 use_collision = true
 size = Vector3(9, 5, 8)
-material = SubResource("StandardMaterial3D_lvn8r")
+material = SubResource("StandardMaterial3D_lgsnk")
 
-[node name="Roof" type="CSGPolygon3D" parent="Blockout/HouseW3" unique_id=891758436]
+[node name="Roof" type="CSGPolygon3D" parent="Blockout/HouseE2" unique_id=691211823]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 4.4)
 use_collision = true
 polygon = PackedVector2Array(-5, 0, 0, 2.6, 5, 0)
 depth = 8.8
-material = SubResource("StandardMaterial3D_1g233")
+material = SubResource("StandardMaterial3D_spgee")
 
-[node name="Door" type="CSGBox3D" parent="Blockout/HouseW3" unique_id=1332709855]
+[node name="Door" type="CSGBox3D" parent="Blockout/HouseE2" unique_id=1900699536]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 4.05)
 size = Vector3(1.1, 2.2, 0.1)
-material = SubResource("StandardMaterial3D_lgsnk")
+material = SubResource("StandardMaterial3D_trc0i")
 
-[node name="WindowL" type="CSGBox3D" parent="Blockout/HouseW3" unique_id=865901642]
+[node name="WindowL" type="CSGBox3D" parent="Blockout/HouseE2" unique_id=108219595]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.65, 2.6, 4.05)
 size = Vector3(1, 1, 0.1)
-material = SubResource("StandardMaterial3D_trc0i")
+material = SubResource("StandardMaterial3D_cm0pc")
 
-[node name="WindowR" type="CSGBox3D" parent="Blockout/HouseW3" unique_id=1614761844]
+[node name="WindowR" type="CSGBox3D" parent="Blockout/HouseE2" unique_id=1262536444]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.65, 2.6, 4.05)
 size = Vector3(1, 1, 0.1)
+material = SubResource("StandardMaterial3D_cm0pc")
+
+[node name="HouseW3" type="Node3D" parent="Blockout" unique_id=102895666]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -20, 0, 44)
+
+[node name="Walls" type="CSGBox3D" parent="Blockout/HouseW3" unique_id=1138589553]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+use_collision = true
+size = Vector3(9, 5, 8)
+material = SubResource("StandardMaterial3D_lgsnk")
+
+[node name="Roof" type="CSGPolygon3D" parent="Blockout/HouseW3" unique_id=2028487718]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 4.4)
+use_collision = true
+polygon = PackedVector2Array(-5, 0, 0, 2.6, 5, 0)
+depth = 8.8
+material = SubResource("StandardMaterial3D_1grk4")
+
+[node name="Door" type="CSGBox3D" parent="Blockout/HouseW3" unique_id=29511334]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 4.05)
+size = Vector3(1.1, 2.2, 0.1)
 material = SubResource("StandardMaterial3D_trc0i")
 
-[node name="HouseE4" type="Node3D" parent="Blockout" unique_id=1381991913]
+[node name="WindowL" type="CSGBox3D" parent="Blockout/HouseW3" unique_id=296727374]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.65, 2.6, 4.05)
+size = Vector3(1, 1, 0.1)
+material = SubResource("StandardMaterial3D_cm0pc")
+
+[node name="WindowR" type="CSGBox3D" parent="Blockout/HouseW3" unique_id=913181437]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.65, 2.6, 4.05)
+size = Vector3(1, 1, 0.1)
+material = SubResource("StandardMaterial3D_cm0pc")
+
+[node name="HouseE4" type="Node3D" parent="Blockout" unique_id=1704165099]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 16, 0, 46)
 
-[node name="Walls" type="CSGBox3D" parent="Blockout/HouseE4" unique_id=1841912016]
+[node name="Walls" type="CSGBox3D" parent="Blockout/HouseE4" unique_id=2104882736]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
 use_collision = true
 size = Vector3(8, 5, 7)
-material = SubResource("StandardMaterial3D_ga4m5")
+material = SubResource("StandardMaterial3D_pyadx")
 
-[node name="Roof" type="CSGPolygon3D" parent="Blockout/HouseE4" unique_id=102658712]
+[node name="Roof" type="CSGPolygon3D" parent="Blockout/HouseE4" unique_id=185169666]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 3.9)
 use_collision = true
 polygon = PackedVector2Array(-4.5, 0, 0, 2.6, 4.5, 0)
 depth = 7.8
-material = SubResource("StandardMaterial3D_1g233")
+material = SubResource("StandardMaterial3D_1grk4")
 
-[node name="Door" type="CSGBox3D" parent="Blockout/HouseE4" unique_id=1466869799]
+[node name="Door" type="CSGBox3D" parent="Blockout/HouseE4" unique_id=1587064856]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 3.55)
 size = Vector3(1.1, 2.2, 0.1)
-material = SubResource("StandardMaterial3D_lgsnk")
+material = SubResource("StandardMaterial3D_trc0i")
 
-[node name="WindowL" type="CSGBox3D" parent="Blockout/HouseE4" unique_id=444774352]
+[node name="WindowL" type="CSGBox3D" parent="Blockout/HouseE4" unique_id=1721651373]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.4, 2.6, 3.55)
 size = Vector3(1, 1, 0.1)
-material = SubResource("StandardMaterial3D_trc0i")
+material = SubResource("StandardMaterial3D_cm0pc")
 
-[node name="WindowR" type="CSGBox3D" parent="Blockout/HouseE4" unique_id=54830709]
+[node name="WindowR" type="CSGBox3D" parent="Blockout/HouseE4" unique_id=1851987425]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4, 2.6, 3.55)
 size = Vector3(1, 1, 0.1)
-material = SubResource("StandardMaterial3D_trc0i")
+material = SubResource("StandardMaterial3D_cm0pc")
 
-[node name="HouseN5" type="Node3D" parent="Blockout" unique_id=829109412]
+[node name="HouseN5" type="Node3D" parent="Blockout" unique_id=221078698]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 26, 0, -24)
 
-[node name="Walls" type="CSGBox3D" parent="Blockout/HouseN5" unique_id=1053248031]
+[node name="Walls" type="CSGBox3D" parent="Blockout/HouseN5" unique_id=710284210]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.75, 0)
 use_collision = true
 size = Vector3(9, 5.5, 8)
-material = SubResource("StandardMaterial3D_lvn8r")
+material = SubResource("StandardMaterial3D_lgsnk")
 
-[node name="Roof" type="CSGPolygon3D" parent="Blockout/HouseN5" unique_id=631195354]
+[node name="Roof" type="CSGPolygon3D" parent="Blockout/HouseN5" unique_id=1993038589]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.5, 4.4)
 use_collision = true
 polygon = PackedVector2Array(-5, 0, 0, 2.6, 5, 0)
 depth = 8.8
-material = SubResource("StandardMaterial3D_cm0pc")
+material = SubResource("StandardMaterial3D_spgee")
 
-[node name="Door" type="CSGBox3D" parent="Blockout/HouseN5" unique_id=762926864]
+[node name="Door" type="CSGBox3D" parent="Blockout/HouseN5" unique_id=273458535]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 4.05)
 size = Vector3(1.1, 2.2, 0.1)
-material = SubResource("StandardMaterial3D_lgsnk")
+material = SubResource("StandardMaterial3D_trc0i")
 
-[node name="WindowL" type="CSGBox3D" parent="Blockout/HouseN5" unique_id=154303923]
+[node name="WindowL" type="CSGBox3D" parent="Blockout/HouseN5" unique_id=231803085]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.65, 2.6, 4.05)
 size = Vector3(1, 1, 0.1)
-material = SubResource("StandardMaterial3D_trc0i")
+material = SubResource("StandardMaterial3D_cm0pc")
 
-[node name="WindowR" type="CSGBox3D" parent="Blockout/HouseN5" unique_id=949838406]
+[node name="WindowR" type="CSGBox3D" parent="Blockout/HouseN5" unique_id=213932213]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.65, 2.6, 4.05)
 size = Vector3(1, 1, 0.1)
-material = SubResource("StandardMaterial3D_trc0i")
+material = SubResource("StandardMaterial3D_cm0pc")
 
-[node name="HouseN6" type="Node3D" parent="Blockout" unique_id=1986071226]
+[node name="HouseN6" type="Node3D" parent="Blockout" unique_id=464488738]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -26, 0, -24)
 
-[node name="Walls" type="CSGBox3D" parent="Blockout/HouseN6" unique_id=1704489819]
+[node name="Walls" type="CSGBox3D" parent="Blockout/HouseN6" unique_id=1389543643]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
 use_collision = true
 size = Vector3(8, 5, 8)
-material = SubResource("StandardMaterial3D_ga4m5")
+material = SubResource("StandardMaterial3D_pyadx")
 
-[node name="Roof" type="CSGPolygon3D" parent="Blockout/HouseN6" unique_id=886677876]
+[node name="Roof" type="CSGPolygon3D" parent="Blockout/HouseN6" unique_id=1997236414]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 4.4)
 use_collision = true
 polygon = PackedVector2Array(-4.5, 0, 0, 2.6, 4.5, 0)
 depth = 8.8
-material = SubResource("StandardMaterial3D_1g233")
+material = SubResource("StandardMaterial3D_1grk4")
 
-[node name="Door" type="CSGBox3D" parent="Blockout/HouseN6" unique_id=1175320635]
+[node name="Door" type="CSGBox3D" parent="Blockout/HouseN6" unique_id=1886632378]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 4.05)
 size = Vector3(1.1, 2.2, 0.1)
-material = SubResource("StandardMaterial3D_lgsnk")
+material = SubResource("StandardMaterial3D_trc0i")
 
-[node name="WindowL" type="CSGBox3D" parent="Blockout/HouseN6" unique_id=1009983685]
+[node name="WindowL" type="CSGBox3D" parent="Blockout/HouseN6" unique_id=517741975]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.4, 2.6, 4.05)
 size = Vector3(1, 1, 0.1)
-material = SubResource("StandardMaterial3D_trc0i")
+material = SubResource("StandardMaterial3D_cm0pc")
 
-[node name="WindowR" type="CSGBox3D" parent="Blockout/HouseN6" unique_id=1918627158]
+[node name="WindowR" type="CSGBox3D" parent="Blockout/HouseN6" unique_id=353050838]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4, 2.6, 4.05)
 size = Vector3(1, 1, 0.1)
-material = SubResource("StandardMaterial3D_trc0i")
+material = SubResource("StandardMaterial3D_cm0pc")
 
-[node name="StallA" type="Node3D" parent="Blockout" unique_id=828614406]
+[node name="StallA" type="Node3D" parent="Blockout" unique_id=226070639]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, 18)
 
-[node name="Post_-14_-10" type="CSGBox3D" parent="Blockout/StallA" unique_id=411233751]
+[node name="Post_-14_-10" type="CSGBox3D" parent="Blockout/StallA" unique_id=2061120534]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4, 1.2, -1)
 size = Vector3(0.15, 2.4, 0.15)
-material = SubResource("StandardMaterial3D_jhek2")
+material = SubResource("StandardMaterial3D_1g233")
 
-[node name="Post_-14_10" type="CSGBox3D" parent="Blockout/StallA" unique_id=591951991]
+[node name="Post_-14_10" type="CSGBox3D" parent="Blockout/StallA" unique_id=189987092]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4, 1.2, 1)
 size = Vector3(0.15, 2.4, 0.15)
-material = SubResource("StandardMaterial3D_jhek2")
+material = SubResource("StandardMaterial3D_1g233")
 
-[node name="Post_14_-10" type="CSGBox3D" parent="Blockout/StallA" unique_id=363950841]
+[node name="Post_14_-10" type="CSGBox3D" parent="Blockout/StallA" unique_id=1591097143]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4, 1.2, -1)
 size = Vector3(0.15, 2.4, 0.15)
-material = SubResource("StandardMaterial3D_jhek2")
+material = SubResource("StandardMaterial3D_1g233")
 
-[node name="Post_14_10" type="CSGBox3D" parent="Blockout/StallA" unique_id=632393348]
+[node name="Post_14_10" type="CSGBox3D" parent="Blockout/StallA" unique_id=369062409]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4, 1.2, 1)
 size = Vector3(0.15, 2.4, 0.15)
-material = SubResource("StandardMaterial3D_jhek2")
+material = SubResource("StandardMaterial3D_1g233")
 
-[node name="Awning" type="CSGBox3D" parent="Blockout/StallA" unique_id=1979841445]
+[node name="Awning" type="CSGBox3D" parent="Blockout/StallA" unique_id=1628086813]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.45, 0)
 size = Vector3(3.4, 0.12, 2.6)
-material = SubResource("StandardMaterial3D_spgee")
+material = SubResource("StandardMaterial3D_6ldqi")
 
-[node name="Counter" type="CSGBox3D" parent="Blockout/StallA" unique_id=2044265412]
+[node name="Counter" type="CSGBox3D" parent="Blockout/StallA" unique_id=1302155954]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.45, -0.6)
 use_collision = true
 size = Vector3(3, 0.9, 0.8)
-material = SubResource("StandardMaterial3D_jhek2")
+material = SubResource("StandardMaterial3D_1g233")
 
-[node name="StallB" type="Node3D" parent="Blockout" unique_id=33750322]
+[node name="StallB" type="Node3D" parent="Blockout" unique_id=1210698667]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, 27)
 
-[node name="Post_-14_-10" type="CSGBox3D" parent="Blockout/StallB" unique_id=1394197413]
+[node name="Post_-14_-10" type="CSGBox3D" parent="Blockout/StallB" unique_id=1922597938]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4, 1.2, -1)
 size = Vector3(0.15, 2.4, 0.15)
-material = SubResource("StandardMaterial3D_jhek2")
+material = SubResource("StandardMaterial3D_1g233")
 
-[node name="Post_-14_10" type="CSGBox3D" parent="Blockout/StallB" unique_id=295147791]
+[node name="Post_-14_10" type="CSGBox3D" parent="Blockout/StallB" unique_id=541312564]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4, 1.2, 1)
 size = Vector3(0.15, 2.4, 0.15)
-material = SubResource("StandardMaterial3D_jhek2")
+material = SubResource("StandardMaterial3D_1g233")
 
-[node name="Post_14_-10" type="CSGBox3D" parent="Blockout/StallB" unique_id=353240766]
+[node name="Post_14_-10" type="CSGBox3D" parent="Blockout/StallB" unique_id=446624581]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4, 1.2, -1)
 size = Vector3(0.15, 2.4, 0.15)
-material = SubResource("StandardMaterial3D_jhek2")
+material = SubResource("StandardMaterial3D_1g233")
 
-[node name="Post_14_10" type="CSGBox3D" parent="Blockout/StallB" unique_id=1649706733]
+[node name="Post_14_10" type="CSGBox3D" parent="Blockout/StallB" unique_id=276843932]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4, 1.2, 1)
 size = Vector3(0.15, 2.4, 0.15)
-material = SubResource("StandardMaterial3D_jhek2")
+material = SubResource("StandardMaterial3D_1g233")
 
-[node name="Awning" type="CSGBox3D" parent="Blockout/StallB" unique_id=1954581721]
+[node name="Awning" type="CSGBox3D" parent="Blockout/StallB" unique_id=1233204233]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.45, 0)
 size = Vector3(3.4, 0.12, 2.6)
-material = SubResource("StandardMaterial3D_f5sp3")
+material = SubResource("StandardMaterial3D_7uo60")
 
-[node name="Counter" type="CSGBox3D" parent="Blockout/StallB" unique_id=2035008715]
+[node name="Counter" type="CSGBox3D" parent="Blockout/StallB" unique_id=771397753]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.45, -0.6)
 use_collision = true
 size = Vector3(3, 0.9, 0.8)
-material = SubResource("StandardMaterial3D_jhek2")
+material = SubResource("StandardMaterial3D_1g233")
 
-[node name="ArchPostL" type="CSGBox3D" parent="Blockout" unique_id=1157784882]
+[node name="ArchPostL" type="CSGBox3D" parent="Blockout" unique_id=790885047]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 2.5, 60)
 use_collision = true
 size = Vector3(0.4, 5, 0.4)
-material = SubResource("StandardMaterial3D_jhek2")
+material = SubResource("StandardMaterial3D_1g233")
 
-[node name="ArchPostR" type="CSGBox3D" parent="Blockout" unique_id=1611225004]
+[node name="ArchPostR" type="CSGBox3D" parent="Blockout" unique_id=1327226510]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 2.5, 60)
 use_collision = true
 size = Vector3(0.4, 5, 0.4)
-material = SubResource("StandardMaterial3D_jhek2")
+material = SubResource("StandardMaterial3D_1g233")
 
-[node name="ArchBeam" type="CSGBox3D" parent="Blockout" unique_id=1560931606]
+[node name="ArchBeam" type="CSGBox3D" parent="Blockout" unique_id=1647913972]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 60)
 use_collision = true
 size = Vector3(9, 0.5, 0.5)
-material = SubResource("StandardMaterial3D_jhek2")
+material = SubResource("StandardMaterial3D_1g233")
 
-[node name="FenceL" type="CSGBox3D" parent="Blockout" unique_id=1129537262]
+[node name="FenceL" type="CSGBox3D" parent="Blockout" unique_id=1057079584]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 0.55, 60)
 use_collision = true
 size = Vector3(26, 1.1, 0.2)
-material = SubResource("StandardMaterial3D_jhek2")
+material = SubResource("StandardMaterial3D_1g233")
 
-[node name="FenceR" type="CSGBox3D" parent="Blockout" unique_id=438680583]
+[node name="FenceR" type="CSGBox3D" parent="Blockout" unique_id=903485308]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 0.55, 60)
 use_collision = true
 size = Vector3(26, 1.1, 0.2)
-material = SubResource("StandardMaterial3D_jhek2")
+material = SubResource("StandardMaterial3D_1g233")
 
-[node name="Plateau" type="CSGBox3D" parent="Blockout" unique_id=1094680576]
+[node name="Plateau" type="CSGBox3D" parent="Blockout" unique_id=1349470275]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -75)
 use_collision = true
 size = Vector3(140, 6, 70)
-material = SubResource("StandardMaterial3D_6ldqi")
+material = SubResource("StandardMaterial3D_ias0o")
 
-[node name="Ramp" type="CSGPolygon3D" parent="Blockout" unique_id=1074173514]
+[node name="Ramp" type="CSGPolygon3D" parent="Blockout" unique_id=646927028]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 4, 0, 0)
 use_collision = true
 polygon = PackedVector2Array(14, 0, 40, 0, 40, 6)
 depth = 8.0
-material = SubResource("StandardMaterial3D_v3dlt")
+material = SubResource("StandardMaterial3D_hxukt")
 
-[node name="GateRoad" type="CSGBox3D" parent="Blockout" unique_id=410646072]
+[node name="GateRoad" type="CSGBox3D" parent="Blockout" unique_id=1826226646]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.02, -42.25)
 use_collision = true
 size = Vector3(6, 0.04, 4.5)
-material = SubResource("StandardMaterial3D_v3dlt")
+material = SubResource("StandardMaterial3D_hxukt")
 
-[node name="WallL" type="CSGBox3D" parent="Blockout" unique_id=694498705]
+[node name="WallL" type="CSGBox3D" parent="Blockout" unique_id=674278474]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 13, -46)
 use_collision = true
 size = Vector3(32, 14, 3)
-material = SubResource("StandardMaterial3D_hxukt")
+material = SubResource("StandardMaterial3D_jhek2")
 
-[node name="WallR" type="CSGBox3D" parent="Blockout" unique_id=1489803517]
+[node name="WallR" type="CSGBox3D" parent="Blockout" unique_id=522288038]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 13, -46)
 use_collision = true
 size = Vector3(32, 14, 3)
-material = SubResource("StandardMaterial3D_hxukt")
+material = SubResource("StandardMaterial3D_jhek2")
 
-[node name="Lintel" type="CSGBox3D" parent="Blockout" unique_id=68204992]
+[node name="Lintel" type="CSGBox3D" parent="Blockout" unique_id=1002137006]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 18, -46)
 use_collision = true
 size = Vector3(8, 4, 3)
-material = SubResource("StandardMaterial3D_hxukt")
+material = SubResource("StandardMaterial3D_jhek2")
 
-[node name="GateTowerL" type="CSGBox3D" parent="Blockout" unique_id=1176297483]
+[node name="GateTowerL" type="CSGBox3D" parent="Blockout" unique_id=1905209343]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, 15.5, -45.5)
 use_collision = true
 size = Vector3(4, 19, 4)
-material = SubResource("StandardMaterial3D_1grk4")
+material = SubResource("StandardMaterial3D_ga4m5")
 
-[node name="GateTowerR" type="CSGBox3D" parent="Blockout" unique_id=1245878698]
+[node name="GateTowerR" type="CSGBox3D" parent="Blockout" unique_id=280465545]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5, 15.5, -45.5)
 use_collision = true
 size = Vector3(4, 19, 4)
-material = SubResource("StandardMaterial3D_1grk4")
+material = SubResource("StandardMaterial3D_ga4m5")
 
-[node name="FoyerFloor" type="CSGBox3D" parent="Blockout" unique_id=2040399465]
+[node name="FoyerFloor" type="CSGBox3D" parent="Blockout" unique_id=1942687025]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.03, -54.75)
 use_collision = true
 size = Vector3(16, 0.06, 14.5)
-material = SubResource("StandardMaterial3D_7uo60")
+material = SubResource("StandardMaterial3D_wltmo")
 
-[node name="FoyerWallW" type="CSGBox3D" parent="Blockout" unique_id=545400895]
+[node name="FoyerWallW" type="CSGBox3D" parent="Blockout" unique_id=1669611705]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 11.5, -54.75)
 use_collision = true
 size = Vector3(0.4, 11, 14.5)
-material = SubResource("StandardMaterial3D_hxukt")
+material = SubResource("StandardMaterial3D_jhek2")
 
-[node name="FoyerWallE" type="CSGBox3D" parent="Blockout" unique_id=1608420894]
+[node name="FoyerWallE" type="CSGBox3D" parent="Blockout" unique_id=203371195]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 11.5, -54.75)
 use_collision = true
 size = Vector3(0.4, 11, 14.5)
-material = SubResource("StandardMaterial3D_hxukt")
+material = SubResource("StandardMaterial3D_jhek2")
 
-[node name="FoyerBack" type="CSGBox3D" parent="Blockout" unique_id=1131535754]
+[node name="FoyerBack" type="CSGBox3D" parent="Blockout" unique_id=957386825]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.5, -62)
 use_collision = true
 size = Vector3(16, 11, 0.4)
-material = SubResource("StandardMaterial3D_hxukt")
+material = SubResource("StandardMaterial3D_jhek2")
 
-[node name="FoyerInnerDoor" type="CSGBox3D" parent="Blockout" unique_id=1569381712]
+[node name="FoyerInnerDoor" type="CSGBox3D" parent="Blockout" unique_id=1068510649]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.5, -61.75)
 size = Vector3(3, 5, 0.1)
-material = SubResource("StandardMaterial3D_lgsnk")
+material = SubResource("StandardMaterial3D_trc0i")
 
-[node name="FoyerCeiling" type="CSGBox3D" parent="Blockout" unique_id=518074331]
+[node name="FoyerCeiling" type="CSGBox3D" parent="Blockout" unique_id=398193006]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 17.2, -54.75)
 use_collision = true
 size = Vector3(16.4, 0.4, 14.9)
-material = SubResource("StandardMaterial3D_1grk4")
+material = SubResource("StandardMaterial3D_ga4m5")
 
-[node name="FoyerLight" type="OmniLight3D" parent="Blockout" unique_id=1231995934]
+[node name="FoyerLight" type="OmniLight3D" parent="Blockout" unique_id=1325593541]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13, -53.5)
 light_color = Color(1, 0.8, 0.52, 1)
 light_energy = 6.0
 omni_range = 22.0
 
-[node name="Keep" type="CSGBox3D" parent="Blockout" unique_id=1341201071]
+[node name="Keep" type="CSGBox3D" parent="Blockout" unique_id=373940204]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 17, -82)
 use_collision = true
 size = Vector3(34, 22, 26)
-material = SubResource("StandardMaterial3D_hxukt")
+material = SubResource("StandardMaterial3D_jhek2")
 
-[node name="TowerWS" type="CSGCylinder3D" parent="Blockout" unique_id=1632383416]
+[node name="TowerWS" type="CSGCylinder3D" parent="Blockout" unique_id=1231841362]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 21, -69)
 use_collision = true
 radius = 4.0
 height = 30.0
 sides = 16
-material = SubResource("StandardMaterial3D_1grk4")
+material = SubResource("StandardMaterial3D_ga4m5")
 
-[node name="TowerRoofWS" type="CSGCylinder3D" parent="Blockout" unique_id=300645194]
+[node name="TowerRoofWS" type="CSGCylinder3D" parent="Blockout" unique_id=1729464968]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 39.5, -69)
 radius = 4.8
 height = 7.0
 sides = 16
 cone = true
-material = SubResource("StandardMaterial3D_cm0pc")
+material = SubResource("StandardMaterial3D_spgee")
 
-[node name="TowerWN" type="CSGCylinder3D" parent="Blockout" unique_id=1145706713]
+[node name="TowerWN" type="CSGCylinder3D" parent="Blockout" unique_id=242353020]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 21, -95)
 use_collision = true
 radius = 4.0
 height = 30.0
 sides = 16
-material = SubResource("StandardMaterial3D_1grk4")
+material = SubResource("StandardMaterial3D_ga4m5")
 
-[node name="TowerRoofWN" type="CSGCylinder3D" parent="Blockout" unique_id=1933514020]
+[node name="TowerRoofWN" type="CSGCylinder3D" parent="Blockout" unique_id=1415850262]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 39.5, -95)
 radius = 4.8
 height = 7.0
 sides = 16
 cone = true
-material = SubResource("StandardMaterial3D_cm0pc")
+material = SubResource("StandardMaterial3D_spgee")
 
-[node name="TowerES" type="CSGCylinder3D" parent="Blockout" unique_id=903941524]
+[node name="TowerES" type="CSGCylinder3D" parent="Blockout" unique_id=505036991]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 21, -69)
 use_collision = true
 radius = 4.0
 height = 30.0
 sides = 16
-material = SubResource("StandardMaterial3D_1grk4")
+material = SubResource("StandardMaterial3D_ga4m5")
 
-[node name="TowerRoofES" type="CSGCylinder3D" parent="Blockout" unique_id=1498245782]
+[node name="TowerRoofES" type="CSGCylinder3D" parent="Blockout" unique_id=1109577723]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 39.5, -69)
 radius = 4.8
 height = 7.0
 sides = 16
 cone = true
-material = SubResource("StandardMaterial3D_cm0pc")
+material = SubResource("StandardMaterial3D_spgee")
 
-[node name="TowerEN" type="CSGCylinder3D" parent="Blockout" unique_id=1819172536]
+[node name="TowerEN" type="CSGCylinder3D" parent="Blockout" unique_id=689818225]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 21, -95)
 use_collision = true
 radius = 4.0
 height = 30.0
 sides = 16
-material = SubResource("StandardMaterial3D_1grk4")
+material = SubResource("StandardMaterial3D_ga4m5")
 
-[node name="TowerRoofEN" type="CSGCylinder3D" parent="Blockout" unique_id=900211107]
+[node name="TowerRoofEN" type="CSGCylinder3D" parent="Blockout" unique_id=273292718]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 39.5, -95)
 radius = 4.8
 height = 7.0
 sides = 16
 cone = true
-material = SubResource("StandardMaterial3D_cm0pc")
+material = SubResource("StandardMaterial3D_spgee")
 
-[node name="Spire" type="CSGCylinder3D" parent="Blockout" unique_id=801485821]
+[node name="Spire" type="CSGCylinder3D" parent="Blockout" unique_id=167673606]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 33, -86)
 use_collision = true
 radius = 3.2
 height = 10.0
 sides = 16
-material = SubResource("StandardMaterial3D_1grk4")
+material = SubResource("StandardMaterial3D_ga4m5")
 
-[node name="SpireRoof" type="CSGCylinder3D" parent="Blockout" unique_id=1812207587]
+[node name="SpireRoof" type="CSGCylinder3D" parent="Blockout" unique_id=174215375]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 42, -86)
 radius = 4.0
 height = 8.0
 sides = 16
 cone = true
-material = SubResource("StandardMaterial3D_cm0pc")
+material = SubResource("StandardMaterial3D_spgee")
 
-[node name="Tree0" type="Node3D" parent="Blockout" unique_id=144176341]
+[node name="Tree0" type="Node3D" parent="Blockout" unique_id=2026217696]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34, 0, 10)
 
-[node name="Trunk" type="CSGCylinder3D" parent="Blockout/Tree0" unique_id=1688086213]
+[node name="Trunk" type="CSGCylinder3D" parent="Blockout/Tree0" unique_id=1364502847]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 use_collision = true
 radius = 0.35
 height = 3.0
 sides = 16
-material = SubResource("StandardMaterial3D_jhek2")
+material = SubResource("StandardMaterial3D_1g233")
 
-[node name="Crown" type="CSGSphere3D" parent="Blockout/Tree0" unique_id=589404366]
+[node name="Crown" type="CSGSphere3D" parent="Blockout/Tree0" unique_id=1329239064]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.2, 0)
 radius = 2.2
-material = SubResource("StandardMaterial3D_ias0o")
+material = SubResource("StandardMaterial3D_lifri")
 
-[node name="Tree1" type="Node3D" parent="Blockout" unique_id=1005277888]
+[node name="Tree1" type="Node3D" parent="Blockout" unique_id=269121745]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31, 0, 52)
 
-[node name="Trunk" type="CSGCylinder3D" parent="Blockout/Tree1" unique_id=592058986]
+[node name="Trunk" type="CSGCylinder3D" parent="Blockout/Tree1" unique_id=424841361]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 use_collision = true
 radius = 0.35
 height = 3.0
 sides = 16
-material = SubResource("StandardMaterial3D_jhek2")
+material = SubResource("StandardMaterial3D_1g233")
 
-[node name="Crown" type="CSGSphere3D" parent="Blockout/Tree1" unique_id=703550866]
+[node name="Crown" type="CSGSphere3D" parent="Blockout/Tree1" unique_id=1924208438]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.2, 0)
 radius = 2.5
-material = SubResource("StandardMaterial3D_ias0o")
+material = SubResource("StandardMaterial3D_lifri")
 
-[node name="Tree2" type="Node3D" parent="Blockout" unique_id=1799361078]
+[node name="Tree2" type="Node3D" parent="Blockout" unique_id=843918364]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33, 0, 8)
 
-[node name="Trunk" type="CSGCylinder3D" parent="Blockout/Tree2" unique_id=2036597319]
+[node name="Trunk" type="CSGCylinder3D" parent="Blockout/Tree2" unique_id=1167545312]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 use_collision = true
 radius = 0.35
 height = 3.0
 sides = 16
-material = SubResource("StandardMaterial3D_jhek2")
+material = SubResource("StandardMaterial3D_1g233")
 
-[node name="Crown" type="CSGSphere3D" parent="Blockout/Tree2" unique_id=1969162516]
+[node name="Crown" type="CSGSphere3D" parent="Blockout/Tree2" unique_id=537956975]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.2, 0)
 radius = 2.8
-material = SubResource("StandardMaterial3D_ias0o")
+material = SubResource("StandardMaterial3D_lifri")
 
-[node name="Tree3" type="Node3D" parent="Blockout" unique_id=10719714]
+[node name="Tree3" type="Node3D" parent="Blockout" unique_id=154652519]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31, 0, 34)
 
-[node name="Trunk" type="CSGCylinder3D" parent="Blockout/Tree3" unique_id=249507874]
+[node name="Trunk" type="CSGCylinder3D" parent="Blockout/Tree3" unique_id=1911672436]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 use_collision = true
 radius = 0.35
 height = 3.0
 sides = 16
-material = SubResource("StandardMaterial3D_jhek2")
+material = SubResource("StandardMaterial3D_1g233")
 
-[node name="Crown" type="CSGSphere3D" parent="Blockout/Tree3" unique_id=1591935462]
+[node name="Crown" type="CSGSphere3D" parent="Blockout/Tree3" unique_id=1325044130]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.2, 0)
 radius = 2.2
-material = SubResource("StandardMaterial3D_ias0o")
+material = SubResource("StandardMaterial3D_lifri")
 
-[node name="Tree4" type="Node3D" parent="Blockout" unique_id=1549560663]
+[node name="Tree4" type="Node3D" parent="Blockout" unique_id=1015332944]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, 72)
 
-[node name="Trunk" type="CSGCylinder3D" parent="Blockout/Tree4" unique_id=367979627]
+[node name="Trunk" type="CSGCylinder3D" parent="Blockout/Tree4" unique_id=2115477621]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 use_collision = true
 radius = 0.35
 height = 3.0
 sides = 16
-material = SubResource("StandardMaterial3D_jhek2")
+material = SubResource("StandardMaterial3D_1g233")
 
-[node name="Crown" type="CSGSphere3D" parent="Blockout/Tree4" unique_id=33850346]
+[node name="Crown" type="CSGSphere3D" parent="Blockout/Tree4" unique_id=455887675]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.2, 0)
 radius = 2.5
-material = SubResource("StandardMaterial3D_ias0o")
+material = SubResource("StandardMaterial3D_lifri")
 
-[node name="Tree5" type="Node3D" parent="Blockout" unique_id=1552390467]
+[node name="Tree5" type="Node3D" parent="Blockout" unique_id=1231690233]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, 70)
 
-[node name="Trunk" type="CSGCylinder3D" parent="Blockout/Tree5" unique_id=668393749]
+[node name="Trunk" type="CSGCylinder3D" parent="Blockout/Tree5" unique_id=815892901]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 use_collision = true
 radius = 0.35
 height = 3.0
 sides = 16
-material = SubResource("StandardMaterial3D_jhek2")
+material = SubResource("StandardMaterial3D_1g233")
 
-[node name="Crown" type="CSGSphere3D" parent="Blockout/Tree5" unique_id=2003468083]
+[node name="Crown" type="CSGSphere3D" parent="Blockout/Tree5" unique_id=417289153]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.2, 0)
 radius = 2.8
-material = SubResource("StandardMaterial3D_ias0o")
+material = SubResource("StandardMaterial3D_lifri")
 
-[node name="Tree6" type="Node3D" parent="Blockout" unique_id=2006672600]
+[node name="Tree6" type="Node3D" parent="Blockout" unique_id=1980043673]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36, 0, -12)
 
-[node name="Trunk" type="CSGCylinder3D" parent="Blockout/Tree6" unique_id=530494814]
+[node name="Trunk" type="CSGCylinder3D" parent="Blockout/Tree6" unique_id=1813198658]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 use_collision = true
 radius = 0.35
 height = 3.0
 sides = 16
-material = SubResource("StandardMaterial3D_jhek2")
+material = SubResource("StandardMaterial3D_1g233")
 
-[node name="Crown" type="CSGSphere3D" parent="Blockout/Tree6" unique_id=130864146]
+[node name="Crown" type="CSGSphere3D" parent="Blockout/Tree6" unique_id=1697972485]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.2, 0)
 radius = 2.2
-material = SubResource("StandardMaterial3D_ias0o")
+material = SubResource("StandardMaterial3D_lifri")
 
-[node name="Tree7" type="Node3D" parent="Blockout" unique_id=1325500984]
+[node name="Tree7" type="Node3D" parent="Blockout" unique_id=2087700836]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37, 0, -10)
 
-[node name="Trunk" type="CSGCylinder3D" parent="Blockout/Tree7" unique_id=2010452176]
+[node name="Trunk" type="CSGCylinder3D" parent="Blockout/Tree7" unique_id=968050016]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 use_collision = true
 radius = 0.35
 height = 3.0
 sides = 16
-material = SubResource("StandardMaterial3D_jhek2")
+material = SubResource("StandardMaterial3D_1g233")
 
-[node name="Crown" type="CSGSphere3D" parent="Blockout/Tree7" unique_id=395839934]
+[node name="Crown" type="CSGSphere3D" parent="Blockout/Tree7" unique_id=481317670]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.2, 0)
 radius = 2.5
-material = SubResource("StandardMaterial3D_ias0o")
+material = SubResource("StandardMaterial3D_lifri")
 
-[node name="Tree8" type="Node3D" parent="Blockout" unique_id=1698582291]
+[node name="Tree8" type="Node3D" parent="Blockout" unique_id=1917673854]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, 54)
 
-[node name="Trunk" type="CSGCylinder3D" parent="Blockout/Tree8" unique_id=2041518295]
+[node name="Trunk" type="CSGCylinder3D" parent="Blockout/Tree8" unique_id=556707001]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 use_collision = true
 radius = 0.35
 height = 3.0
 sides = 16
-material = SubResource("StandardMaterial3D_jhek2")
+material = SubResource("StandardMaterial3D_1g233")
 
-[node name="Crown" type="CSGSphere3D" parent="Blockout/Tree8" unique_id=1407443237]
+[node name="Crown" type="CSGSphere3D" parent="Blockout/Tree8" unique_id=1772391481]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.2, 0)
 radius = 2.8
-material = SubResource("StandardMaterial3D_ias0o")
+material = SubResource("StandardMaterial3D_lifri")
 
-[node name="Tree9" type="Node3D" parent="Blockout" unique_id=1701246327]
+[node name="Tree9" type="Node3D" parent="Blockout" unique_id=1515151821]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34, 0, 30)
 
-[node name="Trunk" type="CSGCylinder3D" parent="Blockout/Tree9" unique_id=894413108]
+[node name="Trunk" type="CSGCylinder3D" parent="Blockout/Tree9" unique_id=1864529507]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 use_collision = true
 radius = 0.35
 height = 3.0
 sides = 16
-material = SubResource("StandardMaterial3D_jhek2")
+material = SubResource("StandardMaterial3D_1g233")
 
-[node name="Crown" type="CSGSphere3D" parent="Blockout/Tree9" unique_id=382728517]
+[node name="Crown" type="CSGSphere3D" parent="Blockout/Tree9" unique_id=119306494]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.2, 0)
 radius = 2.2
-material = SubResource("StandardMaterial3D_ias0o")
+material = SubResource("StandardMaterial3D_lifri")
 
-[node name="Tree10" type="Node3D" parent="Blockout" unique_id=1250069285]
+[node name="Tree10" type="Node3D" parent="Blockout" unique_id=517312879]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 0, 52)
 
-[node name="Trunk" type="CSGCylinder3D" parent="Blockout/Tree10" unique_id=646889873]
+[node name="Trunk" type="CSGCylinder3D" parent="Blockout/Tree10" unique_id=66762225]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 use_collision = true
 radius = 0.35
 height = 3.0
 sides = 16
-material = SubResource("StandardMaterial3D_jhek2")
+material = SubResource("StandardMaterial3D_1g233")
 
-[node name="Crown" type="CSGSphere3D" parent="Blockout/Tree10" unique_id=490452906]
+[node name="Crown" type="CSGSphere3D" parent="Blockout/Tree10" unique_id=1255773278]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.2, 0)
 radius = 2.5
-material = SubResource("StandardMaterial3D_ias0o")
+material = SubResource("StandardMaterial3D_lifri")
 
-[node name="Tree11" type="Node3D" parent="Blockout" unique_id=2115646642]
+[node name="Tree11" type="Node3D" parent="Blockout" unique_id=2110985193]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -44, 0, 64)
 
-[node name="Trunk" type="CSGCylinder3D" parent="Blockout/Tree11" unique_id=193315614]
+[node name="Trunk" type="CSGCylinder3D" parent="Blockout/Tree11" unique_id=856932189]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 use_collision = true
 radius = 0.35
 height = 3.0
 sides = 16
-material = SubResource("StandardMaterial3D_jhek2")
+material = SubResource("StandardMaterial3D_1g233")
 
-[node name="Crown" type="CSGSphere3D" parent="Blockout/Tree11" unique_id=1362026101]
+[node name="Crown" type="CSGSphere3D" parent="Blockout/Tree11" unique_id=1453964969]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.2, 0)
 radius = 2.8
-material = SubResource("StandardMaterial3D_ias0o")
+material = SubResource("StandardMaterial3D_lifri")
 
-[node name="Targets" type="Node3D" parent="." unique_id=190144644]
+[node name="Targets" type="Node3D" parent="." unique_id=1930696099]
 
-[node name="Bartender" type="Node3D" parent="Targets" unique_id=1519649832]
-script = ExtResource("2_pa23k")
+[node name="Bartender" type="Node3D" parent="Targets" unique_id=218319599]
+script = ExtResource("3_gktdk")
 target_id = "bartender"
 follow_location = true
 watched_props = PackedStringArray()
 
-[node name="Body" type="StaticBody3D" parent="Targets/Bartender" unique_id=792023866]
+[node name="Body" type="StaticBody3D" parent="Targets/Bartender" unique_id=1398471566]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
 
-[node name="Shape" type="CollisionShape3D" parent="Targets/Bartender/Body" unique_id=1337381424]
-shape = SubResource("CapsuleShape3D_wltmo")
+[node name="Shape" type="CollisionShape3D" parent="Targets/Bartender/Body" unique_id=2035968759]
+shape = SubResource("CapsuleShape3D_csdd4")
 
-[node name="Mesh" type="MeshInstance3D" parent="Targets/Bartender" unique_id=73491175]
+[node name="Mesh" type="MeshInstance3D" parent="Targets/Bartender" unique_id=1561373879]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.875, 0)
-material_override = SubResource("StandardMaterial3D_lifri")
-mesh = SubResource("CapsuleMesh_csdd4")
+material_override = SubResource("StandardMaterial3D_2vb3e")
+mesh = SubResource("CapsuleMesh_ci1yp")
 
-[node name="Nose" type="CSGBox3D" parent="Targets/Bartender" unique_id=65201563]
+[node name="Nose" type="CSGBox3D" parent="Targets/Bartender" unique_id=1808567723]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -0.33)
 size = Vector3(0.12, 0.12, 0.2)
-material = SubResource("StandardMaterial3D_lifri")
-
-[node name="Apron" type="CSGBox3D" parent="Targets/Bartender" unique_id=1578908836]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, -0.33)
-size = Vector3(0.5, 0.7, 0.05)
 material = SubResource("StandardMaterial3D_2vb3e")
 
-[node name="Name" type="Label3D" parent="Targets/Bartender" unique_id=1659430643]
+[node name="Apron" type="CSGBox3D" parent="Targets/Bartender" unique_id=2085534701]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, -0.33)
+size = Vector3(0.5, 0.7, 0.05)
+material = SubResource("StandardMaterial3D_v06ig")
+
+[node name="Name" type="Label3D" parent="Targets/Bartender" unique_id=604129014]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.15, 0)
 billboard = 1
 text = "술집 주인"
-font = ExtResource("1_7sh0f")
+font = ExtResource("2_oiag1")
 font_size = 48
 
-[node name="Guard" type="Node3D" parent="Targets" unique_id=777595648]
-script = ExtResource("2_pa23k")
+[node name="Guard" type="Node3D" parent="Targets" unique_id=1090619660]
+script = ExtResource("3_gktdk")
 target_id = "guard"
 follow_location = true
 watched_props = PackedStringArray()
 
-[node name="Body" type="StaticBody3D" parent="Targets/Guard" unique_id=1371175649]
+[node name="Body" type="StaticBody3D" parent="Targets/Guard" unique_id=1494662173]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
 
-[node name="Shape" type="CollisionShape3D" parent="Targets/Guard/Body" unique_id=675055770]
-shape = SubResource("CapsuleShape3D_ci1yp")
+[node name="Shape" type="CollisionShape3D" parent="Targets/Guard/Body" unique_id=1916175562]
+shape = SubResource("CapsuleShape3D_beyr0")
 
-[node name="Mesh" type="MeshInstance3D" parent="Targets/Guard" unique_id=798122123]
+[node name="Mesh" type="MeshInstance3D" parent="Targets/Guard" unique_id=719681825]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.875, 0)
-material_override = SubResource("StandardMaterial3D_v06ig")
-mesh = SubResource("CapsuleMesh_beyr0")
+material_override = SubResource("StandardMaterial3D_1baa2")
+mesh = SubResource("CapsuleMesh_l8n4v")
 
-[node name="Nose" type="CSGBox3D" parent="Targets/Guard" unique_id=984181351]
+[node name="Nose" type="CSGBox3D" parent="Targets/Guard" unique_id=878282275]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -0.33)
 size = Vector3(0.12, 0.12, 0.2)
-material = SubResource("StandardMaterial3D_v06ig")
+material = SubResource("StandardMaterial3D_1baa2")
 
-[node name="Helmet" type="CSGCylinder3D" parent="Targets/Guard" unique_id=1625964648]
+[node name="Helmet" type="CSGCylinder3D" parent="Targets/Guard" unique_id=784174493]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.72, 0)
 radius = 0.36
 height = 0.3
 sides = 16
-material = SubResource("StandardMaterial3D_pyadx")
+material = SubResource("StandardMaterial3D_f5sp3")
 
-[node name="Spear" type="CSGCylinder3D" parent="Targets/Guard" unique_id=1730537936]
+[node name="Spear" type="CSGCylinder3D" parent="Targets/Guard" unique_id=800748842]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.45, 1.3, 0)
 radius = 0.03
 height = 2.6
 sides = 16
-material = SubResource("StandardMaterial3D_jhek2")
+material = SubResource("StandardMaterial3D_1g233")
 
-[node name="SpearTip" type="CSGCylinder3D" parent="Targets/Guard" unique_id=1708087806]
+[node name="SpearTip" type="CSGCylinder3D" parent="Targets/Guard" unique_id=2036468023]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.45, 2.75, 0)
 radius = 0.07
 height = 0.3
 sides = 16
 cone = true
-material = SubResource("StandardMaterial3D_pyadx")
+material = SubResource("StandardMaterial3D_f5sp3")
 
-[node name="Name" type="Label3D" parent="Targets/Guard" unique_id=1654486100]
+[node name="Name" type="Label3D" parent="Targets/Guard" unique_id=1559729225]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.25, 0)
 billboard = 1
 text = "경비병"
-font = ExtResource("1_7sh0f")
+font = ExtResource("2_oiag1")
 font_size = 48
 
-[node name="Gate" type="Node3D" parent="Targets" unique_id=1545463547]
+[node name="Gate" type="Node3D" parent="Targets" unique_id=850592117]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, -44.7)
-script = ExtResource("2_pa23k")
+script = ExtResource("3_gktdk")
 target_id = "gate"
 verb = "use"
 watched_props = PackedStringArray("state")
 
-[node name="HingeL" type="Node3D" parent="Targets/Gate" unique_id=1396391231]
+[node name="HingeL" type="Node3D" parent="Targets/Gate" unique_id=755478578]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
 
-[node name="Leaf" type="CSGBox3D" parent="Targets/Gate/HingeL" unique_id=38275715]
+[node name="Leaf" type="CSGBox3D" parent="Targets/Gate/HingeL" unique_id=502838202]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 5, 0)
 use_collision = true
 size = Vector3(4, 10, 0.35)
-material = SubResource("StandardMaterial3D_lgsnk")
+material = SubResource("StandardMaterial3D_trc0i")
 
-[node name="BandHi" type="CSGBox3D" parent="Targets/Gate/HingeL" unique_id=1653232488]
+[node name="BandHi" type="CSGBox3D" parent="Targets/Gate/HingeL" unique_id=1288132494]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 7.5, 0)
 size = Vector3(4, 0.3, 0.4)
-material = SubResource("StandardMaterial3D_pyadx")
+material = SubResource("StandardMaterial3D_f5sp3")
 
-[node name="BandLo" type="CSGBox3D" parent="Targets/Gate/HingeL" unique_id=1916260586]
+[node name="BandLo" type="CSGBox3D" parent="Targets/Gate/HingeL" unique_id=1427083131]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2.5, 0)
 size = Vector3(4, 0.3, 0.4)
-material = SubResource("StandardMaterial3D_pyadx")
+material = SubResource("StandardMaterial3D_f5sp3")
 
-[node name="HingeR" type="Node3D" parent="Targets/Gate" unique_id=727590677]
+[node name="HingeR" type="Node3D" parent="Targets/Gate" unique_id=618624067]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
 
-[node name="Leaf" type="CSGBox3D" parent="Targets/Gate/HingeR" unique_id=1128229863]
+[node name="Leaf" type="CSGBox3D" parent="Targets/Gate/HingeR" unique_id=1585902136]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 5, 0)
 use_collision = true
 size = Vector3(4, 10, 0.35)
-material = SubResource("StandardMaterial3D_lgsnk")
+material = SubResource("StandardMaterial3D_trc0i")
 
-[node name="BandHi" type="CSGBox3D" parent="Targets/Gate/HingeR" unique_id=1177755902]
+[node name="BandHi" type="CSGBox3D" parent="Targets/Gate/HingeR" unique_id=2065525245]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 7.5, 0)
 size = Vector3(4, 0.3, 0.4)
-material = SubResource("StandardMaterial3D_pyadx")
+material = SubResource("StandardMaterial3D_f5sp3")
 
-[node name="BandLo" type="CSGBox3D" parent="Targets/Gate/HingeR" unique_id=975805440]
+[node name="BandLo" type="CSGBox3D" parent="Targets/Gate/HingeR" unique_id=490731546]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2.5, 0)
 size = Vector3(4, 0.3, 0.4)
-material = SubResource("StandardMaterial3D_pyadx")
+material = SubResource("StandardMaterial3D_f5sp3")
 
-[node name="GatePresenter" type="Node" parent="Targets/Gate" unique_id=1265903950 node_paths=PackedStringArray("left_hinge", "right_hinge")]
-script = ExtResource("3_oiag1")
+[node name="GatePresenter" type="Node" parent="Targets/Gate" unique_id=85331670 node_paths=PackedStringArray("left_hinge", "right_hinge")]
+script = ExtResource("4_a655f")
 left_hinge = NodePath("../HingeL")
 right_hinge = NodePath("../HingeR")
 
-[node name="Firewood" type="Node3D" parent="Targets" unique_id=279397312]
-script = ExtResource("2_pa23k")
+[node name="Firewood" type="Node3D" parent="Targets" unique_id=1886669270]
+script = ExtResource("3_gktdk")
 target_id = "firewood"
 verb = "use"
 follow_location = true
 watched_props = PackedStringArray()
 
-[node name="Log0_0" type="CSGCylinder3D" parent="Targets/Firewood" unique_id=1039818109]
+[node name="Log0_0" type="CSGCylinder3D" parent="Targets/Firewood" unique_id=1328396330]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -0.5, 0.16, 0)
 radius = 0.16
 height = 1.4
 sides = 16
-material = SubResource("StandardMaterial3D_jhek2")
+material = SubResource("StandardMaterial3D_1g233")
 
-[node name="Log0_1" type="CSGCylinder3D" parent="Targets/Firewood" unique_id=743042832]
+[node name="Log0_1" type="CSGCylinder3D" parent="Targets/Firewood" unique_id=1633975958]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -0.17, 0.16, 0)
 radius = 0.16
 height = 1.4
 sides = 16
-material = SubResource("StandardMaterial3D_jhek2")
+material = SubResource("StandardMaterial3D_1g233")
 
-[node name="Log0_2" type="CSGCylinder3D" parent="Targets/Firewood" unique_id=1691787662]
+[node name="Log0_2" type="CSGCylinder3D" parent="Targets/Firewood" unique_id=444366053]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0.16, 0.16, 0)
 radius = 0.16
 height = 1.4
 sides = 16
-material = SubResource("StandardMaterial3D_jhek2")
+material = SubResource("StandardMaterial3D_1g233")
 
-[node name="Log0_3" type="CSGCylinder3D" parent="Targets/Firewood" unique_id=458904590]
+[node name="Log0_3" type="CSGCylinder3D" parent="Targets/Firewood" unique_id=46446953]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0.49, 0.16, 0)
 radius = 0.16
 height = 1.4
 sides = 16
-material = SubResource("StandardMaterial3D_jhek2")
+material = SubResource("StandardMaterial3D_1g233")
 
-[node name="Log1_0" type="CSGCylinder3D" parent="Targets/Firewood" unique_id=1439618647]
+[node name="Log1_0" type="CSGCylinder3D" parent="Targets/Firewood" unique_id=341447661]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -0.34, 0.45, 0)
 radius = 0.16
 height = 1.4
 sides = 16
-material = SubResource("StandardMaterial3D_jhek2")
+material = SubResource("StandardMaterial3D_1g233")
 
-[node name="Log1_1" type="CSGCylinder3D" parent="Targets/Firewood" unique_id=1135598034]
+[node name="Log1_1" type="CSGCylinder3D" parent="Targets/Firewood" unique_id=1139292617]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -0.01, 0.45, 0)
 radius = 0.16
 height = 1.4
 sides = 16
-material = SubResource("StandardMaterial3D_jhek2")
+material = SubResource("StandardMaterial3D_1g233")
 
-[node name="Log1_2" type="CSGCylinder3D" parent="Targets/Firewood" unique_id=1629072017]
+[node name="Log1_2" type="CSGCylinder3D" parent="Targets/Firewood" unique_id=1734073304]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0.32, 0.45, 0)
 radius = 0.16
 height = 1.4
 sides = 16
-material = SubResource("StandardMaterial3D_jhek2")
+material = SubResource("StandardMaterial3D_1g233")
 
-[node name="Log2_0" type="CSGCylinder3D" parent="Targets/Firewood" unique_id=1535686795]
+[node name="Log2_0" type="CSGCylinder3D" parent="Targets/Firewood" unique_id=594260732]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -0.18, 0.74, 0)
 radius = 0.16
 height = 1.4
 sides = 16
-material = SubResource("StandardMaterial3D_jhek2")
+material = SubResource("StandardMaterial3D_1g233")
 
-[node name="Log2_1" type="CSGCylinder3D" parent="Targets/Firewood" unique_id=933175139]
+[node name="Log2_1" type="CSGCylinder3D" parent="Targets/Firewood" unique_id=1077838064]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0.15, 0.74, 0)
 radius = 0.16
 height = 1.4
 sides = 16
-material = SubResource("StandardMaterial3D_jhek2")
+material = SubResource("StandardMaterial3D_1g233")
 
-[node name="Body" type="StaticBody3D" parent="Targets/Firewood" unique_id=413413288]
+[node name="Body" type="StaticBody3D" parent="Targets/Firewood" unique_id=501698796]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 
-[node name="Shape" type="CollisionShape3D" parent="Targets/Firewood/Body" unique_id=589296887]
-shape = SubResource("BoxShape3D_1baa2")
+[node name="Shape" type="CollisionShape3D" parent="Targets/Firewood/Body" unique_id=880030878]
+shape = SubResource("BoxShape3D_o0j8d")
 
-[node name="TavernSign" type="Node3D" parent="Targets" unique_id=1226484757]
+[node name="TavernSign" type="Node3D" parent="Targets" unique_id=2031462996]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.6, 3.4, 1.8)
-script = ExtResource("2_pa23k")
+script = ExtResource("3_gktdk")
 target_id = "tavern_sign"
 verb = "use"
 watched_props = PackedStringArray("state")
 
-[node name="Arm" type="CSGBox3D" parent="Targets/TavernSign" unique_id=1621801872]
+[node name="Arm" type="CSGBox3D" parent="Targets/TavernSign" unique_id=1683010956]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.15, 0.85, 0)
 size = Vector3(2.3, 0.12, 0.12)
-material = SubResource("StandardMaterial3D_lgsnk")
+material = SubResource("StandardMaterial3D_trc0i")
 
-[node name="Board" type="Node3D" parent="Targets/TavernSign" unique_id=619202420]
+[node name="Board" type="Node3D" parent="Targets/TavernSign" unique_id=541035634]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.25, 0, 0)
 
-[node name="Plank" type="CSGBox3D" parent="Targets/TavernSign/Board" unique_id=2006708937]
+[node name="Plank" type="CSGBox3D" parent="Targets/TavernSign/Board" unique_id=650664708]
 size = Vector3(2, 1.4, 0.1)
-material = SubResource("StandardMaterial3D_jhek2")
+material = SubResource("StandardMaterial3D_1g233")
 
-[node name="Mug" type="CSGBox3D" parent="Targets/TavernSign/Board" unique_id=1652775221]
+[node name="Mug" type="CSGBox3D" parent="Targets/TavernSign/Board" unique_id=27730262]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.35, -0.15, 0)
 size = Vector3(0.6, 0.75, 0.14)
-material = SubResource("StandardMaterial3D_l8n4v")
+material = SubResource("StandardMaterial3D_j3t0u")
 
-[node name="Foam" type="CSGBox3D" parent="Targets/TavernSign/Board" unique_id=1905791395]
+[node name="Foam" type="CSGBox3D" parent="Targets/TavernSign/Board" unique_id=620761332]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.35, 0.33, 0)
 size = Vector3(0.72, 0.24, 0.15)
-material = SubResource("StandardMaterial3D_2vb3e")
+material = SubResource("StandardMaterial3D_v06ig")
 
-[node name="Handle" type="CSGBox3D" parent="Targets/TavernSign/Board" unique_id=372894670]
+[node name="Handle" type="CSGBox3D" parent="Targets/TavernSign/Board" unique_id=1927993023]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.03, -0.15, 0)
 size = Vector3(0.16, 0.42, 0.16)
-material = SubResource("StandardMaterial3D_l8n4v")
+material = SubResource("StandardMaterial3D_j3t0u")
 
-[node name="Text" type="Label3D" parent="Targets/TavernSign/Board" unique_id=824839213]
+[node name="Text" type="Label3D" parent="Targets/TavernSign/Board" unique_id=1726630200]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.55, 0, 0.08)
 text = "술집"
-font = ExtResource("1_7sh0f")
+font = ExtResource("2_oiag1")
 font_size = 72
 
-[node name="SignPresenter" type="Node" parent="Targets/TavernSign" unique_id=1259770017 node_paths=PackedStringArray("board")]
-script = ExtResource("4_gktdk")
+[node name="SignPresenter" type="Node" parent="Targets/TavernSign" unique_id=850143278 node_paths=PackedStringArray("board")]
+script = ExtResource("5_kcivn")
 board = NodePath("../Board")
 
-[node name="TavernBasket" type="Node3D" parent="Targets" unique_id=1563353849]
+[node name="TavernBasket" type="Node3D" parent="Targets" unique_id=118195220]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.6, 0, -6.1)
-script = ExtResource("2_pa23k")
+script = ExtResource("3_gktdk")
 target_id = "tavern_basket"
 verb = "use"
 watched_props = PackedStringArray("state")
 
-[node name="Basket" type="CSGBox3D" parent="Targets/TavernBasket" unique_id=962808593]
+[node name="Basket" type="CSGBox3D" parent="Targets/TavernBasket" unique_id=1758364868]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.175, 0)
 size = Vector3(0.9, 0.35, 0.8)
-material = SubResource("StandardMaterial3D_lgsnk")
+material = SubResource("StandardMaterial3D_trc0i")
 
-[node name="Variants" type="Node3D" parent="Targets/TavernBasket" unique_id=1642161577]
-script = ExtResource("5_a655f")
+[node name="Variants" type="Node3D" parent="Targets/TavernBasket" unique_id=48290916]
+script = ExtResource("6_53v4c")
 
-[node name="low" type="Node3D" parent="Targets/TavernBasket/Variants" unique_id=633833313]
+[node name="low" type="Node3D" parent="Targets/TavernBasket/Variants" unique_id=981859595]
 
-[node name="Log0" type="CSGCylinder3D" parent="Targets/TavernBasket/Variants/low" unique_id=1419431876]
+[node name="Log0" type="CSGCylinder3D" parent="Targets/TavernBasket/Variants/low" unique_id=1475527243]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -0.16, 0.38, 0)
 radius = 0.08
 height = 0.7
 sides = 16
-material = SubResource("StandardMaterial3D_jhek2")
+material = SubResource("StandardMaterial3D_1g233")
 
-[node name="full" type="Node3D" parent="Targets/TavernBasket/Variants" unique_id=120756777]
+[node name="full" type="Node3D" parent="Targets/TavernBasket/Variants" unique_id=1103986287]
 visible = false
 
-[node name="Log0" type="CSGCylinder3D" parent="Targets/TavernBasket/Variants/full" unique_id=1557072822]
+[node name="Log0" type="CSGCylinder3D" parent="Targets/TavernBasket/Variants/full" unique_id=847015540]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -0.16, 0.38, 0)
 radius = 0.08
 height = 0.7
 sides = 16
-material = SubResource("StandardMaterial3D_jhek2")
+material = SubResource("StandardMaterial3D_1g233")
 
-[node name="Log1" type="CSGCylinder3D" parent="Targets/TavernBasket/Variants/full" unique_id=102010283]
+[node name="Log1" type="CSGCylinder3D" parent="Targets/TavernBasket/Variants/full" unique_id=827052230]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0.008, 0.38, 0)
 radius = 0.08
 height = 0.7
 sides = 16
-material = SubResource("StandardMaterial3D_jhek2")
+material = SubResource("StandardMaterial3D_1g233")
 
-[node name="Log2" type="CSGCylinder3D" parent="Targets/TavernBasket/Variants/full" unique_id=948359107]
+[node name="Log2" type="CSGCylinder3D" parent="Targets/TavernBasket/Variants/full" unique_id=2026659380]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0.176, 0.38, 0)
 radius = 0.08
 height = 0.7
 sides = 16
-material = SubResource("StandardMaterial3D_jhek2")
+material = SubResource("StandardMaterial3D_1g233")
 
-[node name="Log3" type="CSGCylinder3D" parent="Targets/TavernBasket/Variants/full" unique_id=1520121133]
+[node name="Log3" type="CSGCylinder3D" parent="Targets/TavernBasket/Variants/full" unique_id=2099136444]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -0.16, 0.52400005, 0)
 radius = 0.08
 height = 0.7
 sides = 16
-material = SubResource("StandardMaterial3D_jhek2")
+material = SubResource("StandardMaterial3D_1g233")
 
-[node name="Log4" type="CSGCylinder3D" parent="Targets/TavernBasket/Variants/full" unique_id=1432369494]
+[node name="Log4" type="CSGCylinder3D" parent="Targets/TavernBasket/Variants/full" unique_id=1399708433]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0.008, 0.52400005, 0)
 radius = 0.08
 height = 0.7
 sides = 16
-material = SubResource("StandardMaterial3D_jhek2")
+material = SubResource("StandardMaterial3D_1g233")
 
-[node name="Log5" type="CSGCylinder3D" parent="Targets/TavernBasket/Variants/full" unique_id=736384415]
+[node name="Log5" type="CSGCylinder3D" parent="Targets/TavernBasket/Variants/full" unique_id=253131633]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0.176, 0.52400005, 0)
 radius = 0.08
 height = 0.7
 sides = 16
-material = SubResource("StandardMaterial3D_jhek2")
+material = SubResource("StandardMaterial3D_1g233")
 
-[node name="Log6" type="CSGCylinder3D" parent="Targets/TavernBasket/Variants/full" unique_id=2080729917]
+[node name="Log6" type="CSGCylinder3D" parent="Targets/TavernBasket/Variants/full" unique_id=1448851250]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -0.16, 0.668, 0)
 radius = 0.08
 height = 0.7
 sides = 16
-material = SubResource("StandardMaterial3D_jhek2")
+material = SubResource("StandardMaterial3D_1g233")
 
-[node name="Log7" type="CSGCylinder3D" parent="Targets/TavernBasket/Variants/full" unique_id=772962469]
+[node name="Log7" type="CSGCylinder3D" parent="Targets/TavernBasket/Variants/full" unique_id=712625660]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0.008, 0.668, 0)
 radius = 0.08
 height = 0.7
 sides = 16
-material = SubResource("StandardMaterial3D_jhek2")
+material = SubResource("StandardMaterial3D_1g233")
 
-[node name="FireBurning" type="OmniLight3D" parent="Targets/TavernBasket/Variants/full" unique_id=640204422]
+[node name="FireBurning" type="OmniLight3D" parent="Targets/TavernBasket/Variants/full" unique_id=1675774150]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9, 0.9, 0.9)
 light_color = Color(1, 0.55, 0.22, 1)
 light_energy = 2.4
 omni_range = 7.0
 
-[node name="Anchors" type="Node3D" parent="." unique_id=958503183]
+[node name="Anchors" type="Node3D" parent="." unique_id=986442498]
 
-[node name="entrance_player" type="Marker3D" parent="Anchors" unique_id=7617634]
+[node name="entrance_player" type="Marker3D" parent="Anchors" unique_id=389756636]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 63)
-script = ExtResource("6_kcivn")
+script = ExtResource("7_ksooq")
 anchor_id = "entrance"
 for_target = "player"
 
-[node name="entrance_any" type="Marker3D" parent="Anchors" unique_id=1774667548]
+[node name="entrance_any" type="Marker3D" parent="Anchors" unique_id=978723907]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 60)
-script = ExtResource("6_kcivn")
+script = ExtResource("7_ksooq")
 anchor_id = "entrance"
 
-[node name="square_any" type="Marker3D" parent="Anchors" unique_id=1122640991]
+[node name="square_any" type="Marker3D" parent="Anchors" unique_id=1314924029]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6)
-script = ExtResource("6_kcivn")
+script = ExtResource("7_ksooq")
 anchor_id = "square"
 
-[node name="tavern_bartender" type="Marker3D" parent="Anchors" unique_id=1731707934]
+[node name="tavern_bartender" type="Marker3D" parent="Anchors" unique_id=999552291]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -24.6, 0, -2)
-script = ExtResource("6_kcivn")
+script = ExtResource("7_ksooq")
 anchor_id = "tavern"
 for_target = "bartender"
 
-[node name="tavern_any" type="Marker3D" parent="Anchors" unique_id=286130274]
+[node name="tavern_any" type="Marker3D" parent="Anchors" unique_id=2080749366]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, -2)
-script = ExtResource("6_kcivn")
+script = ExtResource("7_ksooq")
 anchor_id = "tavern"
 
-[node name="smithy_firewood" type="Marker3D" parent="Anchors" unique_id=1761971767]
+[node name="smithy_firewood" type="Marker3D" parent="Anchors" unique_id=416600354]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -14.2, 0, 24.5)
-script = ExtResource("6_kcivn")
+script = ExtResource("7_ksooq")
 anchor_id = "smithy"
 for_target = "firewood"
 
-[node name="smithy_any" type="Marker3D" parent="Anchors" unique_id=876272891]
+[node name="smithy_any" type="Marker3D" parent="Anchors" unique_id=800097832]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 0, 22)
-script = ExtResource("6_kcivn")
+script = ExtResource("7_ksooq")
 anchor_id = "smithy"
 
-[node name="gate_guard" type="Marker3D" parent="Anchors" unique_id=425905003]
+[node name="gate_guard" type="Marker3D" parent="Anchors" unique_id=2048135208]
 transform = Transform3D(-0.9396926, 0, -0.34202015, 0, 1, 0, 0.34202015, 0, -0.9396926, 5.6, 6, -41)
-script = ExtResource("6_kcivn")
+script = ExtResource("7_ksooq")
 anchor_id = "gate"
 for_target = "guard"
 
-[node name="gate_any" type="Marker3D" parent="Anchors" unique_id=701975958]
+[node name="gate_any" type="Marker3D" parent="Anchors" unique_id=703305866]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, -41)
-script = ExtResource("6_kcivn")
+script = ExtResource("7_ksooq")
 anchor_id = "gate"
 
-[node name="castle_foyer_any" type="Marker3D" parent="Anchors" unique_id=135007479]
+[node name="castle_foyer_any" type="Marker3D" parent="Anchors" unique_id=1688527382]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, -51)
-script = ExtResource("6_kcivn")
+script = ExtResource("7_ksooq")
 anchor_id = "castle_foyer"
 
-[node name="CastleFoyerVolume" type="Area3D" parent="." unique_id=1262517645]
+[node name="CastleFoyerVolume" type="Area3D" parent="." unique_id=735035616]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.5, -51)
-script = ExtResource("7_53v4c")
+script = ExtResource("8_th5xy")
 volume_id = "castle_foyer"
 
-[node name="Shape" type="CollisionShape3D" parent="CastleFoyerVolume" unique_id=336850535]
-shape = SubResource("BoxShape3D_o0j8d")
+[node name="Shape" type="CollisionShape3D" parent="CastleFoyerVolume" unique_id=844397029]
+shape = SubResource("BoxShape3D_x34sj")
 
-[node name="Player" type="CharacterBody3D" parent="." unique_id=358618107]
+[node name="Player" type="CharacterBody3D" parent="." unique_id=44616846]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 63)
-script = ExtResource("8_ksooq")
+script = ExtResource("9_my7oa")
 
-[node name="Collision" type="CollisionShape3D" parent="Player" unique_id=488913880]
+[node name="Collision" type="CollisionShape3D" parent="Player" unique_id=789618818]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.875, 0)
-shape = SubResource("CapsuleShape3D_j3t0u")
+shape = SubResource("CapsuleShape3D_1imjw")
 
-[node name="Head" type="Node3D" parent="Player" unique_id=2102095396]
+[node name="Head" type="Node3D" parent="Player" unique_id=1061929646]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.62, 0)
 
-[node name="Camera3D" type="Camera3D" parent="Player/Head" unique_id=674246414]
+[node name="Camera3D" type="Camera3D" parent="Player/Head" unique_id=892294532]
 current = true
 fov = 72.0
 
-[node name="InteractRay" type="RayCast3D" parent="Player/Head/Camera3D" unique_id=1689311869]
+[node name="InteractRay" type="RayCast3D" parent="Player/Head/Camera3D" unique_id=1819070559]
 
-[node name="Held" type="Node3D" parent="Player/Head/Camera3D" unique_id=373034539]
-script = ExtResource("2_pa23k")
+[node name="Held" type="Node3D" parent="Player/Head/Camera3D" unique_id=195419335]
+script = ExtResource("3_gktdk")
 target_id = "player"
 verb = "use"
 watched_props = PackedStringArray("carrying")
 
-[node name="Variants" type="Node3D" parent="Player/Head/Camera3D/Held" unique_id=1747021940]
-script = ExtResource("5_a655f")
+[node name="Variants" type="Node3D" parent="Player/Head/Camera3D/Held" unique_id=1512067746]
+script = ExtResource("6_53v4c")
 prop = "carrying"
 
-[node name="nothing" type="Node3D" parent="Player/Head/Camera3D/Held/Variants" unique_id=627774340]
+[node name="nothing" type="Node3D" parent="Player/Head/Camera3D/Held/Variants" unique_id=1992966331]
 
-[node name="firewood" type="Node3D" parent="Player/Head/Camera3D/Held/Variants" unique_id=427202209]
+[node name="firewood" type="Node3D" parent="Player/Head/Camera3D/Held/Variants" unique_id=1724034634]
 visible = false
 
-[node name="Log0" type="CSGCylinder3D" parent="Player/Head/Camera3D/Held/Variants/firewood" unique_id=1542707122]
+[node name="Log0" type="CSGCylinder3D" parent="Player/Head/Camera3D/Held/Variants/firewood" unique_id=584716023]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0.17999999, -0.35, -0.62)
 radius = 0.07
 height = 0.55
 sides = 16
-material = SubResource("StandardMaterial3D_jhek2")
+material = SubResource("StandardMaterial3D_1g233")
 
-[node name="Log1" type="CSGCylinder3D" parent="Player/Head/Camera3D/Held/Variants/firewood" unique_id=1435628580]
+[node name="Log1" type="CSGCylinder3D" parent="Player/Head/Camera3D/Held/Variants/firewood" unique_id=2039819153]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0.327, -0.35, -0.62)
 radius = 0.07
 height = 0.55
 sides = 16
-material = SubResource("StandardMaterial3D_jhek2")
+material = SubResource("StandardMaterial3D_1g233")
 
-[node name="Log2" type="CSGCylinder3D" parent="Player/Head/Camera3D/Held/Variants/firewood" unique_id=1381556817]
+[node name="Log2" type="CSGCylinder3D" parent="Player/Head/Camera3D/Held/Variants/firewood" unique_id=1829919699]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0.47399998, -0.35, -0.62)
 radius = 0.07
 height = 0.55
 sides = 16
-material = SubResource("StandardMaterial3D_jhek2")
+material = SubResource("StandardMaterial3D_1g233")
 
-[node name="Log3" type="CSGCylinder3D" parent="Player/Head/Camera3D/Held/Variants/firewood" unique_id=1688209910]
+[node name="Log3" type="CSGCylinder3D" parent="Player/Head/Camera3D/Held/Variants/firewood" unique_id=369552987]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0.17999999, -0.22399999, -0.62)
 radius = 0.07
 height = 0.55
 sides = 16
-material = SubResource("StandardMaterial3D_jhek2")
+material = SubResource("StandardMaterial3D_1g233")
 
-[node name="Log4" type="CSGCylinder3D" parent="Player/Head/Camera3D/Held/Variants/firewood" unique_id=211957610]
+[node name="Log4" type="CSGCylinder3D" parent="Player/Head/Camera3D/Held/Variants/firewood" unique_id=1515697216]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0.327, -0.22399999, -0.62)
 radius = 0.07
 height = 0.55
 sides = 16
-material = SubResource("StandardMaterial3D_jhek2")
+material = SubResource("StandardMaterial3D_1g233")
 
-[node name="Director" type="Node" parent="." unique_id=2113048088 node_paths=PackedStringArray("player")]
-script = ExtResource("9_th5xy")
+[node name="Director" type="Node" parent="." unique_id=1258173860 node_paths=PackedStringArray("player")]
+script = ExtResource("10_63aph")
 player = NodePath("../Player")

@@ -18,7 +18,13 @@
 
 ## 실행
 
-**Godot 4.7** ([다운로드](https://godotengine.org/download), 압축만 풀면 됨) → Import → 이 폴더의 `project.godot` → F5.
+**브라우저에서 바로 (설치 없음):** https://assasin4359-code.github.io/talk/
+- push 때마다 테스트를 통과한 빌드가 자동으로 올라간다. 새로고침하면 최신 버전.
+- 게임 화면을 한 번 클릭하면 마우스로 시점 조작. 크롬/엣지 권장.
+- 처음 한 번만: 레포 Settings → Pages → Build and deployment → Source를 **GitHub Actions**로.
+- 웹은 더 단순한 렌더러(WebGL 2)라 색감·그림자가 데스크톱보다 조금 거칠다.
+
+**에디터로 열기 (수정할 때):** **Godot 4.7** ([다운로드](https://godotengine.org/download), 압축만 풀면 됨) → Import → 이 폴더의 `project.godot` → F5.
 | 키 | |
 |---|---|
 | WASD / 마우스 | 이동 / 시점 (Shift 달리기). 점프는 없음(의도) — 30cm 이하 턱은 자동으로 넘어감 |

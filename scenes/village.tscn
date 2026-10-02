@@ -1,0 +1,1384 @@
+[gd_scene format=3]
+
+[ext_resource type="FontFile" path="res://assets/fonts/Pretendard-SemiBold.otf" id="1_5m02y"]
+[ext_resource type="Script" path="res://game/world/narrative_target.gd" id="2_7sh0f"]
+[ext_resource type="Script" path="res://game/world/gate_presenter.gd" id="3_pa23k"]
+[ext_resource type="Script" path="res://game/world/sign_presenter.gd" id="4_oiag1"]
+[ext_resource type="Script" path="res://game/world/anchor.gd" id="5_gktdk"]
+[ext_resource type="Script" path="res://game/world/narrative_volume.gd" id="6_a655f"]
+[ext_resource type="Script" path="res://game/player/player.gd" id="7_kcivn"]
+[ext_resource type="Script" path="res://game/director.gd" id="8_53v4c"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ksooq"]
+sky_top_color = Color(0.36, 0.56, 0.86, 1)
+sky_horizon_color = Color(0.72, 0.8, 0.9, 1)
+ground_horizon_color = Color(0.72, 0.8, 0.9, 1)
+
+[sub_resource type="Sky" id="Sky_th5xy"]
+sky_material = SubResource("ProceduralSkyMaterial_ksooq")
+
+[sub_resource type="Environment" id="Environment_my7oa"]
+background_mode = 2
+sky = SubResource("Sky_th5xy")
+ambient_light_source = 3
+ambient_light_energy = 0.9
+tonemap_mode = 2
+fog_enabled = true
+fog_light_color = Color(0.72, 0.79, 0.88, 1)
+fog_density = 0.0012
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_63aph"]
+albedo_color = Color(0.43, 0.56, 0.31, 1)
+roughness = 0.9
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ogrjq"]
+albedo_color = Color(0.64, 0.55, 0.41, 1)
+roughness = 0.9
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mu7p8"]
+albedo_color = Color(0.71, 0.69, 0.64, 1)
+roughness = 0.9
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v3dlt"]
+albedo_color = Color(0.6, 0.6, 0.62, 1)
+roughness = 0.9
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kbuqd"]
+albedo_color = Color(0.16, 0.24, 0.32, 1)
+roughness = 0.2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hxukt"]
+albedo_color = Color(0.46, 0.31, 0.19, 1)
+roughness = 0.9
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6chju"]
+albedo_color = Color(0.88, 0.82, 0.7, 1)
+roughness = 0.9
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jhek2"]
+albedo_color = Color(0.6, 0.27, 0.21, 1)
+roughness = 0.9
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lvn8r"]
+albedo_color = Color(0.3, 0.2, 0.12, 1)
+roughness = 0.9
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1g233"]
+albedo_color = Color(0.42, 0.42, 0.46, 1)
+roughness = 0.9
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lgsnk"]
+albedo_color = Color(0.09, 0.08, 0.08, 1)
+roughness = 0.9
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1grk4"]
+albedo_color = Color(0.8, 0.76, 0.66, 1)
+roughness = 0.9
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_trc0i"]
+albedo_color = Color(0.35, 0.38, 0.48, 1)
+roughness = 0.9
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ga4m5"]
+albedo_color = Color(0.62, 0.63, 0.67, 1)
+metallic = 0.8
+roughness = 0.4
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cm0pc"]
+albedo_color = Color(0.75, 0.3, 0.28, 1)
+roughness = 0.9
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pyadx"]
+albedo_color = Color(0.3, 0.52, 0.62, 1)
+roughness = 0.9
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_spgee"]
+albedo_color = Color(0.38, 0.51, 0.29, 1)
+roughness = 0.9
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f5sp3"]
+albedo_color = Color(0.82, 0.81, 0.78, 1)
+roughness = 0.35
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6ldqi"]
+albedo_color = Color(0.25, 0.44, 0.22, 1)
+roughness = 0.9
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7uo60"]
+radius = 0.35
+height = 1.8
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ias0o"]
+albedo_color = Color(0.86, 0.52, 0.22, 1)
+roughness = 0.9
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_wltmo"]
+radius = 0.32
+height = 1.75
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lifri"]
+albedo_color = Color(0.93, 0.92, 0.88, 1)
+roughness = 0.9
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_csdd4"]
+radius = 0.35
+height = 1.8
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2vb3e"]
+albedo_color = Color(0.25, 0.36, 0.66, 1)
+roughness = 0.9
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_ci1yp"]
+radius = 0.32
+height = 1.75
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_v06ig"]
+size = Vector3(1.6, 1, 1.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_beyr0"]
+albedo_color = Color(0.96, 0.74, 0.18, 1)
+roughness = 0.9
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1baa2"]
+size = Vector3(12, 3, 3)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_l8n4v"]
+radius = 0.35
+height = 1.75
+
+[node name="Village" type="Node3D" unique_id=28110389]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=966680560]
+environment = SubResource("Environment_my7oa")
+
+[node name="Sun" type="DirectionalLight3D" parent="." unique_id=1415800486]
+transform = Transform3D(0.81915206, 0.4262504, -0.38379753, 0, 0.66913056, 0.74314487, 0.57357645, -0.6087487, 0.54811966, 0, 0, 0)
+light_energy = 1.15
+shadow_enabled = true
+
+[node name="Blockout" type="Node3D" parent="." unique_id=469052976]
+
+[node name="Ground" type="CSGBox3D" parent="Blockout" unique_id=528628972]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+use_collision = true
+size = Vector3(320, 1, 320)
+material = SubResource("StandardMaterial3D_63aph")
+
+[node name="Road" type="CSGBox3D" parent="Blockout" unique_id=452589532]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02, 26)
+use_collision = true
+size = Vector3(6, 0.04, 80)
+material = SubResource("StandardMaterial3D_ogrjq")
+
+[node name="PathTavern" type="CSGBox3D" parent="Blockout" unique_id=66528588]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0.02, -2)
+use_collision = true
+size = Vector3(12, 0.04, 3)
+material = SubResource("StandardMaterial3D_ogrjq")
+
+[node name="PathSmithy" type="CSGBox3D" parent="Blockout" unique_id=224628090]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0.02, 22)
+use_collision = true
+size = Vector3(14, 0.04, 3)
+material = SubResource("StandardMaterial3D_ogrjq")
+
+[node name="Plaza" type="CSGCylinder3D" parent="Blockout" unique_id=82851433]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.025, 0)
+use_collision = true
+radius = 14.0
+height = 0.05
+sides = 16
+material = SubResource("StandardMaterial3D_mu7p8")
+
+[node name="Well" type="CSGCombiner3D" parent="Blockout" unique_id=6769312]
+use_collision = true
+
+[node name="Rim" type="CSGCylinder3D" parent="Blockout/Well" unique_id=1099158449]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.45, 0)
+radius = 1.3
+height = 0.9
+sides = 16
+material = SubResource("StandardMaterial3D_v3dlt")
+
+[node name="Hole" type="CSGCylinder3D" parent="Blockout/Well" unique_id=1454228707]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
+operation = 2
+radius = 1.0
+height = 1.0
+sides = 16
+material = SubResource("StandardMaterial3D_v3dlt")
+
+[node name="Water" type="CSGCylinder3D" parent="Blockout" unique_id=85772798]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
+radius = 1.0
+height = 0.05
+sides = 16
+material = SubResource("StandardMaterial3D_kbuqd")
+
+[node name="WellPostL" type="CSGBox3D" parent="Blockout" unique_id=1637013936]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1, 1.2, 0)
+size = Vector3(0.2, 2.4, 0.2)
+material = SubResource("StandardMaterial3D_hxukt")
+
+[node name="WellPostR" type="CSGBox3D" parent="Blockout" unique_id=2090943319]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1, 1.2, 0)
+size = Vector3(0.2, 2.4, 0.2)
+material = SubResource("StandardMaterial3D_hxukt")
+
+[node name="WellBeam" type="CSGBox3D" parent="Blockout" unique_id=282789870]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, 0)
+size = Vector3(2.6, 0.2, 0.2)
+material = SubResource("StandardMaterial3D_hxukt")
+
+[node name="Tavern" type="CSGCombiner3D" parent="Blockout" unique_id=1095644174]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21, 0, -2)
+use_collision = true
+
+[node name="Walls" type="CSGBox3D" parent="Blockout/Tavern" unique_id=1148879251]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+size = Vector3(12, 6, 10)
+material = SubResource("StandardMaterial3D_6chju")
+
+[node name="Inside" type="CSGBox3D" parent="Blockout/Tavern" unique_id=1449429835]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.6, 0)
+operation = 2
+size = Vector3(11.4, 6.2, 9.4)
+
+[node name="Door" type="CSGBox3D" parent="Blockout/Tavern" unique_id=2089866943]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 1.3, 0)
+operation = 2
+size = Vector3(1, 2.6, 1.8)
+
+[node name="WindowN" type="CSGBox3D" parent="Blockout/Tavern" unique_id=67420493]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 2.4, -3)
+operation = 2
+size = Vector3(1, 1.2, 1.4)
+
+[node name="WindowS" type="CSGBox3D" parent="Blockout/Tavern" unique_id=935383404]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 2.4, 3)
+operation = 2
+size = Vector3(1, 1.2, 1.4)
+
+[node name="TavernFloor" type="CSGBox3D" parent="Blockout" unique_id=244923589]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21, 0.03, -2)
+use_collision = true
+size = Vector3(11.4, 0.06, 9.4)
+material = SubResource("StandardMaterial3D_hxukt")
+
+[node name="TavernRoof" type="CSGPolygon3D" parent="Blockout" unique_id=997720177]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21, 6, 3.5)
+use_collision = true
+polygon = PackedVector2Array(-6.6, 0, 0, 3.2, 6.6, 0)
+depth = 11.0
+material = SubResource("StandardMaterial3D_jhek2")
+
+[node name="Counter" type="CSGBox3D" parent="Blockout" unique_id=1315539556]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.6, 0.475, -2)
+use_collision = true
+size = Vector3(1, 0.95, 5)
+material = SubResource("StandardMaterial3D_lvn8r")
+
+[node name="TavernLight" type="OmniLight3D" parent="Blockout" unique_id=1577653371]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21, 4.2, -2)
+light_color = Color(1, 0.78, 0.5, 1)
+light_energy = 2.2
+omni_range = 11.0
+
+[node name="FireGlow" type="OmniLight3D" parent="Blockout" unique_id=220523281]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.5, 0.8, -5.2)
+light_color = Color(1, 0.5, 0.2, 1)
+light_energy = 1.6
+
+[node name="Fireplace" type="CSGBox3D" parent="Blockout" unique_id=1177273017]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.5, 1.1, -6.3)
+use_collision = true
+size = Vector3(2.6, 2.2, 0.8)
+material = SubResource("StandardMaterial3D_1g233")
+
+[node name="FireplaceMouth" type="CSGBox3D" parent="Blockout" unique_id=1356773804]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.5, 0.6, -5.86)
+size = Vector3(1.4, 1, 0.1)
+material = SubResource("StandardMaterial3D_lgsnk")
+
+[node name="FirewoodBasket" type="CSGBox3D" parent="Blockout" unique_id=332906447]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.6, 0.25, -6.1)
+use_collision = true
+size = Vector3(0.8, 0.5, 0.8)
+material = SubResource("StandardMaterial3D_hxukt")
+
+[node name="Table0" type="CSGBox3D" parent="Blockout" unique_id=1578557870]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19, 0.4, -3)
+use_collision = true
+size = Vector3(1.2, 0.8, 1.2)
+material = SubResource("StandardMaterial3D_hxukt")
+
+[node name="Table1" type="CSGBox3D" parent="Blockout" unique_id=211239486]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0.4, -3)
+use_collision = true
+size = Vector3(1.2, 0.8, 1.2)
+material = SubResource("StandardMaterial3D_hxukt")
+
+[node name="Table2" type="CSGBox3D" parent="Blockout" unique_id=198013015]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19, 0.4, 0.5)
+use_collision = true
+size = Vector3(1.2, 0.8, 1.2)
+material = SubResource("StandardMaterial3D_hxukt")
+
+[node name="Table3" type="CSGBox3D" parent="Blockout" unique_id=339916556]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0.4, 0.5)
+use_collision = true
+size = Vector3(1.2, 0.8, 1.2)
+material = SubResource("StandardMaterial3D_hxukt")
+
+[node name="SmithyBack" type="CSGBox3D" parent="Blockout" unique_id=1957472197]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26, 2.25, 22)
+use_collision = true
+size = Vector3(0.3, 4.5, 8)
+material = SubResource("StandardMaterial3D_1grk4")
+
+[node name="SmithySideN" type="CSGBox3D" parent="Blockout" unique_id=1915967129]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21, 2.25, 18)
+use_collision = true
+size = Vector3(10, 4.5, 0.3)
+material = SubResource("StandardMaterial3D_1grk4")
+
+[node name="SmithySideS" type="CSGBox3D" parent="Blockout" unique_id=1772071154]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21, 2.25, 26)
+use_collision = true
+size = Vector3(10, 4.5, 0.3)
+material = SubResource("StandardMaterial3D_1grk4")
+
+[node name="SmithyRoof" type="CSGBox3D" parent="Blockout" unique_id=695747173]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21, 4.7, 22)
+use_collision = true
+size = Vector3(11, 0.4, 9)
+material = SubResource("StandardMaterial3D_trc0i")
+
+[node name="Forge" type="CSGBox3D" parent="Blockout" unique_id=147603089]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24, 0.6, 22)
+use_collision = true
+size = Vector3(2, 1.2, 2)
+material = SubResource("StandardMaterial3D_1g233")
+
+[node name="Chimney" type="CSGBox3D" parent="Blockout" unique_id=617415354]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.5, 4.5, 22)
+use_collision = true
+size = Vector3(1, 4.5, 1)
+material = SubResource("StandardMaterial3D_1g233")
+
+[node name="Anvil" type="CSGBox3D" parent="Blockout" unique_id=1232942069]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0.4, 22)
+use_collision = true
+size = Vector3(0.8, 0.8, 0.4)
+material = SubResource("StandardMaterial3D_ga4m5")
+
+[node name="ClosedSignPost" type="CSGBox3D" parent="Blockout" unique_id=268082750]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.4, 0.7, 19.4)
+use_collision = true
+size = Vector3(0.12, 1.4, 0.12)
+material = SubResource("StandardMaterial3D_hxukt")
+
+[node name="ClosedSignBoard" type="CSGBox3D" parent="Blockout" unique_id=665179346]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.4, 1.4, 19.4)
+use_collision = true
+size = Vector3(0.06, 0.6, 1.2)
+material = SubResource("StandardMaterial3D_hxukt")
+
+[node name="ClosedSignText" type="Label3D" parent="Blockout" unique_id=1646143483]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -15.35, 1.4, 19.4)
+text = "오늘 휴업"
+font = ExtResource("1_5m02y")
+font_size = 40
+
+[node name="HouseE1" type="Node3D" parent="Blockout" unique_id=2034745134]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 22, 0, -3)
+
+[node name="Walls" type="CSGBox3D" parent="Blockout/HouseE1" unique_id=1936789267]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.75, 0)
+use_collision = true
+size = Vector3(10, 5.5, 8)
+material = SubResource("StandardMaterial3D_1grk4")
+
+[node name="Roof" type="CSGPolygon3D" parent="Blockout/HouseE1" unique_id=1283354703]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.5, 4.4)
+use_collision = true
+polygon = PackedVector2Array(-5.5, 0, 0, 2.6, 5.5, 0)
+depth = 8.8
+material = SubResource("StandardMaterial3D_jhek2")
+
+[node name="Door" type="CSGBox3D" parent="Blockout/HouseE1" unique_id=53303708]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 4.05)
+size = Vector3(1.1, 2.2, 0.1)
+material = SubResource("StandardMaterial3D_lvn8r")
+
+[node name="WindowL" type="CSGBox3D" parent="Blockout/HouseE1" unique_id=469600010]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.9, 2.6, 4.05)
+size = Vector3(1, 1, 0.1)
+material = SubResource("StandardMaterial3D_lgsnk")
+
+[node name="WindowR" type="CSGBox3D" parent="Blockout/HouseE1" unique_id=1579905594]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9, 2.6, 4.05)
+size = Vector3(1, 1, 0.1)
+material = SubResource("StandardMaterial3D_lgsnk")
+
+[node name="HouseE2" type="Node3D" parent="Blockout" unique_id=156589120]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 23, 0, 20)
+
+[node name="Walls" type="CSGBox3D" parent="Blockout/HouseE2" unique_id=1663453365]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+use_collision = true
+size = Vector3(9, 5, 8)
+material = SubResource("StandardMaterial3D_6chju")
+
+[node name="Roof" type="CSGPolygon3D" parent="Blockout/HouseE2" unique_id=363162813]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 4.4)
+use_collision = true
+polygon = PackedVector2Array(-5, 0, 0, 2.6, 5, 0)
+depth = 8.8
+material = SubResource("StandardMaterial3D_trc0i")
+
+[node name="Door" type="CSGBox3D" parent="Blockout/HouseE2" unique_id=1706796587]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 4.05)
+size = Vector3(1.1, 2.2, 0.1)
+material = SubResource("StandardMaterial3D_lvn8r")
+
+[node name="WindowL" type="CSGBox3D" parent="Blockout/HouseE2" unique_id=1743749632]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.65, 2.6, 4.05)
+size = Vector3(1, 1, 0.1)
+material = SubResource("StandardMaterial3D_lgsnk")
+
+[node name="WindowR" type="CSGBox3D" parent="Blockout/HouseE2" unique_id=368707047]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.65, 2.6, 4.05)
+size = Vector3(1, 1, 0.1)
+material = SubResource("StandardMaterial3D_lgsnk")
+
+[node name="HouseW3" type="Node3D" parent="Blockout" unique_id=43699802]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -20, 0, 44)
+
+[node name="Walls" type="CSGBox3D" parent="Blockout/HouseW3" unique_id=36459600]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+use_collision = true
+size = Vector3(9, 5, 8)
+material = SubResource("StandardMaterial3D_6chju")
+
+[node name="Roof" type="CSGPolygon3D" parent="Blockout/HouseW3" unique_id=723733048]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 4.4)
+use_collision = true
+polygon = PackedVector2Array(-5, 0, 0, 2.6, 5, 0)
+depth = 8.8
+material = SubResource("StandardMaterial3D_jhek2")
+
+[node name="Door" type="CSGBox3D" parent="Blockout/HouseW3" unique_id=77989381]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 4.05)
+size = Vector3(1.1, 2.2, 0.1)
+material = SubResource("StandardMaterial3D_lvn8r")
+
+[node name="WindowL" type="CSGBox3D" parent="Blockout/HouseW3" unique_id=1476155954]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.65, 2.6, 4.05)
+size = Vector3(1, 1, 0.1)
+material = SubResource("StandardMaterial3D_lgsnk")
+
+[node name="WindowR" type="CSGBox3D" parent="Blockout/HouseW3" unique_id=971587167]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.65, 2.6, 4.05)
+size = Vector3(1, 1, 0.1)
+material = SubResource("StandardMaterial3D_lgsnk")
+
+[node name="HouseE4" type="Node3D" parent="Blockout" unique_id=1859526809]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 16, 0, 46)
+
+[node name="Walls" type="CSGBox3D" parent="Blockout/HouseE4" unique_id=1210255838]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+use_collision = true
+size = Vector3(8, 5, 7)
+material = SubResource("StandardMaterial3D_1grk4")
+
+[node name="Roof" type="CSGPolygon3D" parent="Blockout/HouseE4" unique_id=1497562559]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 3.9)
+use_collision = true
+polygon = PackedVector2Array(-4.5, 0, 0, 2.6, 4.5, 0)
+depth = 7.8
+material = SubResource("StandardMaterial3D_jhek2")
+
+[node name="Door" type="CSGBox3D" parent="Blockout/HouseE4" unique_id=1949690775]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 3.55)
+size = Vector3(1.1, 2.2, 0.1)
+material = SubResource("StandardMaterial3D_lvn8r")
+
+[node name="WindowL" type="CSGBox3D" parent="Blockout/HouseE4" unique_id=733913411]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.4, 2.6, 3.55)
+size = Vector3(1, 1, 0.1)
+material = SubResource("StandardMaterial3D_lgsnk")
+
+[node name="WindowR" type="CSGBox3D" parent="Blockout/HouseE4" unique_id=1549071868]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4, 2.6, 3.55)
+size = Vector3(1, 1, 0.1)
+material = SubResource("StandardMaterial3D_lgsnk")
+
+[node name="HouseN5" type="Node3D" parent="Blockout" unique_id=2038903121]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 26, 0, -24)
+
+[node name="Walls" type="CSGBox3D" parent="Blockout/HouseN5" unique_id=68547540]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.75, 0)
+use_collision = true
+size = Vector3(9, 5.5, 8)
+material = SubResource("StandardMaterial3D_6chju")
+
+[node name="Roof" type="CSGPolygon3D" parent="Blockout/HouseN5" unique_id=1469022100]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.5, 4.4)
+use_collision = true
+polygon = PackedVector2Array(-5, 0, 0, 2.6, 5, 0)
+depth = 8.8
+material = SubResource("StandardMaterial3D_trc0i")
+
+[node name="Door" type="CSGBox3D" parent="Blockout/HouseN5" unique_id=1267215580]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 4.05)
+size = Vector3(1.1, 2.2, 0.1)
+material = SubResource("StandardMaterial3D_lvn8r")
+
+[node name="WindowL" type="CSGBox3D" parent="Blockout/HouseN5" unique_id=219084579]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.65, 2.6, 4.05)
+size = Vector3(1, 1, 0.1)
+material = SubResource("StandardMaterial3D_lgsnk")
+
+[node name="WindowR" type="CSGBox3D" parent="Blockout/HouseN5" unique_id=150349112]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.65, 2.6, 4.05)
+size = Vector3(1, 1, 0.1)
+material = SubResource("StandardMaterial3D_lgsnk")
+
+[node name="HouseN6" type="Node3D" parent="Blockout" unique_id=1828101942]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -26, 0, -24)
+
+[node name="Walls" type="CSGBox3D" parent="Blockout/HouseN6" unique_id=744314120]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+use_collision = true
+size = Vector3(8, 5, 8)
+material = SubResource("StandardMaterial3D_1grk4")
+
+[node name="Roof" type="CSGPolygon3D" parent="Blockout/HouseN6" unique_id=68841102]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 4.4)
+use_collision = true
+polygon = PackedVector2Array(-4.5, 0, 0, 2.6, 4.5, 0)
+depth = 8.8
+material = SubResource("StandardMaterial3D_jhek2")
+
+[node name="Door" type="CSGBox3D" parent="Blockout/HouseN6" unique_id=458130129]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 4.05)
+size = Vector3(1.1, 2.2, 0.1)
+material = SubResource("StandardMaterial3D_lvn8r")
+
+[node name="WindowL" type="CSGBox3D" parent="Blockout/HouseN6" unique_id=1913767066]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.4, 2.6, 4.05)
+size = Vector3(1, 1, 0.1)
+material = SubResource("StandardMaterial3D_lgsnk")
+
+[node name="WindowR" type="CSGBox3D" parent="Blockout/HouseN6" unique_id=498650663]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4, 2.6, 4.05)
+size = Vector3(1, 1, 0.1)
+material = SubResource("StandardMaterial3D_lgsnk")
+
+[node name="StallA" type="Node3D" parent="Blockout" unique_id=1010120362]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, 18)
+
+[node name="Post_-14_-10" type="CSGBox3D" parent="Blockout/StallA" unique_id=615255320]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4, 1.2, -1)
+size = Vector3(0.15, 2.4, 0.15)
+material = SubResource("StandardMaterial3D_hxukt")
+
+[node name="Post_-14_10" type="CSGBox3D" parent="Blockout/StallA" unique_id=1201924395]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4, 1.2, 1)
+size = Vector3(0.15, 2.4, 0.15)
+material = SubResource("StandardMaterial3D_hxukt")
+
+[node name="Post_14_-10" type="CSGBox3D" parent="Blockout/StallA" unique_id=1758153995]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4, 1.2, -1)
+size = Vector3(0.15, 2.4, 0.15)
+material = SubResource("StandardMaterial3D_hxukt")
+
+[node name="Post_14_10" type="CSGBox3D" parent="Blockout/StallA" unique_id=738959761]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4, 1.2, 1)
+size = Vector3(0.15, 2.4, 0.15)
+material = SubResource("StandardMaterial3D_hxukt")
+
+[node name="Awning" type="CSGBox3D" parent="Blockout/StallA" unique_id=205868102]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.45, 0)
+size = Vector3(3.4, 0.12, 2.6)
+material = SubResource("StandardMaterial3D_cm0pc")
+
+[node name="Counter" type="CSGBox3D" parent="Blockout/StallA" unique_id=549652820]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.45, -0.6)
+use_collision = true
+size = Vector3(3, 0.9, 0.8)
+material = SubResource("StandardMaterial3D_hxukt")
+
+[node name="StallB" type="Node3D" parent="Blockout" unique_id=49638895]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, 27)
+
+[node name="Post_-14_-10" type="CSGBox3D" parent="Blockout/StallB" unique_id=722143806]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4, 1.2, -1)
+size = Vector3(0.15, 2.4, 0.15)
+material = SubResource("StandardMaterial3D_hxukt")
+
+[node name="Post_-14_10" type="CSGBox3D" parent="Blockout/StallB" unique_id=1304673792]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4, 1.2, 1)
+size = Vector3(0.15, 2.4, 0.15)
+material = SubResource("StandardMaterial3D_hxukt")
+
+[node name="Post_14_-10" type="CSGBox3D" parent="Blockout/StallB" unique_id=757353179]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4, 1.2, -1)
+size = Vector3(0.15, 2.4, 0.15)
+material = SubResource("StandardMaterial3D_hxukt")
+
+[node name="Post_14_10" type="CSGBox3D" parent="Blockout/StallB" unique_id=1261556560]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4, 1.2, 1)
+size = Vector3(0.15, 2.4, 0.15)
+material = SubResource("StandardMaterial3D_hxukt")
+
+[node name="Awning" type="CSGBox3D" parent="Blockout/StallB" unique_id=288499408]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.45, 0)
+size = Vector3(3.4, 0.12, 2.6)
+material = SubResource("StandardMaterial3D_pyadx")
+
+[node name="Counter" type="CSGBox3D" parent="Blockout/StallB" unique_id=2079845385]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.45, -0.6)
+use_collision = true
+size = Vector3(3, 0.9, 0.8)
+material = SubResource("StandardMaterial3D_hxukt")
+
+[node name="ArchPostL" type="CSGBox3D" parent="Blockout" unique_id=910275562]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 2.5, 60)
+use_collision = true
+size = Vector3(0.4, 5, 0.4)
+material = SubResource("StandardMaterial3D_hxukt")
+
+[node name="ArchPostR" type="CSGBox3D" parent="Blockout" unique_id=696500348]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 2.5, 60)
+use_collision = true
+size = Vector3(0.4, 5, 0.4)
+material = SubResource("StandardMaterial3D_hxukt")
+
+[node name="ArchBeam" type="CSGBox3D" parent="Blockout" unique_id=1136059958]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 60)
+use_collision = true
+size = Vector3(9, 0.5, 0.5)
+material = SubResource("StandardMaterial3D_hxukt")
+
+[node name="FenceL" type="CSGBox3D" parent="Blockout" unique_id=1660493076]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 0.55, 60)
+use_collision = true
+size = Vector3(26, 1.1, 0.2)
+material = SubResource("StandardMaterial3D_hxukt")
+
+[node name="FenceR" type="CSGBox3D" parent="Blockout" unique_id=119379252]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 0.55, 60)
+use_collision = true
+size = Vector3(26, 1.1, 0.2)
+material = SubResource("StandardMaterial3D_hxukt")
+
+[node name="Plateau" type="CSGBox3D" parent="Blockout" unique_id=1225464049]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -75)
+use_collision = true
+size = Vector3(140, 6, 70)
+material = SubResource("StandardMaterial3D_spgee")
+
+[node name="Ramp" type="CSGBox3D" parent="Blockout" unique_id=1788033788]
+transform = Transform3D(1, 0, 0, 0, 0.9743912, -0.2248595, 0, 0.2248595, 0.9743912, 0, 2.3928046, -27.11243)
+use_collision = true
+size = Vector3(8, 1, 27.683329)
+material = SubResource("StandardMaterial3D_ogrjq")
+
+[node name="GateRoad" type="CSGBox3D" parent="Blockout" unique_id=1549707797]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.02, -42)
+use_collision = true
+size = Vector3(6, 0.04, 6)
+material = SubResource("StandardMaterial3D_ogrjq")
+
+[node name="WallL" type="CSGBox3D" parent="Blockout" unique_id=1812720440]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 13, -46)
+use_collision = true
+size = Vector3(32, 14, 3)
+material = SubResource("StandardMaterial3D_v3dlt")
+
+[node name="WallR" type="CSGBox3D" parent="Blockout" unique_id=807831424]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 13, -46)
+use_collision = true
+size = Vector3(32, 14, 3)
+material = SubResource("StandardMaterial3D_v3dlt")
+
+[node name="Lintel" type="CSGBox3D" parent="Blockout" unique_id=437764948]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 18, -46)
+use_collision = true
+size = Vector3(8, 4, 3)
+material = SubResource("StandardMaterial3D_v3dlt")
+
+[node name="GateTowerL" type="CSGBox3D" parent="Blockout" unique_id=1437242168]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, 15.5, -45.5)
+use_collision = true
+size = Vector3(4, 19, 4)
+material = SubResource("StandardMaterial3D_1g233")
+
+[node name="GateTowerR" type="CSGBox3D" parent="Blockout" unique_id=2052912745]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5, 15.5, -45.5)
+use_collision = true
+size = Vector3(4, 19, 4)
+material = SubResource("StandardMaterial3D_1g233")
+
+[node name="FoyerFloor" type="CSGBox3D" parent="Blockout" unique_id=1093922350]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.03, -54.75)
+use_collision = true
+size = Vector3(16, 0.06, 14.5)
+material = SubResource("StandardMaterial3D_f5sp3")
+
+[node name="FoyerWallW" type="CSGBox3D" parent="Blockout" unique_id=1986836998]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 11.5, -54.75)
+use_collision = true
+size = Vector3(0.4, 11, 14.5)
+material = SubResource("StandardMaterial3D_v3dlt")
+
+[node name="FoyerWallE" type="CSGBox3D" parent="Blockout" unique_id=1213553446]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 11.5, -54.75)
+use_collision = true
+size = Vector3(0.4, 11, 14.5)
+material = SubResource("StandardMaterial3D_v3dlt")
+
+[node name="FoyerBack" type="CSGBox3D" parent="Blockout" unique_id=305783542]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.5, -62)
+use_collision = true
+size = Vector3(16, 11, 0.4)
+material = SubResource("StandardMaterial3D_v3dlt")
+
+[node name="FoyerInnerDoor" type="CSGBox3D" parent="Blockout" unique_id=278805591]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.5, -61.75)
+size = Vector3(3, 5, 0.1)
+material = SubResource("StandardMaterial3D_lvn8r")
+
+[node name="FoyerCeiling" type="CSGBox3D" parent="Blockout" unique_id=32189771]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 17.2, -54.75)
+use_collision = true
+size = Vector3(16.4, 0.4, 14.9)
+material = SubResource("StandardMaterial3D_1g233")
+
+[node name="FoyerLight" type="OmniLight3D" parent="Blockout" unique_id=85677939]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13, -53.5)
+light_color = Color(1, 0.8, 0.52, 1)
+light_energy = 6.0
+omni_range = 22.0
+
+[node name="Keep" type="CSGBox3D" parent="Blockout" unique_id=263378908]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 17, -82)
+use_collision = true
+size = Vector3(34, 22, 26)
+material = SubResource("StandardMaterial3D_v3dlt")
+
+[node name="TowerWS" type="CSGCylinder3D" parent="Blockout" unique_id=194081399]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 21, -69)
+use_collision = true
+radius = 4.0
+height = 30.0
+sides = 16
+material = SubResource("StandardMaterial3D_1g233")
+
+[node name="TowerRoofWS" type="CSGCylinder3D" parent="Blockout" unique_id=1244830072]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 39.5, -69)
+radius = 4.8
+height = 7.0
+sides = 16
+cone = true
+material = SubResource("StandardMaterial3D_trc0i")
+
+[node name="TowerWN" type="CSGCylinder3D" parent="Blockout" unique_id=1942876989]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 21, -95)
+use_collision = true
+radius = 4.0
+height = 30.0
+sides = 16
+material = SubResource("StandardMaterial3D_1g233")
+
+[node name="TowerRoofWN" type="CSGCylinder3D" parent="Blockout" unique_id=1086229157]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 39.5, -95)
+radius = 4.8
+height = 7.0
+sides = 16
+cone = true
+material = SubResource("StandardMaterial3D_trc0i")
+
+[node name="TowerES" type="CSGCylinder3D" parent="Blockout" unique_id=994796293]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 21, -69)
+use_collision = true
+radius = 4.0
+height = 30.0
+sides = 16
+material = SubResource("StandardMaterial3D_1g233")
+
+[node name="TowerRoofES" type="CSGCylinder3D" parent="Blockout" unique_id=1589286853]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 39.5, -69)
+radius = 4.8
+height = 7.0
+sides = 16
+cone = true
+material = SubResource("StandardMaterial3D_trc0i")
+
+[node name="TowerEN" type="CSGCylinder3D" parent="Blockout" unique_id=1994118492]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 21, -95)
+use_collision = true
+radius = 4.0
+height = 30.0
+sides = 16
+material = SubResource("StandardMaterial3D_1g233")
+
+[node name="TowerRoofEN" type="CSGCylinder3D" parent="Blockout" unique_id=1239299861]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 39.5, -95)
+radius = 4.8
+height = 7.0
+sides = 16
+cone = true
+material = SubResource("StandardMaterial3D_trc0i")
+
+[node name="Spire" type="CSGCylinder3D" parent="Blockout" unique_id=811629933]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 33, -86)
+use_collision = true
+radius = 3.2
+height = 10.0
+sides = 16
+material = SubResource("StandardMaterial3D_1g233")
+
+[node name="SpireRoof" type="CSGCylinder3D" parent="Blockout" unique_id=561993292]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 42, -86)
+radius = 4.0
+height = 8.0
+sides = 16
+cone = true
+material = SubResource("StandardMaterial3D_trc0i")
+
+[node name="Tree0" type="Node3D" parent="Blockout" unique_id=2130312930]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34, 0, 10)
+
+[node name="Trunk" type="CSGCylinder3D" parent="Blockout/Tree0" unique_id=1132851158]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+use_collision = true
+radius = 0.35
+height = 3.0
+sides = 16
+material = SubResource("StandardMaterial3D_hxukt")
+
+[node name="Crown" type="CSGSphere3D" parent="Blockout/Tree0" unique_id=429228332]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.2, 0)
+radius = 2.2
+material = SubResource("StandardMaterial3D_6ldqi")
+
+[node name="Tree1" type="Node3D" parent="Blockout" unique_id=828193734]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31, 0, 52)
+
+[node name="Trunk" type="CSGCylinder3D" parent="Blockout/Tree1" unique_id=56544447]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+use_collision = true
+radius = 0.35
+height = 3.0
+sides = 16
+material = SubResource("StandardMaterial3D_hxukt")
+
+[node name="Crown" type="CSGSphere3D" parent="Blockout/Tree1" unique_id=1818940227]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.2, 0)
+radius = 2.5
+material = SubResource("StandardMaterial3D_6ldqi")
+
+[node name="Tree2" type="Node3D" parent="Blockout" unique_id=1347275253]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33, 0, 8)
+
+[node name="Trunk" type="CSGCylinder3D" parent="Blockout/Tree2" unique_id=992877278]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+use_collision = true
+radius = 0.35
+height = 3.0
+sides = 16
+material = SubResource("StandardMaterial3D_hxukt")
+
+[node name="Crown" type="CSGSphere3D" parent="Blockout/Tree2" unique_id=989649193]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.2, 0)
+radius = 2.8
+material = SubResource("StandardMaterial3D_6ldqi")
+
+[node name="Tree3" type="Node3D" parent="Blockout" unique_id=435961257]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31, 0, 34)
+
+[node name="Trunk" type="CSGCylinder3D" parent="Blockout/Tree3" unique_id=564152215]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+use_collision = true
+radius = 0.35
+height = 3.0
+sides = 16
+material = SubResource("StandardMaterial3D_hxukt")
+
+[node name="Crown" type="CSGSphere3D" parent="Blockout/Tree3" unique_id=504579739]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.2, 0)
+radius = 2.2
+material = SubResource("StandardMaterial3D_6ldqi")
+
+[node name="Tree4" type="Node3D" parent="Blockout" unique_id=269978945]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, 72)
+
+[node name="Trunk" type="CSGCylinder3D" parent="Blockout/Tree4" unique_id=1111973501]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+use_collision = true
+radius = 0.35
+height = 3.0
+sides = 16
+material = SubResource("StandardMaterial3D_hxukt")
+
+[node name="Crown" type="CSGSphere3D" parent="Blockout/Tree4" unique_id=1279165281]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.2, 0)
+radius = 2.5
+material = SubResource("StandardMaterial3D_6ldqi")
+
+[node name="Tree5" type="Node3D" parent="Blockout" unique_id=2059870047]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, 70)
+
+[node name="Trunk" type="CSGCylinder3D" parent="Blockout/Tree5" unique_id=516991978]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+use_collision = true
+radius = 0.35
+height = 3.0
+sides = 16
+material = SubResource("StandardMaterial3D_hxukt")
+
+[node name="Crown" type="CSGSphere3D" parent="Blockout/Tree5" unique_id=1131406219]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.2, 0)
+radius = 2.8
+material = SubResource("StandardMaterial3D_6ldqi")
+
+[node name="Tree6" type="Node3D" parent="Blockout" unique_id=848672671]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36, 0, -12)
+
+[node name="Trunk" type="CSGCylinder3D" parent="Blockout/Tree6" unique_id=662929671]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+use_collision = true
+radius = 0.35
+height = 3.0
+sides = 16
+material = SubResource("StandardMaterial3D_hxukt")
+
+[node name="Crown" type="CSGSphere3D" parent="Blockout/Tree6" unique_id=566793221]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.2, 0)
+radius = 2.2
+material = SubResource("StandardMaterial3D_6ldqi")
+
+[node name="Tree7" type="Node3D" parent="Blockout" unique_id=1994133754]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37, 0, -10)
+
+[node name="Trunk" type="CSGCylinder3D" parent="Blockout/Tree7" unique_id=140522144]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+use_collision = true
+radius = 0.35
+height = 3.0
+sides = 16
+material = SubResource("StandardMaterial3D_hxukt")
+
+[node name="Crown" type="CSGSphere3D" parent="Blockout/Tree7" unique_id=938886749]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.2, 0)
+radius = 2.5
+material = SubResource("StandardMaterial3D_6ldqi")
+
+[node name="Tree8" type="Node3D" parent="Blockout" unique_id=78926152]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, 54)
+
+[node name="Trunk" type="CSGCylinder3D" parent="Blockout/Tree8" unique_id=1937193404]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+use_collision = true
+radius = 0.35
+height = 3.0
+sides = 16
+material = SubResource("StandardMaterial3D_hxukt")
+
+[node name="Crown" type="CSGSphere3D" parent="Blockout/Tree8" unique_id=1760123919]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.2, 0)
+radius = 2.8
+material = SubResource("StandardMaterial3D_6ldqi")
+
+[node name="Tree9" type="Node3D" parent="Blockout" unique_id=1160321189]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34, 0, 30)
+
+[node name="Trunk" type="CSGCylinder3D" parent="Blockout/Tree9" unique_id=1135982944]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+use_collision = true
+radius = 0.35
+height = 3.0
+sides = 16
+material = SubResource("StandardMaterial3D_hxukt")
+
+[node name="Crown" type="CSGSphere3D" parent="Blockout/Tree9" unique_id=1512295254]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.2, 0)
+radius = 2.2
+material = SubResource("StandardMaterial3D_6ldqi")
+
+[node name="Tree10" type="Node3D" parent="Blockout" unique_id=1298503219]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 0, 52)
+
+[node name="Trunk" type="CSGCylinder3D" parent="Blockout/Tree10" unique_id=439959908]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+use_collision = true
+radius = 0.35
+height = 3.0
+sides = 16
+material = SubResource("StandardMaterial3D_hxukt")
+
+[node name="Crown" type="CSGSphere3D" parent="Blockout/Tree10" unique_id=401133573]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.2, 0)
+radius = 2.5
+material = SubResource("StandardMaterial3D_6ldqi")
+
+[node name="Tree11" type="Node3D" parent="Blockout" unique_id=139850493]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -44, 0, 64)
+
+[node name="Trunk" type="CSGCylinder3D" parent="Blockout/Tree11" unique_id=1464006559]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+use_collision = true
+radius = 0.35
+height = 3.0
+sides = 16
+material = SubResource("StandardMaterial3D_hxukt")
+
+[node name="Crown" type="CSGSphere3D" parent="Blockout/Tree11" unique_id=56954129]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.2, 0)
+radius = 2.8
+material = SubResource("StandardMaterial3D_6ldqi")
+
+[node name="Targets" type="Node3D" parent="." unique_id=1384286439]
+
+[node name="Bartender" type="Node3D" parent="Targets" unique_id=874298760]
+script = ExtResource("2_7sh0f")
+target_id = "bartender"
+follow_location = true
+watched_props = PackedStringArray()
+
+[node name="Body" type="StaticBody3D" parent="Targets/Bartender" unique_id=1619856903]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+
+[node name="Shape" type="CollisionShape3D" parent="Targets/Bartender/Body" unique_id=1240821465]
+shape = SubResource("CapsuleShape3D_7uo60")
+
+[node name="Mesh" type="MeshInstance3D" parent="Targets/Bartender" unique_id=989487133]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.875, 0)
+material_override = SubResource("StandardMaterial3D_ias0o")
+mesh = SubResource("CapsuleMesh_wltmo")
+
+[node name="Nose" type="CSGBox3D" parent="Targets/Bartender" unique_id=871483128]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -0.33)
+size = Vector3(0.12, 0.12, 0.2)
+material = SubResource("StandardMaterial3D_ias0o")
+
+[node name="Apron" type="CSGBox3D" parent="Targets/Bartender" unique_id=563038355]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, -0.33)
+size = Vector3(0.5, 0.7, 0.05)
+material = SubResource("StandardMaterial3D_lifri")
+
+[node name="Name" type="Label3D" parent="Targets/Bartender" unique_id=1910975301]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.15, 0)
+billboard = 1
+text = "술집 주인"
+font = ExtResource("1_5m02y")
+font_size = 48
+
+[node name="Guard" type="Node3D" parent="Targets" unique_id=1797743429]
+script = ExtResource("2_7sh0f")
+target_id = "guard"
+follow_location = true
+watched_props = PackedStringArray()
+
+[node name="Body" type="StaticBody3D" parent="Targets/Guard" unique_id=1711564995]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+
+[node name="Shape" type="CollisionShape3D" parent="Targets/Guard/Body" unique_id=331240240]
+shape = SubResource("CapsuleShape3D_csdd4")
+
+[node name="Mesh" type="MeshInstance3D" parent="Targets/Guard" unique_id=1262675155]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.875, 0)
+material_override = SubResource("StandardMaterial3D_2vb3e")
+mesh = SubResource("CapsuleMesh_ci1yp")
+
+[node name="Nose" type="CSGBox3D" parent="Targets/Guard" unique_id=694177502]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -0.33)
+size = Vector3(0.12, 0.12, 0.2)
+material = SubResource("StandardMaterial3D_2vb3e")
+
+[node name="Helmet" type="CSGCylinder3D" parent="Targets/Guard" unique_id=426306921]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.72, 0)
+radius = 0.36
+height = 0.3
+sides = 16
+material = SubResource("StandardMaterial3D_ga4m5")
+
+[node name="Spear" type="CSGCylinder3D" parent="Targets/Guard" unique_id=698506211]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.45, 1.3, 0)
+radius = 0.03
+height = 2.6
+sides = 16
+material = SubResource("StandardMaterial3D_hxukt")
+
+[node name="SpearTip" type="CSGCylinder3D" parent="Targets/Guard" unique_id=744766866]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.45, 2.75, 0)
+radius = 0.07
+height = 0.3
+sides = 16
+cone = true
+material = SubResource("StandardMaterial3D_ga4m5")
+
+[node name="Name" type="Label3D" parent="Targets/Guard" unique_id=353779918]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.25, 0)
+billboard = 1
+text = "경비병"
+font = ExtResource("1_5m02y")
+font_size = 48
+
+[node name="Gate" type="Node3D" parent="Targets" unique_id=323913331]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, -44.7)
+script = ExtResource("2_7sh0f")
+target_id = "gate"
+verb = "use"
+watched_props = PackedStringArray("state")
+
+[node name="HingeL" type="Node3D" parent="Targets/Gate" unique_id=802508086]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
+
+[node name="Leaf" type="CSGBox3D" parent="Targets/Gate/HingeL" unique_id=1155469949]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 5, 0)
+use_collision = true
+size = Vector3(4, 10, 0.35)
+material = SubResource("StandardMaterial3D_lvn8r")
+
+[node name="BandHi" type="CSGBox3D" parent="Targets/Gate/HingeL" unique_id=1665211211]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 7.5, 0)
+size = Vector3(4, 0.3, 0.4)
+material = SubResource("StandardMaterial3D_ga4m5")
+
+[node name="BandLo" type="CSGBox3D" parent="Targets/Gate/HingeL" unique_id=1979701090]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2.5, 0)
+size = Vector3(4, 0.3, 0.4)
+material = SubResource("StandardMaterial3D_ga4m5")
+
+[node name="HingeR" type="Node3D" parent="Targets/Gate" unique_id=581856278]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
+
+[node name="Leaf" type="CSGBox3D" parent="Targets/Gate/HingeR" unique_id=1359616072]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 5, 0)
+use_collision = true
+size = Vector3(4, 10, 0.35)
+material = SubResource("StandardMaterial3D_lvn8r")
+
+[node name="BandHi" type="CSGBox3D" parent="Targets/Gate/HingeR" unique_id=2126888889]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 7.5, 0)
+size = Vector3(4, 0.3, 0.4)
+material = SubResource("StandardMaterial3D_ga4m5")
+
+[node name="BandLo" type="CSGBox3D" parent="Targets/Gate/HingeR" unique_id=2047591069]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2.5, 0)
+size = Vector3(4, 0.3, 0.4)
+material = SubResource("StandardMaterial3D_ga4m5")
+
+[node name="GatePresenter" type="Node" parent="Targets/Gate" unique_id=971921557 node_paths=PackedStringArray("left_hinge", "right_hinge")]
+script = ExtResource("3_pa23k")
+left_hinge = NodePath("../HingeL")
+right_hinge = NodePath("../HingeR")
+
+[node name="Firewood" type="Node3D" parent="Targets" unique_id=225963842]
+script = ExtResource("2_7sh0f")
+target_id = "firewood"
+verb = "use"
+follow_location = true
+watched_props = PackedStringArray()
+
+[node name="Log0_0" type="CSGCylinder3D" parent="Targets/Firewood" unique_id=1363916315]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -0.5, 0.16, 0)
+radius = 0.16
+height = 1.4
+sides = 16
+material = SubResource("StandardMaterial3D_hxukt")
+
+[node name="Log0_1" type="CSGCylinder3D" parent="Targets/Firewood" unique_id=632721380]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -0.17, 0.16, 0)
+radius = 0.16
+height = 1.4
+sides = 16
+material = SubResource("StandardMaterial3D_hxukt")
+
+[node name="Log0_2" type="CSGCylinder3D" parent="Targets/Firewood" unique_id=1825032935]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0.16, 0.16, 0)
+radius = 0.16
+height = 1.4
+sides = 16
+material = SubResource("StandardMaterial3D_hxukt")
+
+[node name="Log0_3" type="CSGCylinder3D" parent="Targets/Firewood" unique_id=720263182]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0.49, 0.16, 0)
+radius = 0.16
+height = 1.4
+sides = 16
+material = SubResource("StandardMaterial3D_hxukt")
+
+[node name="Log1_0" type="CSGCylinder3D" parent="Targets/Firewood" unique_id=2058046838]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -0.34, 0.45, 0)
+radius = 0.16
+height = 1.4
+sides = 16
+material = SubResource("StandardMaterial3D_hxukt")
+
+[node name="Log1_1" type="CSGCylinder3D" parent="Targets/Firewood" unique_id=1055468492]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -0.01, 0.45, 0)
+radius = 0.16
+height = 1.4
+sides = 16
+material = SubResource("StandardMaterial3D_hxukt")
+
+[node name="Log1_2" type="CSGCylinder3D" parent="Targets/Firewood" unique_id=946147328]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0.32, 0.45, 0)
+radius = 0.16
+height = 1.4
+sides = 16
+material = SubResource("StandardMaterial3D_hxukt")
+
+[node name="Log2_0" type="CSGCylinder3D" parent="Targets/Firewood" unique_id=1463038921]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -0.18, 0.74, 0)
+radius = 0.16
+height = 1.4
+sides = 16
+material = SubResource("StandardMaterial3D_hxukt")
+
+[node name="Log2_1" type="CSGCylinder3D" parent="Targets/Firewood" unique_id=1297472338]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0.15, 0.74, 0)
+radius = 0.16
+height = 1.4
+sides = 16
+material = SubResource("StandardMaterial3D_hxukt")
+
+[node name="Body" type="StaticBody3D" parent="Targets/Firewood" unique_id=1539666436]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="Shape" type="CollisionShape3D" parent="Targets/Firewood/Body" unique_id=467029497]
+shape = SubResource("BoxShape3D_v06ig")
+
+[node name="TavernSign" type="Node3D" parent="Targets" unique_id=1516105007]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.6, 3.4, 1.8)
+script = ExtResource("2_7sh0f")
+target_id = "tavern_sign"
+verb = "use"
+watched_props = PackedStringArray("state")
+
+[node name="Arm" type="CSGBox3D" parent="Targets/TavernSign" unique_id=1627455519]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.15, 0.85, 0)
+size = Vector3(2.3, 0.12, 0.12)
+material = SubResource("StandardMaterial3D_lvn8r")
+
+[node name="Board" type="Node3D" parent="Targets/TavernSign" unique_id=1374375541]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.25, 0, 0)
+
+[node name="Plank" type="CSGBox3D" parent="Targets/TavernSign/Board" unique_id=1772815673]
+size = Vector3(2, 1.4, 0.1)
+material = SubResource("StandardMaterial3D_hxukt")
+
+[node name="Mug" type="CSGBox3D" parent="Targets/TavernSign/Board" unique_id=1988635101]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.35, -0.15, 0)
+size = Vector3(0.6, 0.75, 0.14)
+material = SubResource("StandardMaterial3D_beyr0")
+
+[node name="Foam" type="CSGBox3D" parent="Targets/TavernSign/Board" unique_id=510839366]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.35, 0.33, 0)
+size = Vector3(0.72, 0.24, 0.15)
+material = SubResource("StandardMaterial3D_lifri")
+
+[node name="Handle" type="CSGBox3D" parent="Targets/TavernSign/Board" unique_id=190444899]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.03, -0.15, 0)
+size = Vector3(0.16, 0.42, 0.16)
+material = SubResource("StandardMaterial3D_beyr0")
+
+[node name="Text" type="Label3D" parent="Targets/TavernSign/Board" unique_id=1083592505]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.55, 0, 0.08)
+text = "술집"
+font = ExtResource("1_5m02y")
+font_size = 72
+
+[node name="SignPresenter" type="Node" parent="Targets/TavernSign" unique_id=1376818829 node_paths=PackedStringArray("board")]
+script = ExtResource("4_oiag1")
+board = NodePath("../Board")
+
+[node name="Anchors" type="Node3D" parent="." unique_id=1348691463]
+
+[node name="entrance_player" type="Marker3D" parent="Anchors" unique_id=866251628]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 63)
+script = ExtResource("5_gktdk")
+anchor_id = "entrance"
+for_target = "player"
+
+[node name="entrance_any" type="Marker3D" parent="Anchors" unique_id=1675819241]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 60)
+script = ExtResource("5_gktdk")
+anchor_id = "entrance"
+
+[node name="square_any" type="Marker3D" parent="Anchors" unique_id=2058499787]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6)
+script = ExtResource("5_gktdk")
+anchor_id = "square"
+
+[node name="tavern_bartender" type="Marker3D" parent="Anchors" unique_id=1034553506]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -24.6, 0, -2)
+script = ExtResource("5_gktdk")
+anchor_id = "tavern"
+for_target = "bartender"
+
+[node name="tavern_any" type="Marker3D" parent="Anchors" unique_id=1684613567]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, -2)
+script = ExtResource("5_gktdk")
+anchor_id = "tavern"
+
+[node name="smithy_firewood" type="Marker3D" parent="Anchors" unique_id=126091642]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -14.2, 0, 24.5)
+script = ExtResource("5_gktdk")
+anchor_id = "smithy"
+for_target = "firewood"
+
+[node name="smithy_any" type="Marker3D" parent="Anchors" unique_id=1024162491]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 0, 22)
+script = ExtResource("5_gktdk")
+anchor_id = "smithy"
+
+[node name="gate_guard" type="Marker3D" parent="Anchors" unique_id=499415921]
+transform = Transform3D(-0.9396926, 0, -0.34202015, 0, 1, 0, 0.34202015, 0, -0.9396926, 5.6, 6, -41)
+script = ExtResource("5_gktdk")
+anchor_id = "gate"
+for_target = "guard"
+
+[node name="gate_any" type="Marker3D" parent="Anchors" unique_id=1842164950]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, -41)
+script = ExtResource("5_gktdk")
+anchor_id = "gate"
+
+[node name="castle_foyer_any" type="Marker3D" parent="Anchors" unique_id=1250857558]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, -51)
+script = ExtResource("5_gktdk")
+anchor_id = "castle_foyer"
+
+[node name="CastleFoyerVolume" type="Area3D" parent="." unique_id=239311998]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.5, -51)
+script = ExtResource("6_a655f")
+volume_id = "castle_foyer"
+
+[node name="Shape" type="CollisionShape3D" parent="CastleFoyerVolume" unique_id=689803730]
+shape = SubResource("BoxShape3D_1baa2")
+
+[node name="Player" type="CharacterBody3D" parent="." unique_id=304767370]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 63)
+script = ExtResource("7_kcivn")
+
+[node name="Collision" type="CollisionShape3D" parent="Player" unique_id=732373682]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.875, 0)
+shape = SubResource("CapsuleShape3D_l8n4v")
+
+[node name="Head" type="Node3D" parent="Player" unique_id=562148917]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.62, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Player/Head" unique_id=248599857]
+current = true
+fov = 72.0
+
+[node name="InteractRay" type="RayCast3D" parent="Player/Head/Camera3D" unique_id=1033177729]
+
+[node name="Director" type="Node" parent="." unique_id=2143688931 node_paths=PackedStringArray("player")]
+script = ExtResource("8_53v4c")
+player = NodePath("../Player")

@@ -12,6 +12,7 @@ config_version=5
 
 config/name="Back to the Gates"
 config/description="1인칭 스토리 어드벤처 — Milestone 01: THE FIRST RETURN"
+run/main_scene="res://scenes/village.tscn"
 config/features=PackedStringArray("4.7", "Forward Plus")
 
 [autoload]
@@ -22,6 +23,10 @@ Narrative="*res://core/narrative/narrative.gd"
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
+
+[gui]
+
+theme/custom_font="res://assets/fonts/Pretendard-Regular.otf"
 
 [editor]
 

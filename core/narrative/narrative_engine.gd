@@ -5,6 +5,8 @@ extends RefCounted
 ## Behaviour must match Tools/narrative/btg_narrative/engine.py (shared scenario tests).
 
 signal cue_emitted(cue: String)
+## Flags, relationship records or the cycle changed — world values may differ now.
+signal state_changed
 
 var db: BTGNarrativeDB
 var state: BTGStoryState
@@ -126,23 +128,29 @@ func emit_cue(cue: String) -> void:
 
 
 func apply_effects(effects: Array) -> void:
+	var changed := false
 	for e in effects:
 		match e.kind:
 			"set":
+				changed = true
 				if db.flags.get(e.key, "persistent") == "cycle":
 					state.cycle_flags[e.key] = true
 				else:
 					state.flags[e.key] = true
 			"clear":
+				changed = true
 				state.flags.erase(e.key)
 				state.cycle_flags.erase(e.key)
 			"rel":
+				changed = true
 				state.record_rel(e.key, e.sub)
 			"cue":
 				emit_cue(e.key)
 			"faint":
 				if pending_faint == "":
 					pending_faint = e.key
+	if changed:
+		state_changed.emit()
 
 
 ## Call after the faint presentation has finished. Advances to the next day.
@@ -166,6 +174,7 @@ func complete_cycle() -> Dictionary:
 	state.cycle_flags.clear()
 	state.stage = to_stage
 	pending_faint = ""
+	state_changed.emit()
 	return {
 		"ended_cycle": ended,
 		"reason": reason,

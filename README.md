@@ -5,7 +5,7 @@
 > 평범한 판타지 마을에 도착한 외지인이 성에 들어가려다 같은 장소와 사람들을 반복해서 경험하고,
 > 그 모든 변화가 자신을 즐겁게 하려고 세계의 관리자(나레이터)가 만든 것이었다는 사실을 발견한다.
 
-**현재 단계:** Milestone 01 (THE FIRST RETURN) — 내러티브 코어 완료(Python 레퍼런스 + Godot 런타임). 다음: 1인칭 컨트롤러 + 회색 박스 마을.
+**현재 단계:** Milestone 01 (THE FIRST RETURN) — 내러티브 코어 + 걸어다닐 수 있는 회색 박스 마을. 다음: 대화창 + 기절→다음 날 연출.
 
 ## 문서
 
@@ -18,8 +18,8 @@
 
 ## 실행
 
-**Godot 4.7** ([다운로드](https://godotengine.org/download), 압축만 풀면 됨) → Import → 이 폴더의 `project.godot`.
-아직 플레이할 장면은 없다 (다음 단계에서 추가).
+**Godot 4.7** ([다운로드](https://godotengine.org/download), 압축만 풀면 됨) → Import → 이 폴더의 `project.godot` → F5.
+WASD 이동, 마우스 시점, Shift 달리기, E 상호작용, Esc 마우스 해제. 지금은 마을을 걸어다니는 것까지 (대화창은 다음 단계).
 
 텍스트 프로토타입은 Python만 있으면 된다 (3.10+, 외부 패키지 없음):
 
@@ -41,7 +41,10 @@ GODOT=/path/to/godot Tools/godot/run_tests.sh                              # God
 ```
 project.godot          Godot 프로젝트 (저장소 루트)
 core/narrative/        게임 런타임의 내러티브 코어 (GDScript). autoload Narrative
-tests/                 Godot 헤드리스 테스트
+game/                  플레이어, 월드 표현(앵커/대상/볼륨/성문/간판), HUD, 디렉터
+scenes/                village.tscn (blockout/build_village.gd가 생성하는 회색 박스)
+assets/fonts/          Pretendard (OFL)
+tests/                 Godot 헤드리스 테스트 (+ visual/capture.gd 스크린샷)
 GameData/              게임 데이터 (JSON) — 대사, 조건, 플래그, 스테이지, 월드 규칙
   tests/               공용 테스트: 조건 벡터, 시나리오, 픽스처 (Python과 Godot이 둘 다 실행)
 Tools/narrative/       Python 레퍼런스 구현 + 검증기 + 텍스트 프로토타입
